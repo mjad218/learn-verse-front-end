@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input"
 import { useEffect, useRef } from "react"
 const SiteSearch = () => {
     const searchRef = useRef(null)
-    console.log(searchRef)
     return (
         <div>
             <Input
