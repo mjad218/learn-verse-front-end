@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Roboto_Serif } from 'next/font/google'
 import './globals.css'
 import NavBar from '@/components/shared/navbar/NavBar'
 
 const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto_Serif({ subsets: ['latin'], variable: '--font-roboto' })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${roboto.variable}`}>
         <NavBar />
         {children}
       </body>
