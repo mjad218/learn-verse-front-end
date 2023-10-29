@@ -13,13 +13,13 @@ type FormData = z.infer<typeof schema>;
 import React from 'react'
 
 const Login = () => {
-  //Form handlers from react hook from
   const { register, handleSubmit, formState: { errors, isValid }, } = useForm<FormData>({ resolver: zodResolver(schema), });
-  //TODO: Send to server
+  //TODO: Get cookies from server
   const onSubmit = (data: FieldValues) => console.log(data);
   return (
     <div className="flex justify-center items-center h-screen w-full bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg shadow-gray-400 rounded-xl px-8 pt-6 pb-8 mb-4 w-[500px]">
+      <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg shadow-gray-400
+      flex-col flex justify-center rounded-xl px-8 pt-6 pb-8 mb-4 w-[500px]">
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
             Email
@@ -51,9 +51,9 @@ const Login = () => {
         </div>
 
         <button type="submit"
-          className="bg-blue-600 text-gray-200 font-thin text-lg py-2 px-4 mx-auto
+          className="bg-blue-600 text-gray-200 font-thin text-lg py-2 px-4 self-center
         rounded-2xl focus:outline-none focus:shadow-outline w-[120px] active:scale-95 transition-all ease-in-out delay-15">
-          Register
+          Login
         </button>
       </form>
     </div>

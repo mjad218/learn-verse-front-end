@@ -1,4 +1,4 @@
-interface NavigationItems{
+interface NavigationItems {
     name:string;
     slug:string;
 }

@@ -23,7 +23,8 @@ const Register = () => {
   const onSubmit = (data: FieldValues) => console.log(data);
   return (
     <div className="flex justify-center items-center h-screen w-full bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg shadow-gray-400 rounded-xl px-8 pt-6 pb-8 mb-4 w-[500px]">
+      <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg shadow-gray-400
+      flex-col flex justify-center rounded-xl px-8 pt-6 pb-8 mb-4 w-[500px]">
         {/********************/}
         <div className="mb-4">
           <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2">

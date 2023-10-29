@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Roboto_Serif } from 'next/font/google'
 import './globals.css'
 import NavBar from '@/components/shared/navbar/NavBar'
+import Footer from '@/components/shared/footer/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 const roboto = Roboto_Serif({ subsets: ['latin'], variable: '--font-roboto' })
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={`${inter.className} ${roboto.variable}`}>
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   )
