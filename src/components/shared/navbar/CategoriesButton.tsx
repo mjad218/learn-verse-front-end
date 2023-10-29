@@ -18,12 +18,14 @@ const NavigationButtons = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-base">Categories</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="text-base font-roboto border-black border">Browse</NavigationMenuTrigger>
           <NavigationMenuContent className="flex gap-1 flex-col justify-center">
             {navigationItems.map((item) =>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()} key={item.name}>
-                <Link href={`/courses/${item.slug}`}>{item.name}</Link>
-              </NavigationMenuLink>
+              <Link href={`/courses/${item.slug}`} key={item.name} className="text-center">
+                <NavigationMenuLink className={`${navigationMenuTriggerStyle()}`}>
+                  {item.name}
+                </NavigationMenuLink>
+              </Link>
             )}
           </NavigationMenuContent>
         </NavigationMenuItem>

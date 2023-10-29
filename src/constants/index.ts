@@ -1,6 +1,6 @@
 interface NavigationItems {
-  name: string;
-  slug: string;
+    name:string;
+    slug:string;
 }
 
 export const navigationItems: NavigationItems[] = [
