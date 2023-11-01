@@ -2,6 +2,7 @@ import Image from 'next/image'
 import SiteSearch from '../sitesearch/SiteSearch'
 import Link from 'next/link'
 import CategoriesButton from './CategoriesButton'
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 const NavBar = () => {
   return (
@@ -18,10 +19,16 @@ const NavBar = () => {
       <SiteSearch />
       <div className='md:flex gap-[30px] justify-center w-[300px] items-center mr-[50px]'>
         <CategoriesButton />
-        <Link href="/login" className='font-roboto border px-4
+        <SignedOut>
+
+          <Link href="/sign-in" className='font-roboto border px-4
          py-2 rounded-2xl bg-[#1581c0] text-white font-light text-md'>Login</Link>
-        <Link href="/register" className='font-roboto border px-4
+          <Link href="/sign-up" className='font-roboto border px-4
          py-2 rounded-2xl bg-[#044266] text-white font-light text-md'>Register</Link>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </nav>
   )
