@@ -4,7 +4,7 @@ import React from 'react'
 import { BsFacebook, BsYoutube, BsLinkedin, BsTwitter, BsInstagram } from 'react-icons/bs'
 const Footer = () => {
   return (
-    <footer className='w-full bg-[#0C090A] flex flex-col justify-center py-6 text-xs'>
+    <footer className='w-full bg-[#0C090A] flex flex-col justify-center py-6 text-xs px-4'>
       {/*Top Section*/}
       <div className='flex flex-row justify-around text-white pb-4'>
         <div className='list-none'>
@@ -34,7 +34,7 @@ const Footer = () => {
             <li>Privacy Policy</li>
           </ul>
         </div>
-        <div>
+        <div className='hidden sm:block'>
           <p className='text-lg font-bold'>Contact Us</p>
           {/* TODO: Send An email */}
           <form className='flex flex-col gap-2 justify-center items-center'>

@@ -20,7 +20,6 @@ const NavBar = () => {
       <div className='md:flex gap-[30px] justify-center w-[300px] items-center mr-[50px]'>
         <CategoriesButton />
         <SignedOut>
-
           <Link href="/sign-in" className='font-roboto border px-4
          py-2 rounded-2xl bg-[#1581c0] text-white font-light text-md'>Login</Link>
           <Link href="/sign-up" className='font-roboto border px-4

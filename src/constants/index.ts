@@ -33,15 +33,18 @@ export const navigationItems: NavigationItems[] = [
 interface CarouselItems {
   src: string;
   alt: string;
+  slug:string;
 }
 
 export const mockCarousel: CarouselItems[] = [
   {
     src: "/mock_carousel/java.jpg",
     alt: "Java",
+    slug:"/javaCourse"
   },
   {
     src: "/mock_carousel/python.jpg",
     alt: "Python",
+    slug:"/pythonCourse"
   },
 ];
