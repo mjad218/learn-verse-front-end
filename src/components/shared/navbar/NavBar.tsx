@@ -27,7 +27,7 @@ const NavBar = () => {
          py-2 rounded-2xl bg-[#044266] text-white font-light text-md'>Register</Link>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <UserButton afterSignOutUrl='/' />
         </SignedIn>
       </div>
     </nav>

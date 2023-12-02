@@ -1,6 +1,6 @@
 interface NavigationItems {
-    name:string;
-    slug:string;
+  name: string;
+  slug: string;
 }
 
 export const navigationItems: NavigationItems[] = [
@@ -27,5 +27,21 @@ export const navigationItems: NavigationItems[] = [
   {
     name: "Databases",
     slug: "databases",
+  },
+];
+
+interface CarouselItems {
+  src: string;
+  alt: string;
+}
+
+export const mockCarousel: CarouselItems[] = [
+  {
+    src: "/mock_carousel/java.jpg",
+    alt: "Java",
+  },
+  {
+    src: "/mock_carousel/python.jpg",
+    alt: "Python",
   },
 ];
