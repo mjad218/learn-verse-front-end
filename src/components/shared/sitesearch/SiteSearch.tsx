@@ -1,18 +1,31 @@
 'use client'
-import { Input } from "@/components/ui/input"
-import { useEffect, useRef } from "react"
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { TextField } from "@radix-ui/themes"
+import { useRouter } from "next/navigation";
+import { FormEvent, useRef } from "react";
+
 const SiteSearch = () => {
-    const searchRef = useRef(null)
+    const router = useRouter();
+    const searchRef = useRef<HTMLInputElement>(null);
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (searchRef.current!.value) {
+            router.push(`/search/${searchRef.current!.value}`)
+            router.refresh();
+        }
+    }
     return (
-        <div>
-            <Input
-                type="text"
-                placeholder="Search"
-                ref={searchRef}
-                className="w-[500px] border-[1px] !rounded-3xl border-black focus:outline-none focus:ring
-                focus:border-blue-500 focus-visible:ring-transparent"
-            />
-        </div>
+        <form className="w-[50dvw] max-md:hidden" onSubmit={(e) => { handleSubmit(e) }}>
+            <TextField.Root size={'3'} radius="full">
+                <TextField.Slot>
+                    <MagnifyingGlassIcon height="24" width="24" />
+                </TextField.Slot>
+                <TextField.Input
+                    placeholder="Search the docs…" size={'3'}
+                    ref={searchRef} />
+            </TextField.Root>
+        </form>
     )
 }
 

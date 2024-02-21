@@ -1,3 +1,5 @@
+import '@radix-ui/themes/styles.css';
+import { Theme } from '@radix-ui/themes';
 import type { Metadata } from 'next'
 import { Inter, Roboto_Serif } from 'next/font/google'
 import './globals.css'
@@ -20,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${roboto.variable}`}>
-        <NavBar />
-        {children}
-        <Footer />
+        <Theme>
+          <NavBar />
+          {children}
+          <Footer />
+        </Theme>
       </body>
     </html>
   );
