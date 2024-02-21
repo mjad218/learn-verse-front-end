@@ -1,5 +1,3 @@
-import FooterForm from "./FooterForm";
-
 export const footerCompanyLinks = [
   { slug: "about", name: "About us" },
   { slug: "mission", name: "Our mission" },
@@ -9,7 +7,7 @@ export const footerCompanyLinks = [
 export const footerHelpLinks = [
   { slug: "faq", name: "FAQ" },
   { slug: "refund", name: "Refund Policy" },
-  { slug: "conditions", name: "Terms & Conditions" },
+  { slug: "toc", name: "Terms & Conditions" },
   { slug: "privacy", name: "Privacy Policy" },
 ];
 

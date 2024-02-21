@@ -25,7 +25,7 @@ const Footer = () => {
           <p className='text-lg font-bold'>Top Categories</p>
           <ul>
             {navigationItems.map((item) =>
-              <li key={item.name} className='my-2'><Link href={'/courses/item.slug'}>{item.name}</Link></li>
+              <li key={item.name} className='my-2'><Link href={`/categories/${item.slug}`}>{item.name}</Link></li>
             )}
           </ul>
         </div>

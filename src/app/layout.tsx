@@ -1,12 +1,11 @@
+import './globals.css'
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import type { Metadata } from 'next'
-import { Inter, Roboto_Serif } from 'next/font/google'
-import './globals.css'
+import { Roboto_Serif } from 'next/font/google'
 import NavBar from '@/components/shared/navbar/NavBar'
 import Footer from '@/components/shared/footer/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
 const roboto = Roboto_Serif({ subsets: ['latin'], variable: '--font-roboto' })
 
 export const metadata: Metadata = {
@@ -21,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${roboto.variable}`}>
+      <body className={`${roboto.variable}`}>
         <Theme>
           <NavBar />
           {children}

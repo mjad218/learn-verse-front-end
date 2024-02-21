@@ -1,37 +1,26 @@
-'use client'
-import Link from "next/link"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu"
-import { navigationItems } from "@/constants"
-
-const NavigationButtons = () => {
+'use client';
+import { CaretDownIcon } from "@radix-ui/react-icons"
+import { DropdownMenu, Button } from "@radix-ui/themes"
+import { navigationItems } from '@/constants'
+import Link from "next/link";
+const CategoriesButton = () => {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-base font-roboto border-black border">Browse</NavigationMenuTrigger>
-          <NavigationMenuContent className="flex gap-1 flex-col justify-center">
-            {navigationItems.map((item) =>
-              <Link href={`/courses/${item.slug}`} key={item.name} className="text-center">
-                <NavigationMenuLink className={`${navigationMenuTriggerStyle()}`}>
-                  {item.name}
-                </NavigationMenuLink>
-              </Link>
-            )}
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger>
+        <Button variant="solid" className="bg-blue-600 text-white text-md">
+          Browse
+          <CaretDownIcon />
+        </Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content variant="solid">
+        {navigationItems.map((item) => (
+          <DropdownMenu.Item key={item.slug}>
+            <Link href={`/categories/${item.slug}`}>{item.name}</Link>
+          </DropdownMenu.Item>
+        ))}
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   )
 }
 
-export default NavigationButtons
+export default CategoriesButton
