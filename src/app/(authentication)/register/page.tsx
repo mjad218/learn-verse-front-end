@@ -2,42 +2,34 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-//Zod definition schema
-const schema = z
-  .object({
-    name: z
-      .string()
-      .min(3, { message: "Username must be greater than 3 characters" }),
-    email: z
-      .string()
-      .min(3, { message: "This field cannot be empty" })
-      .email("Email is invalid"),
-    password: z
-      .string()
-      .min(8, { message: "Password must be longer than 8 characters" }),
-    confirmPassword: z
-      .string()
-      .min(8, { message: "Password must be longer than 8 characters" }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Passwords don't match",
-  });
+import { registerSchema } from "../definitions";
+import { useState } from "react";
+import { Button } from "@radix-ui/themes";
+import { FormButton } from "../_components";
 
-type FormData = z.infer<typeof schema>;
+//Zod definition schema
+
+type RegisterFormData = z.infer<typeof registerSchema>;
 
 const Register = () => {
-  //Form handlers from react hook from
+  const [isLoading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
-  //TODO: Send to server
-  const onSubmit = (data: FieldValues) => console.log(data);
+    formState: { errors },
+  } = useForm<RegisterFormData>({ resolver: zodResolver(registerSchema) });
+
+  //function to handle form submission
+  const submitForm = async (data: FieldValues) => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000);
+  }
+
+
   return (
     <div className="flex justify-center items-center h-screen w-full bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white
+      <form onSubmit={handleSubmit(submitForm)} className="bg-white
       flex-col flex justify-center rounded-xl px-8 pt-6 pb-8 mb-4 w-[500px]">
 
         {/********************/}
@@ -57,9 +49,7 @@ const Register = () => {
             {...register("name")}
           />
           {errors.name && (
-            <p className="text-red-700 font-semibold text-xs">
-              {errors.name.message}
-            </p>
+            <p className="text-red-700 font-semibold text-xs">{errors.name.message}</p>
           )}
         </div>
         {/********************/}
@@ -128,14 +118,7 @@ const Register = () => {
             </p>
           )}
         </div>
-
-        <button
-          type="submit"
-          className="bg-blue-600 text-gray-200 font-thin text-lg py-2 px-4 mx-auto
-        rounded-2xl focus:outline-none focus:shadow-outline w-[120px] active:scale-95 transition-all ease-in-out delay-15"
-        >
-          Register
-        </button>
+        <FormButton text={'Register'} isLoading={isLoading} />
       </form>
     </div>
   );

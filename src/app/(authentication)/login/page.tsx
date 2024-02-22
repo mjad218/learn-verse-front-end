@@ -2,23 +2,26 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-const schema = z.object({
-  email: z.string().min(3, { message: 'This field cannot be empty' }).email('Email is invalid'),
-  password: z.string().min(8, { message: 'Password must be longer than 8 characters' }),
-})
+import { loginSchema } from "../definitions";
+import { FormButton } from "../_components";
+import { useState } from "react";
 
 
-type FormData = z.infer<typeof schema>;
-import React from 'react'
+type FormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors, isValid }, } = useForm<FormData>({ resolver: zodResolver(schema), });
+  const [isLoading, setLoading] = useState(false);
+
+  const { register, handleSubmit, formState: { errors }, } = useForm<FormData>({ resolver: zodResolver(loginSchema), });
   //TODO: Get cookies from server
-  const onSubmit = (data: FieldValues) => console.log(data);
+
+  const submitForm = async (data: FieldValues) => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000);
+  }
   return (
     <div className="flex justify-center items-center h-screen w-full bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white 
+      <form onSubmit={handleSubmit(submitForm)} className="bg-white 
       flex-col flex justify-center rounded-xl px-8 pt-6 pb-8 mb-4 w-[500px]">
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
@@ -49,12 +52,7 @@ const Login = () => {
           />
           {errors.password && <p className="text-red-700 font-semibold text-xs">{errors.password.message}</p>}
         </div>
-
-        <button type="submit"
-          className="bg-blue-600 text-gray-200 font-thin text-lg py-2 px-4 self-center
-        rounded-2xl focus:outline-none focus:shadow-outline w-[120px] active:scale-95 transition-all ease-in-out delay-15">
-          Login
-        </button>
+        <FormButton text={'Login'} isLoading={isLoading} />
       </form>
     </div>
   )

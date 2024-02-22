@@ -1,0 +1,26 @@
+import { Button } from "@radix-ui/themes";
+import LoadingSpinnerForm from "./LoadingSpinnerForm";
+interface Props {
+  text: string;
+  isLoading: boolean;
+}
+
+const FormButton = ({ text, isLoading }: Props) => {
+  return (
+    <Button
+      type="submit"
+      className="self-center"
+      disabled={isLoading}
+      radius='large'
+      size='3'
+      variant="solid"
+    >
+      <div className="flex justify-center items-center gap-1">
+        <span>{text}</span>
+        {isLoading ? <LoadingSpinnerForm /> : ''}
+      </div>
+    </Button>
+  )
+}
+
+export default FormButton;
