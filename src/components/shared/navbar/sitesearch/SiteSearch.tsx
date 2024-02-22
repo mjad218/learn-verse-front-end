@@ -22,7 +22,7 @@ const SiteSearch = () => {
                     <MagnifyingGlassIcon height="24" width="24" />
                 </TextField.Slot>
                 <TextField.Input
-                    placeholder="Search Courses" size={'3'}
+                    placeholder="Search for Courses" size={'3'}
                     ref={searchRef} />
             </TextField.Root>
         </form>

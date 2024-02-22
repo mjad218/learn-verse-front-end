@@ -6,6 +6,7 @@ import { registerSchema } from "../definitions";
 import { useState } from "react";
 import { Button } from "@radix-ui/themes";
 import { FormButton } from "../_components";
+import { formInputStyle } from "../definitions";
 
 //Zod definition schema
 
@@ -44,8 +45,7 @@ const Register = () => {
             type="text"
             id="username"
             placeholder="Username"
-            className="shadow appearance-none border rounded-xl focus:border-blue-500 border-gray-400
-             w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={formInputStyle}
             {...register("name")}
           />
           {errors.name && (
@@ -64,8 +64,7 @@ const Register = () => {
             type="email"
             id="email"
             placeholder="Email"
-            className="shadow appearance-none border rounded-xl focus:border-blue-500 border-gray-400
-             w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={formInputStyle}
             {...register("email")}
           />
           {errors.email && (
@@ -86,8 +85,7 @@ const Register = () => {
             type="password"
             id="password"
             placeholder="Password"
-            className="shadow appearance-none border rounded-xl focus:border-blue-500 border-gray-400
-             w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={formInputStyle}
             {...register("password")}
           />
           {errors.password && (
@@ -108,8 +106,7 @@ const Register = () => {
             type="password"
             id="confirmPassword"
             placeholder="Confirm Password"
-            className="shadow appearance-none border rounded-xl focus:border-blue-500 border-gray-400
-             w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={formInputStyle}
             {...register("confirmPassword")}
           />
           {errors.confirmPassword && (

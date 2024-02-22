@@ -9,7 +9,7 @@ const FormButton = ({ text, isLoading }: Props) => {
   return (
     <Button
       type="submit"
-      className="self-center"
+      className="self-center cursor-pointer"
       disabled={isLoading}
       radius='large'
       size='3'

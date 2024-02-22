@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../definitions";
 import { FormButton } from "../_components";
 import { useState } from "react";
+import { formInputStyle } from "../definitions";
 
 
 type FormData = z.infer<typeof loginSchema>;
@@ -31,8 +32,7 @@ const Login = () => {
             type="email"
             id="email"
             placeholder="Email"
-            className="shadow appearance-none border rounded-xl focus:border-blue-500 border-gray-400
-             w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={formInputStyle}
             {...register("email")}
           />
           {errors.email && <p className="text-red-700 font-semibold text-xs">{errors.email.message}</p>}
@@ -46,8 +46,7 @@ const Login = () => {
             type="password"
             id="password"
             placeholder="Password"
-            className="shadow appearance-none border rounded-xl focus:border-blue-500 border-gray-400
-             w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={formInputStyle}
             {...register("password")}
           />
           {errors.password && <p className="text-red-700 font-semibold text-xs">{errors.password.message}</p>}

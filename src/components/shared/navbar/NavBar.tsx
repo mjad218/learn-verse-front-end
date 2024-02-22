@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import SiteSearch from '../sitesearch/SiteSearch'
+import SiteSearch from './sitesearch/SiteSearch'
 import Link from 'next/link'
 import NavButtons from './NavButtons'
 import CategoriesButton from './CategoriesButton'
