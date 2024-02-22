@@ -15,7 +15,7 @@ const FormButton = ({ text, isLoading }: Props) => {
       size='3'
       variant="solid"
     >
-      <div className="flex justify-center items-center gap-1">
+      <div className="flex justify-center items-center gap-1 cursor-pointer">
         <span>{text}</span>
         {isLoading ? <LoadingSpinnerForm /> : ''}
       </div>
