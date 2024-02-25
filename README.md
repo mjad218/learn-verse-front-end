@@ -30,3 +30,34 @@ you can install The Prettier VS Code plugin to do that automatically [Prettier](
 6. JavaScript and TypeScript Nightly [TypeScript Nightly ](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next)
 7. Tailwind Docs  [Tailwind  ](https://marketplace.visualstudio.com/items?itemName=austenc.tailwind-docs)
 8. Import Cost  [Import Cost  ](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
+
+## Arrow Function 
+for consistency and simplicity always prefer the Arrow function. 
+```
+const printHello => () => {
+  console.log("Hello Learn Verse");
+};
+```
+instead of 
+```
+function printHello() {
+  console.log("Hello Learn Verse");
+}
+```
+
+## Default Export 
+
+Outside the `app directory` don't use default exports. 
+```
+export const printHello => () => {
+  console.log("Hello Learn Verse");
+};
+```
+instead of 
+```
+const printHello => () => {
+  console.log("Hello Learn Verse");
+};
+
+export default printHello;
+```
