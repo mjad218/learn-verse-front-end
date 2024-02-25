@@ -61,3 +61,18 @@ const printHello => () => {
 
 export default printHello;
 ```
+## Variable Declarations 
+DO NOT use var! ❌❌❌
+```
+var title = "Learn Verse";
+```
+- Prefer using `const` whenever possible unless the variable needs to change, in that case use `let`;
+```
+const GRADUATION_YEAR = 2024;
+
+let daysRemaining = 90;
+
+@EveryMorning
+daysRemaining = daysRemaining - 1 // or daysRemaining--
+
+```
