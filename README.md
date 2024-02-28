@@ -34,7 +34,7 @@ you can install The Prettier VS Code plugin to do that automatically [Prettier](
 ## Arrow Function 
 for consistency and simplicity always prefer the Arrow function. 
 ```
-const printHello => () => {
+const printHello = () => {
   console.log("Hello Learn Verse");
 };
 ```
@@ -49,13 +49,13 @@ function printHello() {
 
 Outside the `app directory` don't use default exports. 
 ```
-export const printHello => () => {
+export const printHello = () => {
   console.log("Hello Learn Verse");
 };
 ```
 instead of 
 ```
-const printHello => () => {
+const printHello = () => {
   console.log("Hello Learn Verse");
 };
 
