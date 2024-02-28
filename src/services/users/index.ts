@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:8080";
+import { API_URL } from "@/constants/api";
+
 export const getAuthUser = async () => {
   const request = await fetch(`${API_URL}/auth`, {
     method: "POST",
