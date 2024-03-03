@@ -31,7 +31,7 @@ const AboutPage = () => {
           <Heading size={"8"} weight="bold">
             Mission Statement
           </Heading>
-          <Grid columns={'2'} gapX={'8'}>
+          <Grid columns={'2' as never} gapX={'8'}>
             <Text size={{ lg: '5', xl: '8' }} align={'left'} weight={'medium'} className="leading-loose font-roboto" id='mission'>
               {MissionText}
             </Text>
