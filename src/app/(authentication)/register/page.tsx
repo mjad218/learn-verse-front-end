@@ -25,19 +25,20 @@ const Register = () => {
   const submitForm = async (data: FieldValues) => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2000);
-  }
-
+  };
 
   return (
-    <div className="flex justify-center items-center h-screen w-full bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
-      <form onSubmit={handleSubmit(submitForm)} className="bg-white
-      flex-col flex justify-center rounded-xl px-8 pt-6 pb-8 mb-4 w-[500px]">
-
+    <div className="flex h-screen w-full items-center justify-center bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
+      <form
+        onSubmit={handleSubmit(submitForm)}
+        className="mb-4
+      flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
+      >
         {/********************/}
         <div className="mb-4">
           <label
             htmlFor="username"
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="mb-2 block text-sm font-bold text-gray-700"
           >
             Username
           </label>
@@ -49,14 +50,16 @@ const Register = () => {
             {...register("name")}
           />
           {errors.name && (
-            <p className="text-red-700 font-semibold text-xs">{errors.name.message}</p>
+            <p className="text-xs font-semibold text-red-700">
+              {errors.name.message}
+            </p>
           )}
         </div>
         {/********************/}
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="mb-2 block text-sm font-bold text-gray-700"
           >
             Email
           </label>
@@ -68,7 +71,7 @@ const Register = () => {
             {...register("email")}
           />
           {errors.email && (
-            <p className="text-red-700 font-semibold text-xs">
+            <p className="text-xs font-semibold text-red-700">
               {errors.email.message}
             </p>
           )}
@@ -77,7 +80,7 @@ const Register = () => {
         <div className="mb-4">
           <label
             htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="mb-2 block text-sm font-bold text-gray-700"
           >
             Password
           </label>
@@ -89,7 +92,7 @@ const Register = () => {
             {...register("password")}
           />
           {errors.password && (
-            <p className="text-red-700 font-semibold text-xs">
+            <p className="text-xs font-semibold text-red-700">
               {errors.password.message}
             </p>
           )}
@@ -98,7 +101,7 @@ const Register = () => {
         <div className="mb-4">
           <label
             htmlFor="confirmPassword"
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="mb-2 block text-sm font-bold text-gray-700"
           >
             Confirm Password
           </label>
@@ -110,12 +113,12 @@ const Register = () => {
             {...register("confirmPassword")}
           />
           {errors.confirmPassword && (
-            <p className="text-red-700 font-semibold text-xs">
+            <p className="text-xs font-semibold text-red-700">
               {errors.confirmPassword.message}
             </p>
           )}
         </div>
-        <FormButton text={'Register'} isLoading={isLoading} />
+        <FormButton text={"Register"} isLoading={isLoading} />
       </form>
     </div>
   );

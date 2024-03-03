@@ -5,9 +5,7 @@ interface Props {
 }
 
 const FooterIcon = ({ Icon }: Props) => {
-  return (
-    <Icon color='white' size='20' className="cursor-pointer" />
-  )
-}
+  return <Icon color="white" size="20" className="cursor-pointer" />;
+};
 
-export default FooterIcon
+export default FooterIcon;

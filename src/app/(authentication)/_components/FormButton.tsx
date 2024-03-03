@@ -9,18 +9,18 @@ const FormButton = ({ text, isLoading }: Props) => {
   return (
     <Button
       type="submit"
-      className="self-center cursor-pointer"
+      className="cursor-pointer self-center"
       disabled={isLoading}
-      radius='large'
-      size='3'
+      radius="large"
+      size="3"
       variant="solid"
     >
-      <div className="flex justify-center items-center gap-1 cursor-pointer">
+      <div className="flex cursor-pointer items-center justify-center gap-1">
         <span>{text}</span>
-        {isLoading ? <LoadingSpinnerForm /> : ''}
+        {isLoading ? <LoadingSpinnerForm /> : ""}
       </div>
     </Button>
-  )
-}
+  );
+};
 
 export default FormButton;

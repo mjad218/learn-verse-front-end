@@ -1,13 +1,13 @@
-'use client';
-import { CaretDownIcon } from "@radix-ui/react-icons"
-import { DropdownMenu, Button } from "@radix-ui/themes"
-import { navigationItems } from '@/constants'
+"use client";
+import { CaretDownIcon } from "@radix-ui/react-icons";
+import { DropdownMenu, Button } from "@radix-ui/themes";
+import { navigationItems } from "@/constants";
 import Link from "next/link";
 const CategoriesButton = () => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <Button variant="solid" className="bg-blue-600 text-white text-md">
+        <Button variant="solid" className="text-md bg-blue-600 text-white">
           Browse
           <CaretDownIcon />
         </Button>
@@ -20,7 +20,7 @@ const CategoriesButton = () => {
         ))}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
-  )
-}
+  );
+};
 
-export default CategoriesButton
+export default CategoriesButton;

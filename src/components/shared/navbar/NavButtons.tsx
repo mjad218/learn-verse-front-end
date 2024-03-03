@@ -1,17 +1,16 @@
-import Link from 'next/link'
-import { Button } from '@radix-ui/themes'
+import Link from "next/link";
+import { Button } from "@radix-ui/themes";
 const NavButtons = () => {
-
   return (
-    <div className='md:flex gap-[30px] justify-center w-[300px] items-center mr-[50px]'>
+    <div className="mr-[50px] w-[300px] items-center justify-center gap-[30px] md:flex">
       <Button>
         <Link href="/login">Login</Link>
       </Button>
       <Button>
         <Link href="/register">Register</Link>
       </Button>
-    </div >
-  )
-}
+    </div>
+  );
+};
 
-export default NavButtons
+export default NavButtons;
