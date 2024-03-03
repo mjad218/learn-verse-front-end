@@ -4,7 +4,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../definitions";
 import { useState } from "react";
-import { Button } from "@radix-ui/themes";
 import { FormButton } from "../_components";
 import { formInputStyle } from "../definitions";
 
@@ -22,7 +21,7 @@ const Register = () => {
   } = useForm<RegisterFormData>({ resolver: zodResolver(registerSchema) });
 
   //function to handle form submission
-  const submitForm = async (data: FieldValues) => {
+  const submitForm = async (_data: FieldValues) => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2000);
   };

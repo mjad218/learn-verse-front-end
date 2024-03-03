@@ -3,11 +3,9 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../definitions";
-
 import { FormButton } from "../_components";
 import {
   ChangeEventHandler,
-  FormEventHandler,
   useCallback,
   useState,
 } from "react";
@@ -20,7 +18,6 @@ const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [result, setResult] = useState("");
 
   const usernameChangeHandler: ChangeEventHandler<HTMLInputElement> =
     useCallback((e) => {
@@ -35,13 +32,12 @@ const Login = () => {
     }, []);
 
   const {
-    register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
   //TODO: Get cookies from server
 
-  const submitForm = async (data: FieldValues) => {
+  const submitForm = async (_data: FieldValues) => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2000);
   };
