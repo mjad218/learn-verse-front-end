@@ -14,7 +14,9 @@ import { formInputStyle } from "../definitions";
 type FormData = z.infer<typeof loginSchema>;
 
 
-const Login = () => {
+const Login = () =>
+
+{
   const [isLoading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
