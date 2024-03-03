@@ -28,6 +28,12 @@ const Login = () => {
       setUsername(value);
     }, []);
 
+    const passwordChangeHandler: ChangeEventHandler<HTMLInputElement> =
+    useCallback((e) => {
+      const value = e.target?.value ?? "";
+      setPassword(value);
+    }, []);
+
   const {
     register,
     handleSubmit,
