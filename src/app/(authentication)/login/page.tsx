@@ -3,14 +3,30 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../definitions";
+
 import { FormButton } from "../_components";
-import { useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useCallback,
+  useState,
+} from "react";
 import { formInputStyle } from "../definitions";
 
 type FormData = z.infer<typeof loginSchema>;
 
+
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [result, setResult] = useState("");
+
+  const usernameChangeHandler: ChangeEventHandler<HTMLInputElement> =
+    useCallback((e) => {
+      const value = e.target?.value ?? "";
+      setUsername(value);
+    }, []);
 
   const {
     register,
@@ -29,20 +45,23 @@ const Login = () => {
         onSubmit={handleSubmit(submitForm)}
         className="mb-4 
       flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
+
       >
         <div className="mb-4">
           <label
             htmlFor="email"
             className="mb-2 block text-sm font-bold text-gray-700"
+
           >
             Email
           </label>
           <input
-            type="email"
+            type="text"
             id="email"
             placeholder="Email"
             className={formInputStyle}
-            {...register("email")}
+            value={username}
+            onChange={usernameChangeHandler}
           />
           {errors.email && (
             <p className="text-xs font-semibold text-red-700">
@@ -50,11 +69,11 @@ const Login = () => {
             </p>
           )}
         </div>
-        {/********************/}
         <div className="mb-4">
           <label
             htmlFor="password"
             className="mb-2 block text-sm font-bold text-gray-700"
+
           >
             Password
           </label>
@@ -63,7 +82,8 @@ const Login = () => {
             id="password"
             placeholder="Password"
             className={formInputStyle}
-            {...register("password")}
+            value={password}
+            onChange={passwordChangeHandler}
           />
           {errors.password && (
             <p className="text-xs font-semibold text-red-700">
@@ -72,6 +92,7 @@ const Login = () => {
           )}
         </div>
         <FormButton text={"Login"} isLoading={isLoading} />
+
       </form>
     </div>
   );
