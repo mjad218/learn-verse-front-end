@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,25 +7,34 @@ import { FormButton } from "../_components";
 import { useState } from "react";
 import { formInputStyle } from "../definitions";
 
-
 type FormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, } = useForm<FormData>({ resolver: zodResolver(loginSchema), });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
   //TODO: Get cookies from server
 
   const submitForm = async (data: FieldValues) => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2000);
-  }
+  };
   return (
-    <div className="flex justify-center items-center h-screen w-full bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
-      <form onSubmit={handleSubmit(submitForm)} className="bg-white 
-      flex-col flex justify-center rounded-xl px-8 pt-6 pb-8 mb-4 w-[500px]">
+    <div className="flex h-screen w-full items-center justify-center bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
+      <form
+        onSubmit={handleSubmit(submitForm)}
+        className="mb-4 
+      flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
+      >
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="email"
+            className="mb-2 block text-sm font-bold text-gray-700"
+          >
             Email
           </label>
           <input
@@ -35,11 +44,18 @@ const Login = () => {
             className={formInputStyle}
             {...register("email")}
           />
-          {errors.email && <p className="text-red-700 font-semibold text-xs">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-xs font-semibold text-red-700">
+              {errors.email.message}
+            </p>
+          )}
         </div>
         {/********************/}
         <div className="mb-4">
-          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="password"
+            className="mb-2 block text-sm font-bold text-gray-700"
+          >
             Password
           </label>
           <input
@@ -49,13 +65,16 @@ const Login = () => {
             className={formInputStyle}
             {...register("password")}
           />
-          {errors.password && <p className="text-red-700 font-semibold text-xs">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-xs font-semibold text-red-700">
+              {errors.password.message}
+            </p>
+          )}
         </div>
-        <FormButton text={'Login'} isLoading={isLoading} />
+        <FormButton text={"Login"} isLoading={isLoading} />
       </form>
     </div>
-  )
-}
-
+  );
+};
 
 export default Login;

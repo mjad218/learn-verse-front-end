@@ -1,12 +1,12 @@
-import './globals.css'
-import '@radix-ui/themes/styles.css';
-import { Theme } from '@radix-ui/themes';
-import type { Metadata } from 'next'
-import { Roboto_Serif } from 'next/font/google'
-import NavBar from '@/components/shared/navbar/NavBar'
-import Footer from '@/components/shared/footer/Footer'
+import "./globals.css";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
+import type { Metadata } from "next";
+import { Roboto_Serif } from "next/font/google";
+import NavBar from "@/components/shared/navbar/NavBar";
+import Footer from "@/components/shared/footer/Footer";
 
-const roboto = Roboto_Serif({ subsets: ['latin'], variable: '--font-roboto' })
+const roboto = Roboto_Serif({ subsets: ["latin"], variable: "--font-roboto" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,8 +23,10 @@ export default function RootLayout({
       <body className={`${roboto.variable}`}>
         <Theme>
           <NavBar />
-          {children}
-          <Footer />
+          <main className="px-2">
+            {children}
+            <Footer />
+          </main>
         </Theme>
       </body>
     </html>
