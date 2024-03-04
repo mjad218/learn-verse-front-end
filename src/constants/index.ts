@@ -3,7 +3,7 @@ interface NavigationItems {
   slug: string;
 }
 
-interface Course {
+export interface CourseInterface {
   title: string;
   description: string;
   category: string; //should refer to a category object
