@@ -3,7 +3,7 @@ import SecondaryCarousel from "./secondary-carousel/SecondaryCarousel";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="my-4">
       <MainCarousel />
       <SecondaryCarousel />
     </div>

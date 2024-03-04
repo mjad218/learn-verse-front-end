@@ -1,7 +1,5 @@
 const SecondaryCarousel = () => {
-  return (
-    <div>SecondaryCarousel</div>
-  )
-}
+  return <div></div>;
+};
 
-export default SecondaryCarousel
+export default SecondaryCarousel;
