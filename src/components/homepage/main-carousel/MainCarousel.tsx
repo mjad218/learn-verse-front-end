@@ -6,7 +6,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
 const MainCarousel = () => {
   return (
     <div>
@@ -22,8 +21,8 @@ const MainCarousel = () => {
             <MainCarouselCard />
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="border-2 border-gray-600" />
+        <CarouselNext className="border-2 border-gray-600" />
       </Carousel>
     </div>
   );
