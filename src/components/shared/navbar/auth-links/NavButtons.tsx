@@ -6,7 +6,7 @@ const NavButtons = () => {
   ];
 
   return (
-    <div className="mr-[50px] w-[300px] items-center justify-center gap-[30px] md:flex">
+    <div className="flex w-44 max-w-44 items-center justify-center gap-6">
       {links.map((link) => (
         <CustomNavLink
           href={link.href}
