@@ -49,8 +49,8 @@ export const signUp = async (
 };
 
 export const findCurentAuthenticatedUser = async (token: string) => {
-  const request = await fetch(`${API_URL}/sign-in`, {
-    method: "POST",
+  const request = await fetch(`${API_URL}/user`, {
+    method: "GET",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
