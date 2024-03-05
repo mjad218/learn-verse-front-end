@@ -8,7 +8,10 @@ import {
 } from "@/components/ui/carousel";
 const MainCarousel = () => {
   return (
-    <div>
+    <div className="my-4">
+      <h1 className="font-roboto mx-auto my-4 max-w-fit text-3xl font-medium">
+        Featured Courses
+      </h1>
       <Carousel className="mx-auto max-w-6xl">
         <CarouselContent>
           <CarouselItem className="">

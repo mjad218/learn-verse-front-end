@@ -9,7 +9,7 @@ import MainCarouselAvatar from "./MainCarouselAvatar";
 const MainCarouselCard = () => {
   return (
     <div>
-      <Card className="relative mx-auto h-96 max-w-6xl bg-[url('/assets/TempImages/TempCourse.jpg')] bg-cover">
+      <Card className="relative mx-auto h-96 max-w-6xl cursor-pointer bg-[url('/assets/TempImages/TempCourse.jpg')] bg-cover">
         <CardHeader className="absolute left-0 right-0 top-8 bg-zinc-800/50">
           <div className="flex flex-col items-center justify-center gap-4">
             <CardTitle className="font-bold text-gray-200">
