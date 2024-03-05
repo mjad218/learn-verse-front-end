@@ -88,7 +88,16 @@ Before creating a new branch, please make sure you are on the `master` branch.
 $ git checkout master
 Switched to branch 'master'
 ```
-after that create a new branch,
+
+Please make sure your local repo has the recent commits, 
+
+```
+$ git pull
+```
+
+after that, create a new branch,
+
+`hotfix` here is the name of the new branch, feel free to name the branch whatever you want. 
 
 ```
 $ git checkout -b hotfix
