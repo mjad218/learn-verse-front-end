@@ -3,6 +3,7 @@ import SiteSearch from "./sitesearch/SiteSearch";
 import Link from "next/link";
 import NavButtons from "./NavButtons";
 import CategoriesButton from "./CategoriesButton";
+import { UserMenu } from "./user-menu";
 
 const NavBar = () => {
   return (
@@ -21,6 +22,7 @@ const NavBar = () => {
       <CategoriesButton />
       <SiteSearch />
       <NavButtons />
+      <UserMenu />
     </nav>
   );
 };
