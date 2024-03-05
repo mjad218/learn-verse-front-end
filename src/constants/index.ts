@@ -3,6 +3,16 @@ interface NavigationItems {
   slug: string;
 }
 
+export interface CourseInterface {
+  title: string;
+  description: string;
+  category: string; //should refer to a category object
+  instructor: number; //should refer to an instructor object
+  duration: number;
+  price: number;
+  image_url: string;
+}
+
 export const navigationItems: NavigationItems[] = [
   {
     name: "Embedded Systems",
