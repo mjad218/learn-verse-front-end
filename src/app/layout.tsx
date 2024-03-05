@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Roboto_Serif } from "next/font/google";
 import NavBar from "@/components/shared/navbar/NavBar";
 import Footer from "@/components/shared/footer/Footer";
+import CurrentUserProvider from "@/components/current-user/provider";
 
 const roboto = Roboto_Serif({ subsets: ["latin"], variable: "--font-roboto" });
 
@@ -21,13 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable}`}>
-        <Theme>
-          <NavBar />
-          <main className="px-2">
-            {children}
-            <Footer />
-          </main>
-        </Theme>
+        <CurrentUserProvider>
+          <Theme>
+            <NavBar />
+            <main className="px-2">
+              {children}
+              <Footer />
+            </main>
+          </Theme>
+        </CurrentUserProvider>
       </body>
     </html>
   );
