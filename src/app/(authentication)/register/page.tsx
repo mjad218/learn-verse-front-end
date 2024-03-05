@@ -1,35 +1,61 @@
 "use client";
-import { FieldValues, useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "../definitions";
-import { useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useCallback,
+  useState,
+} from "react";
 import { FormButton } from "../_components";
 import { formInputStyle } from "../definitions";
+import { useRouter } from "next/router";
+import { getToken, signUp } from "@/services/users/login";
 
 //Zod definition schema
 
-type RegisterFormData = z.infer<typeof registerSchema>;
-
 const Register = () => {
   const [isLoading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterFormData>({ resolver: zodResolver(registerSchema) });
+  const router = useRouter();
+  const usernameChangeHandler: ChangeEventHandler<HTMLInputElement> =
+    useCallback((e) => {
+      const value = e.target?.value ?? "";
+      setUsername(value);
+    }, []);
+
+  const emailChangeHandler: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (e) => {
+      const value = e.target?.value ?? "";
+      setEmail(value);
+    },
+    [],
+  );
+
+  const passwordChangeHandler: ChangeEventHandler<HTMLInputElement> =
+    useCallback((e) => {
+      const value = e.target?.value ?? "";
+      setPassword(value);
+    }, []);
 
   //function to handle form submission
-  const submitForm = async (_data: FieldValues) => {
+  const submitForm: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
     setLoading(true);
+    try {
+      const token = await getToken();
+      if (!token) return;
+      const requestOk = await signUp(username, password, email, token);
+      if (requestOk) router.push("/login");
+    } catch (error) {}
     setTimeout(() => setLoading(false), 2000);
   };
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
       <form
-        onSubmit={handleSubmit(submitForm)}
+        onSubmit={submitForm}
         className="mb-4
       flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
       >
@@ -46,13 +72,9 @@ const Register = () => {
             id="username"
             placeholder="Username"
             className={formInputStyle}
-            {...register("name")}
+            value={username}
+            onChange={usernameChangeHandler}
           />
-          {errors.name && (
-            <p className="text-xs font-semibold text-red-700">
-              {errors.name.message}
-            </p>
-          )}
         </div>
         {/********************/}
         <div className="mb-4">
@@ -67,13 +89,9 @@ const Register = () => {
             id="email"
             placeholder="Email"
             className={formInputStyle}
-            {...register("email")}
+            value={email}
+            onChange={emailChangeHandler}
           />
-          {errors.email && (
-            <p className="text-xs font-semibold text-red-700">
-              {errors.email.message}
-            </p>
-          )}
         </div>
         {/********************/}
         <div className="mb-4">
@@ -88,13 +106,9 @@ const Register = () => {
             id="password"
             placeholder="Password"
             className={formInputStyle}
-            {...register("password")}
+            value={password}
+            onChange={passwordChangeHandler}
           />
-          {errors.password && (
-            <p className="text-xs font-semibold text-red-700">
-              {errors.password.message}
-            </p>
-          )}
         </div>
         {/********************/}
         <div className="mb-4">
@@ -109,13 +123,7 @@ const Register = () => {
             id="confirmPassword"
             placeholder="Confirm Password"
             className={formInputStyle}
-            {...register("confirmPassword")}
           />
-          {errors.confirmPassword && (
-            <p className="text-xs font-semibold text-red-700">
-              {errors.confirmPassword.message}
-            </p>
-          )}
         </div>
         <FormButton text={"Register"} isLoading={isLoading} />
       </form>

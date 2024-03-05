@@ -1,26 +1,64 @@
-import { AUTH_API_BASE } from "@/constants/api";
+import { User } from "@/components/current-user/context";
+import { API_URL } from "@/constants/api";
+
+export const getToken = () => {
+  return loginByUsernameAndPassword("gad", "123");
+};
 
 export const loginByUsernameAndPassword = async (
   username: string,
   password: string,
 ) => {
-  const request = await fetch(
-    `${AUTH_API_BASE}/realms/myRealm/protocol/openid-connect/tokenA`,
-    {
-      method: "POST",
-      credentials: "include",
-      headers: {},
-      body: JSON.stringify({
-        client_id: "client",
-        grant_type: "password",
-        username: username,
-        password: password,
-        client_secret: "MJ2foJwvvYEv1dPdKcW4f3NbNOQsqCJG",
-      }),
+  const credentials = btoa(username + ":" + password);
+  const request = await fetch(`${API_URL}/sign-in`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Basic ${credentials}`,
     },
-  );
+  });
+  if (!request.ok) return null;
+
+  const res = await request.json();
+  const token = res.token;
+  return token as string;
+};
+
+export const signUp = async (
+  username: string,
+  password: string,
+  email: string,
+  token: string,
+) => {
+  const request = await fetch(`${API_URL}/sign-up`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      userName: username,
+      password: password,
+      email,
+      address: "myAddress",
+    }),
+  });
+  return request.ok;
+};
+
+export const findCurentAuthenticatedUser = async (token: string) => {
+  const request = await fetch(`${API_URL}/sign-in`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // Bearer or Basic ?
+    },
+  });
   if (!request.ok) return null;
 
   const user = await request.json();
-  return user;
+  return user["payload"] as User;
 };

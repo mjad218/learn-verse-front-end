@@ -2,7 +2,12 @@
 import { createContext, useContext } from "react";
 import { Dispatch, SetStateAction } from "react";
 
-export type User = {};
+export type User = {
+  userName: string;
+  password: string | null;
+  email: string;
+  address: string;
+};
 export const UserContext = createContext<UserContextType>({
   user: null,
   setUser: () => {},
