@@ -25,7 +25,7 @@ export default function RootLayout({
         <CurrentUserProvider>
           <Theme>
             <NavBar />
-            <main className="px-2">
+            <main>
               {children}
               <Footer />
             </main>

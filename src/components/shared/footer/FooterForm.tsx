@@ -1,11 +1,11 @@
 "use client";
 const FooterForm = () => {
-  const formInputStyles = "text-gray-600 w-[200px] rounded-md px-1 py-2";
+  const formInputStyles = "text-gray-600 2xl:w-96 w-72 rounded-md px-1 py-2";
 
   return (
     <div>
       <p className="mb-1 text-lg font-bold">Contact Us</p>
-      <form className="flex flex-col items-center justify-center gap-2">
+      <form className="flex flex-col items-center justify-center gap-4">
         <input
           type="text"
           className={`${formInputStyles}`}

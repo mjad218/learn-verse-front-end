@@ -17,7 +17,7 @@ const Footer = () => {
   const icons = [BsFacebook, BsYoutube, BsLinkedin, BsTwitter, BsInstagram];
 
   return (
-    <footer className="flex w-full flex-col justify-center bg-[#0C090A] py-6 text-xs">
+    <footer className="text-md flex w-full flex-col justify-center bg-[#0C090A] pb-6 pt-4 text-sm">
       {/*Top Section*/}
       <div className="flex flex-row justify-around pb-4 text-white">
         <div className="list-none">
