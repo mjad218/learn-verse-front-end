@@ -7,7 +7,8 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 import { getToken, signUp } from "@/services/users/login";
-import { FormButton } from "@/app/(authentication)/_components";
+import { FormButton } from "@/components/authentication/_components";
+import { formInputStyle } from "../definitions";
 
 const SignUp = () => {
   const [isLoading, setLoading] = useState(false);
@@ -70,6 +71,7 @@ const SignUp = () => {
             placeholder="Username"
             value={username}
             onChange={usernameChangeHandler}
+            className={formInputStyle}
           />
         </div>
         {/********************/}
@@ -86,6 +88,7 @@ const SignUp = () => {
             placeholder="Email"
             value={email}
             onChange={emailChangeHandler}
+            className={formInputStyle}
           />
         </div>
         {/********************/}
@@ -102,6 +105,7 @@ const SignUp = () => {
             placeholder="Password"
             value={password}
             onChange={passwordChangeHandler}
+            className={formInputStyle}
           />
         </div>
         {/********************/}
@@ -116,6 +120,7 @@ const SignUp = () => {
             type="password"
             id="confirmPassword"
             placeholder="Confirm Password"
+            className={formInputStyle}
           />
         </div>
         <FormButton text={"Register"} isLoading={isLoading} />

@@ -11,7 +11,8 @@ import {
 } from "@/services/users/login";
 import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/components/current-user/context";
-import { FormButton } from "@/app/(authentication)/_components";
+import { FormButton } from "@/components/authentication/_components";
+import { formInputStyle } from "../definitions";
 
 const LoginPage = () => {
   const [isLoading, setLoading] = useState(false);
@@ -75,6 +76,7 @@ const LoginPage = () => {
             placeholder="Email"
             value={username}
             onChange={usernameChangeHandler}
+            className={formInputStyle}
           />
         </div>
         <div className="mb-4">
@@ -90,6 +92,7 @@ const LoginPage = () => {
             placeholder="Password"
             value={password}
             onChange={passwordChangeHandler}
+            className={formInputStyle}
           />
         </div>
         <FormButton text={"Login"} isLoading={isLoading} />
