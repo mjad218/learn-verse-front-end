@@ -76,3 +76,44 @@ let daysRemaining = 90;
 daysRemaining = daysRemaining - 1 // or daysRemaining--
 
 ```
+
+## Branching and Best Practises 
+Pushing directly to the `master` branch is considered risky and bad practice. 
+Thus unless it's a small `commit`, please create a new branch, make changes, commit changes, push the new branch with the changes and finally open a pull request. 
+
+### Create a branch
+Before creating a new branch, please make sure you are on the `master` branch.
+
+```
+$ git checkout master
+Switched to branch 'master'
+```
+after that create a new branch,
+
+```
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+
+```
+
+Make all the changes required, 
+
+When pushing the code, do the following
+
+Add Command 
+```
+$ git add .
+```
+Commit Command
+```
+$ git commit -m "hot fixed done" 
+```
+Push Command
+```
+$ git push origin hotfix
+```
+
+## Merge Pull Requests 
+
+Please don't merge your pull requests, Ask another team member to review your code changes and then he can merge it if accepted by the Reviewer. 
+
