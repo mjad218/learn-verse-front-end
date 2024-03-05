@@ -9,7 +9,7 @@ const NavBar = () => {
   return (
     <nav
       className={`z-50 flex w-full grow items-center justify-between gap-5 border-b-[1px]
-     border-b-slate-300  px-6 py-3`}
+     border-b-slate-400/80  px-6 py-3`}
     >
       <Link href="/">
         <Image

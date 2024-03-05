@@ -9,10 +9,7 @@ import {
 const MainCarousel = () => {
   return (
     <div className="my-4">
-      <h1 className="font-roboto mx-auto my-4 max-w-fit text-3xl font-medium">
-        Featured Courses
-      </h1>
-      <Carousel className="mx-auto max-w-6xl">
+      <Carousel className="mx-auto max-w-6xl 2xl:max-w-[96rem]">
         <CarouselContent>
           <CarouselItem className="">
             <MainCarouselCard />
