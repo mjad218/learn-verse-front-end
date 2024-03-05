@@ -11,7 +11,7 @@ export const loginByUsernameAndPassword = async (
 ) => {
   const credentials = btoa(username + ":" + password);
   const request = await fetch(`${API_URL}/sign-in`, {
-    method: "GET",
+    method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
