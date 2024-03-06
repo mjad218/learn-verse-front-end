@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 const MainCarousel = () => {
   return (
-    <div className="my-4">
+    <div className="my-4 2xl:w-[95%]">
       <Carousel className="mx-auto max-w-6xl 2xl:max-w-[96rem]">
         <CarouselContent>
           <CarouselItem className="">
