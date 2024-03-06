@@ -8,8 +8,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import DropdownAvatar from "./DropDownAvatar";
 import Link from "next/link";
+import { User } from "@/components/current-user/context";
 interface Props {
-  user: { name: string; email: string };
+  user: User;
 }
 
 const menuItemStyle =
@@ -23,6 +24,11 @@ const Dropdown = ({ user }: Props) => {
           <DropdownAvatar />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
+          <DropdownMenuLabel className="text-lg font-medium">
+            {user.userName}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+
           <DropdownMenuLabel className="text-lg font-medium">
             {user.email}
           </DropdownMenuLabel>

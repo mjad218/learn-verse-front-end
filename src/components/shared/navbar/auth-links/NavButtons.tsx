@@ -1,3 +1,5 @@
+"use client";
+import { useCurrentUser } from "@/components/current-user/context";
 import CustomNavLink from "./CustomNavLink";
 import Dropdown from "./Dropdown";
 const NavButtons = () => {
@@ -6,8 +8,7 @@ const NavButtons = () => {
     { name: "Register", href: "/register" },
   ];
 
-  const user = { name: "Mohamed", email: "1900180@eng.asu.edu.eg" };
-
+  const { user } = useCurrentUser();
   return (
     <div className="flex w-44 max-w-44 items-center justify-center gap-6">
       {!user &&
