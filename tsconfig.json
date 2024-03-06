@@ -22,7 +22,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitThis": true,
-    "exactOptionalPropertyTypes": true,
+    "exactOptionalPropertyTypes": false,
     "experimentalDecorators": true,
     "declarationMap": true,
     "inlineSources": false,
