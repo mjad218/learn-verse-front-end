@@ -14,9 +14,11 @@ const CategoriesButton = () => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Content variant="solid">
         {navigationItems.map((item) => (
-          <DropdownMenu.Item key={item.slug}>
-            <Link href={`/categories/${item.slug}`}>{item.name}</Link>
-          </DropdownMenu.Item>
+          <Link href={`/categories/${item.slug}`} key={item.slug}>
+            <DropdownMenu.Item className="cursor-pointer">
+              {item.name}
+            </DropdownMenu.Item>
+          </Link>
         ))}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
