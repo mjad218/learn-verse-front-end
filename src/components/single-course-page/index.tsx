@@ -12,6 +12,7 @@ export const SingleCoursePage = (props: IProps) => {
     <div className="pb-16 pt-8">
       <Row className="flex flex-col gap-5 lg:flex-row">
         <CourseDetails className=" basis-9/12" />
+        {props.slug}
         <CourseSideBar className=" basis-3/12" />
       </Row>
       <Row>
