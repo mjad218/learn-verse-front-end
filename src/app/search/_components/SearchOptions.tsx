@@ -32,25 +32,19 @@ const SearchOptions = () => {
           <AccordionTrigger className="justify-center gap-4">
             Level
           </AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
+          <AccordionContent>dummy text</AccordionContent>
         </AccordionItem>
         <AccordionItem value="price">
           <AccordionTrigger className="justify-center gap-4">
             Price
           </AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
+          <AccordionContent>dummy text</AccordionContent>
         </AccordionItem>
         <AccordionItem value="language">
           <AccordionTrigger className="justify-center gap-4">
             Primary Language
           </AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
+          <AccordionContent>dummy text</AccordionContent>
         </AccordionItem>
       </Accordion>
       <Button
