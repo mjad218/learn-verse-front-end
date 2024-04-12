@@ -12,7 +12,6 @@ const SearchPage = () => {
     <Box mx={"4"} my={"6"} className="font-roboto mx-auto max-w-[95%]">
       <Grid columns={"5"} rows={"1"} className="text-center text-xl">
         <Flex
-          // @ts-ignore
           style={{ gridColumn: "1/2" }}
           direction={"column"}
           className="rounded-xl border border-gray-400/70"
