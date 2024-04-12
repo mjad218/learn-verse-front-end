@@ -1,34 +1,33 @@
 "use client";
-import { parseAsFloat, parseAsInteger, useQueryState } from "nuqs";
-import { Flex } from "@radix-ui/themes";
+import { useRouter } from "next/navigation";
+import { Flex, Button } from "@radix-ui/themes";
+import { useSearchParams } from "next/navigation";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Stars from "./Stars";
+import Rating from "./Rating";
 
 const SearchOptions = () => {
+  const router = useRouter();
   // const [level, setLevel] = useQueryState("level");
   // const [price, setPrice] = useQueryState("price");
   // const [language, setLanguage] = useQueryState("language");
 
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("q");
+
+  const resetURL = () => {
+    router.push(`/search?q=${searchQuery}`);
+    router.refresh();
+  };
+
   return (
     <Flex direction={"column"} gap={"4"}>
       <Accordion type="single" collapsible>
-        <AccordionItem value="rating">
-          <AccordionTrigger className="justify-center gap-4">
-            Rating
-          </AccordionTrigger>
-          <AccordionContent>
-            <Stars value={5} />
-            <Stars value={4.5} />
-            <Stars value={4} />
-            <Stars value={3.5} />
-            <Stars value={3} />
-          </AccordionContent>
-        </AccordionItem>
+        <Rating />
         <AccordionItem value="level">
           <AccordionTrigger className="justify-center gap-4">
             Level
@@ -54,6 +53,12 @@ const SearchOptions = () => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+      <Button
+        className="mb-2 self-center p-2 py-5 text-2xl font-normal"
+        onClick={resetURL}
+      >
+        Reset
+      </Button>
     </Flex>
   );
 };
