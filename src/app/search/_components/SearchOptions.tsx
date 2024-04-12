@@ -1,3 +1,4 @@
+"use client";
 import { Flex } from "@radix-ui/themes";
 import {
   Accordion,
@@ -5,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Stars from "./Stars";
 
 const SearchOptions = () => {
   return (
@@ -15,7 +17,11 @@ const SearchOptions = () => {
             Rating
           </AccordionTrigger>
           <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
+            <Stars value={5} />
+            <Stars value={4.5} />
+            <Stars value={4} />
+            <Stars value={3.5} />
+            <Stars value={3} />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="level">
