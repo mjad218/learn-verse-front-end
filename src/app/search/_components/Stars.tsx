@@ -1,10 +1,21 @@
 // @ts-ignore
 import ReactStars from "react-stars";
+import { parseAsFloat, useQueryState } from "nuqs";
+import { useRouter } from "next/navigation";
 import { Grid, Text, Box } from "@radix-ui/themes";
 
 const Stars = ({ value }: { value: number }) => {
+  const router = useRouter();
+
+  const [rating, setRating] = useQueryState("rating", parseAsFloat);
+
+  const changeRating = () => {
+    setRating(value);
+    router.refresh();
+  };
   return (
     <Grid
+      onClick={changeRating}
       columns={"5"}
       className="place-items-center hover:cursor-pointer hover:bg-neutral-200/80"
     >

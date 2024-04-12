@@ -1,4 +1,5 @@
 "use client";
+import { parseAsFloat, parseAsInteger, useQueryState } from "nuqs";
 import { Flex } from "@radix-ui/themes";
 import {
   Accordion,
@@ -9,6 +10,10 @@ import {
 import Stars from "./Stars";
 
 const SearchOptions = () => {
+  // const [level, setLevel] = useQueryState("level");
+  // const [price, setPrice] = useQueryState("price");
+  // const [language, setLanguage] = useQueryState("language");
+
   return (
     <Flex direction={"column"} gap={"4"}>
       <Accordion type="single" collapsible>
