@@ -6,8 +6,8 @@ import { Grid, Text, Box } from "@radix-ui/themes";
 
 const Stars = ({ value }: { value: number }) => {
   const router = useRouter();
-  
-  const [, setRating] = useQueryState("rating", parseAsFloat);
+
+  const [rating, setRating] = useQueryState("rating", parseAsFloat);
 
   const changeRating = () => {
     setRating(value);
