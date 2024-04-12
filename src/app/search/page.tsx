@@ -1,7 +1,7 @@
 "use client";
 import { Box, Grid, Flex, Text, Separator } from "@radix-ui/themes";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import SearchOptions from "./_components/SearchOptions";
 
 const SearchPage = () => {
   const searchParams = useSearchParams();
@@ -15,25 +15,24 @@ const SearchPage = () => {
           direction={"column"}
           className="rounded-xl border border-gray-400/70"
         >
-          <Text size={"6"} align={"center"} className="font-medium">
+          <Text size={"6"} align={"center"} className="py-2 font-medium">
             Search Filters
           </Text>
           <Separator size={"4"} orientation="horizontal" color="gray" />
-          <Flex direction={"column"} gap={"4"}>
-            <Box>Rating</Box>
-            <Box>Price</Box>
-            <Box>Level</Box>
-            <Box>Language</Box>
-          </Flex>
+          <SearchOptions />
         </Flex>
         {/* @ts-ignore */}
         <Box style={{ gridColumn: "2/6" }}>
           <Text className="text-start text-4xl font-semibold">
             Showing results for {searchQuery || "..."}
           </Text>
-          <Grid columns={"4"} rows={"4"}></Grid>
+          <Grid
+            columns={{ md: "3", lg: "4" }}
+            rows={{ md: "3", lg: "4" }}
+          ></Grid>
         </Box>
       </Grid>
+      {/* <Pagination/> */}
     </Box>
   );
 };
