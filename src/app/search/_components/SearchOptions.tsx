@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/accordion";
 import Rating from "./Rating";
 import LanguageSelection from "./LanguageSelection";
+import LevelSelection from "./LevelSelection";
 
 const SearchOptions = () => {
   const router = useRouter();
-  // const [level, setLevel] = useQueryState("level");
   // const [price, setPrice] = useQueryState("price");
 
   const searchParams = useSearchParams();
@@ -32,7 +32,9 @@ const SearchOptions = () => {
           <AccordionTrigger className="justify-center gap-4">
             Level
           </AccordionTrigger>
-          <AccordionContent>dummy text</AccordionContent>
+          <AccordionContent>
+            <LevelSelection />
+          </AccordionContent>
         </AccordionItem>
         <AccordionItem value="price">
           <AccordionTrigger className="justify-center gap-4">
