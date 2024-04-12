@@ -9,12 +9,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Rating from "./Rating";
+import LanguageSelection from "./LanguageSelection";
 
 const SearchOptions = () => {
   const router = useRouter();
   // const [level, setLevel] = useQueryState("level");
   // const [price, setPrice] = useQueryState("price");
-  // const [language, setLanguage] = useQueryState("language");
 
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("q");
@@ -44,7 +44,9 @@ const SearchOptions = () => {
           <AccordionTrigger className="justify-center gap-4">
             Primary Language
           </AccordionTrigger>
-          <AccordionContent>dummy text</AccordionContent>
+          <AccordionContent>
+            <LanguageSelection />
+          </AccordionContent>
         </AccordionItem>
       </Accordion>
       <Button
