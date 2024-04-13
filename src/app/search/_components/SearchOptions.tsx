@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Flex, Button } from "@radix-ui/themes";
+import { Flex, Button, Separator, Text } from "@radix-ui/themes";
 import { useSearchParams } from "next/navigation";
 import {
   Accordion,
@@ -25,7 +25,15 @@ const SearchOptions = () => {
   };
 
   return (
-    <Flex direction={"column"} gap={"4"}>
+    <Flex
+      direction={"column"}
+      gap={"4"}
+      className="rounded-xl border border-gray-400/70"
+    >
+      <Text size={"6"} align={"center"} className="pt-2 font-medium">
+        Search Filters
+      </Text>
+      <Separator size={"4"} orientation="horizontal" color="gray" />
       <Accordion type="single" collapsible>
         <Rating />
         <AccordionItem value="level">
