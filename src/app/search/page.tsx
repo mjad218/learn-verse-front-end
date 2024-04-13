@@ -2,6 +2,7 @@ import { Box, Grid, Flex } from "@radix-ui/themes";
 import dynamic from "next/dynamic";
 import PaginationComponent from "./_results/PaginationComponent";
 import CourseCard from "./_results/CourseCard";
+import { Suspense } from "react";
 
 const SearchOptions = dynamic(() => import("./_components/SearchOptions"), {});
 const ResultsMessage = dynamic(
@@ -34,7 +35,9 @@ const SearchPage = () => {
           </Grid>
         </Box>
       </Grid>
-      <PaginationComponent />
+      <Suspense>
+        <PaginationComponent />
+      </Suspense>
     </Box>
   );
 };
