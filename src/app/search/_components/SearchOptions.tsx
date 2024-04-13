@@ -20,7 +20,7 @@ const SearchOptions = () => {
   const searchQuery = searchParams.get("q");
 
   const resetURL = () => {
-    router.push(`/search?q=${searchQuery}`);
+    router.push(`/search?q=${searchQuery}&p=1`);
     router.refresh();
   };
 

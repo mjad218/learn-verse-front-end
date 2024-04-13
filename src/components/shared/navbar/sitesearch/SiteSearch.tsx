@@ -11,7 +11,7 @@ const SiteSearch = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchRef.current!.value) {
-      router.push(`/search?q=${searchRef.current!.value}`);
+      router.push(`/search?q=${searchRef.current!.value}&p=1`);
       router.refresh();
     }
   };
