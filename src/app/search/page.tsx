@@ -1,6 +1,7 @@
 import { Box, Grid, Flex } from "@radix-ui/themes";
 import dynamic from "next/dynamic";
 import PaginationComponent from "./_results/PaginationComponent";
+import CourseCard from "./_results/CourseCard";
 
 const SearchOptions = dynamic(() => import("./_components/SearchOptions"), {});
 const ResultsMessage = dynamic(
@@ -17,10 +18,23 @@ const SearchPage = () => {
         </Flex>
         <Box style={{ gridColumn: "2/6" }}>
           <ResultsMessage />
-          <Grid columns={"3"} rows={"3"}></Grid>
+          <Grid
+            columns={{ lg: "3", xl: "4" }}
+            rows={"2"}
+            ml="4"
+            mt="4"
+            gapY={"4"}
+          >
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+          </Grid>
         </Box>
       </Grid>
-      <PaginationComponent/>
+      <PaginationComponent />
     </Box>
   );
 };
