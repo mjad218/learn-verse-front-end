@@ -6,14 +6,14 @@ interface Option {
 }
 interface Props {
   option: Option;
-  selected: string | string[] | undefined;
+  slug: string | string[] | undefined;
 }
-const SidePanelButton = ({ option, selected }: Props) => {
+const SidePanelButton = ({ option, slug }: Props) => {
   const active = "bg-[#3e63dd] text-white";
   return (
     <Box
       className={`w-[95%] rounded-2xl text-center hover:cursor-pointer
-    ${option.key === selected ? active : ""}
+    ${option.key === slug ? active : ""}
      hover:bg-[#3e63dd] hover:text-white`}
     >
       <Link href={`/settings/${option.key}`} className="block py-4">

@@ -14,7 +14,7 @@ interface Props {
 }
 
 const SidePanel = ({ options }: Props) => {
-  const { selected } = useParams();
+  const { slug } = useParams();
   return (
     <Grid gapY={"6"} style={{ gridColumn: "1/3" }}>
       <Button className="w-32 justify-self-center disabled:text-gray-500">
@@ -46,11 +46,7 @@ const SidePanel = ({ options }: Props) => {
           </Grid>
         </Grid>
         {options.map((option) => (
-          <SidePanelButton
-            option={option}
-            key={option.key}
-            selected={selected}
-          />
+          <SidePanelButton option={option} key={option.key} slug={slug} />
         ))}
       </Flex>
     </Grid>
