@@ -1,9 +1,7 @@
 import { Box } from "@radix-ui/themes";
 import Link from "next/link";
-interface Option {
-  key: string;
-  name: string;
-}
+import { Option } from "../layout";
+
 interface Props {
   option: Option;
   slug: string | string[] | undefined;

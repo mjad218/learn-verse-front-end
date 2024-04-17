@@ -3,11 +3,7 @@ import { Grid, Button, Flex, Text, Box } from "@radix-ui/themes";
 import DropdownAvatar from "@/components/shared/navbar/auth-links/DropDownAvatar";
 import SidePanelButton from "./SidePanelButton";
 import { useParams } from "next/navigation";
-
-interface Option {
-  name: string;
-  key: string;
-}
+import { Option } from "../layout";
 
 interface Props {
   options: Option[];

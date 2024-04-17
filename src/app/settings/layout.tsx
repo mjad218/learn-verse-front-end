@@ -1,6 +1,11 @@
-import { Box, Grid, Flex } from "@radix-ui/themes";
+import { Box, Grid } from "@radix-ui/themes";
 import React from "react";
 import SidePanel from "./_components/SidePanel";
+
+export interface Option {
+  key: string;
+  name: string;
+}
 
 const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   const options = [
@@ -13,7 +18,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
     <Box mx={"4"} mt="4" mb="4">
       <Grid columns={"8"}>
         <SidePanel options={options} />
-        <Flex style={{ gridColumn: "3/8" }}>{children}</Flex>
+        <Box style={{ gridColumn: "3/9" }}>{children}</Box>
       </Grid>
     </Box>
   );
