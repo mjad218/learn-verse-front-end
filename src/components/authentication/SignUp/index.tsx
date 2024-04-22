@@ -8,7 +8,7 @@ import {
 import { useRouter } from "next/navigation";
 import { getToken, signUp } from "@/services/users/login";
 import { FormButton } from "@/components/authentication/_components";
-import { formInputStyle } from "../definitions";
+import { formInputStyle } from "../../../constants/styleDefinitions";
 
 const SignUp = () => {
   const [isLoading, setLoading] = useState(false);
