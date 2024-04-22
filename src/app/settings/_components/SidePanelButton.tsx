@@ -7,10 +7,10 @@ interface Props {
   slug: string | string[] | undefined;
 }
 const SidePanelButton = ({ option, slug }: Props) => {
-  const active = "bg-[#3e63dd] text-white";
+  const active = "bg-[#3e63dd] text-white border-none";
   return (
     <Box
-      className={`w-[95%] rounded-2xl text-center hover:cursor-pointer
+      className={`w-[95%] rounded-2xl border border-black text-center hover:cursor-pointer
     ${option.key === slug ? active : ""}
      hover:bg-[#3e63dd] hover:text-white`}
     >

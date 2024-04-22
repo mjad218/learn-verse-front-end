@@ -12,7 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/components/current-user/context";
 import { FormButton } from "@/components/authentication/_components";
-import { formInputStyle } from "../definitions";
+import { formInputStyle } from "../../../constants/styleDefinitions";
 
 const LoginPage = () => {
   const [isLoading, setLoading] = useState(false);

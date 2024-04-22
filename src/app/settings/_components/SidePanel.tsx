@@ -12,10 +12,16 @@ interface Props {
 const SidePanel = ({ options }: Props) => {
   const { slug } = useParams();
   return (
-    <Grid gapY={"6"} style={{ gridColumn: "1/3" }}>
-      <Button className="w-32 justify-self-center disabled:text-gray-500">
-        Save Changes
-      </Button>
+    <Grid
+      gapY={"6"}
+      className="w-full place-self-start"
+      style={{ gridColumn: "1/3" }}
+    >
+      <Box className="mx-auto">
+        <Button className="w-32 justify-self-center disabled:text-gray-500">
+          Save Changes
+        </Button>
+      </Box>
       <Flex
         direction={"column"}
         justify={"center"}
