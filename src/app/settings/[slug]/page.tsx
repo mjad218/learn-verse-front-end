@@ -7,8 +7,7 @@ interface Props {
 
 const page = ({ params: { slug } }: Props) => {
   const accountPanel = slug === "account";
-  const purchaedCoursesPanel = slug === "purchased";
-  const manageCoursesPanel = slug === "manage";
+  // const purchaedCoursesPanel = slug === "purchased";
 
   return <Box>{accountPanel ? <AccountPanel /> : null}</Box>;
 };
