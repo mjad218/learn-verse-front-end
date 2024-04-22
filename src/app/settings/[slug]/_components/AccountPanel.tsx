@@ -17,9 +17,10 @@ const AccountPanel = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<AccountDetailsData>({
     resolver: zodResolver(AccountDetailsSchema),
+    defaultValues: { username: "", email: "", firstname: "", lastname: "" },
   });
 
   const submitForm = async (data: FieldValues) => {
@@ -124,7 +125,8 @@ const AccountPanel = () => {
               </Flex>
               <Button
                 type="submit"
-                className={`${settingsButtonStyle} self-center text-black`}
+                className={`${settingsButtonStyle} self-center text-black disabled:border-gray-500`}
+                disabled={isDirty ? false : true}
               >
                 Submit
               </Button>
