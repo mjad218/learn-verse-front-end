@@ -1,5 +1,5 @@
 "use client";
-import { Grid, Button, Flex, Text, Box } from "@radix-ui/themes";
+import { Grid, Flex, Text, Box } from "@radix-ui/themes";
 import DropdownAvatar from "@/components/shared/navbar/auth-links/DropDownAvatar";
 import SidePanelButton from "./SidePanelButton";
 import { useParams } from "next/navigation";
@@ -17,11 +17,6 @@ const SidePanel = ({ options }: Props) => {
       className="w-full place-self-start"
       style={{ gridColumn: "1/3" }}
     >
-      <Box className="mx-auto">
-        <Button className="w-32 justify-self-center disabled:text-gray-500">
-          Save Changes
-        </Button>
-      </Box>
       <Flex
         direction={"column"}
         justify={"center"}
