@@ -5,8 +5,6 @@ type IProps = {
   course?: Course | null;
 };
 export const CourseThumbnail = (props: IProps) => {
-  props.course;
-
   return (
     <div className="h-96 w-full overflow-hidden rounded-2xl">
       <Image
