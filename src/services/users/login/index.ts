@@ -2,7 +2,7 @@ import { User } from "@/components/current-user/context";
 import { API_URL } from "@/constants/api";
 
 export const getToken = () => {
-  return loginByUsernameAndPassword("user1", "1234567");
+  return loginByUsernameAndPassword("user1@gmail.com", "12345678");
 };
 
 export const loginByUsernameAndPassword = async (
