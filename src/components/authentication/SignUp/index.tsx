@@ -1,50 +1,34 @@
 "use client";
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  useCallback,
-  useState,
-} from "react";
 import { useRouter } from "next/navigation";
 import { getToken, signUp } from "@/services/users/login";
 import { FormButton } from "@/components/authentication/_components";
 import { formInputStyle } from "../../../constants/styleDefinitions";
+import { z } from "zod";
+import { registerSchema } from "@/app/(authentication)/definitions";
+import { FieldValues, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+
+type FormData = z.infer<typeof registerSchema>;
 
 const SignUp = () => {
-  const [isLoading, setLoading] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-
   const router = useRouter();
-  const usernameChangeHandler: ChangeEventHandler<HTMLInputElement> =
-    useCallback((e) => {
-      const value = e.target?.value ?? "";
-      setUsername(value);
-    }, []);
 
-  const emailChangeHandler: ChangeEventHandler<HTMLInputElement> = useCallback(
-    (e) => {
-      const value = e.target?.value ?? "";
-      setEmail(value);
-    },
-    [],
-  );
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const passwordChangeHandler: ChangeEventHandler<HTMLInputElement> =
-    useCallback((e) => {
-      const value = e.target?.value ?? "";
-      setPassword(value);
-    }, []);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({ resolver: zodResolver(registerSchema) });
 
   //function to handle form submission
-  const submitForm: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const submitForm = async (data: FieldValues) => {
+    const { username, email, password } = data;
     try {
       const token = await getToken();
       if (!token) return;
-      const requestOk = await signUp(username, password, email, token);
+      const requestOk = await signUp(username, email, password, token);
       if (requestOk) router.push("/login");
     } catch (error) {}
     setTimeout(() => setLoading(false), 2000);
@@ -53,9 +37,9 @@ const SignUp = () => {
   return (
     <div className="flex h-screen w-full items-center justify-center bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
       <form
-        onSubmit={submitForm}
+        onSubmit={handleSubmit(submitForm)}
         className="mb-4
-      flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
+        flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
       >
         {/********************/}
         <div className="mb-4">
@@ -69,10 +53,14 @@ const SignUp = () => {
             type="text"
             id="username"
             placeholder="Username"
-            value={username}
-            onChange={usernameChangeHandler}
             className={formInputStyle}
+            {...register("username")}
           />
+          {errors.username && (
+            <p className="text-xs font-semibold text-red-700">
+              {errors.username.message}
+            </p>
+          )}
         </div>
         {/********************/}
         <div className="mb-4">
@@ -86,10 +74,14 @@ const SignUp = () => {
             type="email"
             id="email"
             placeholder="Email"
-            value={email}
-            onChange={emailChangeHandler}
             className={formInputStyle}
+            {...register("email")}
           />
+          {errors.email && (
+            <p className="text-xs font-semibold text-red-700">
+              {errors.email.message}
+            </p>
+          )}
         </div>
         {/********************/}
         <div className="mb-4">
@@ -103,10 +95,14 @@ const SignUp = () => {
             type="password"
             id="password"
             placeholder="Password"
-            value={password}
-            onChange={passwordChangeHandler}
             className={formInputStyle}
+            {...register("password")}
           />
+          {errors.password && (
+            <p className="text-xs font-semibold text-red-700">
+              {errors.password.message}
+            </p>
+          )}
         </div>
         {/********************/}
         <div className="mb-4">
@@ -121,9 +117,15 @@ const SignUp = () => {
             id="confirmPassword"
             placeholder="Confirm Password"
             className={formInputStyle}
+            {...register("confirmPassword")}
           />
+          {errors.confirmPassword && (
+            <p className="text-xs font-semibold text-red-700">
+              {errors.confirmPassword.message}
+            </p>
+          )}
         </div>
-        <FormButton text={"Register"} isLoading={isLoading} />
+        <FormButton text={"Register"} isLoading={loading} />
       </form>
     </div>
   );

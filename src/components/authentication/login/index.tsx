@@ -1,10 +1,5 @@
 "use client";
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  useCallback,
-  useState,
-} from "react";
+import { useState } from "react";
 import {
   findCurentAuthenticatedUser,
   loginByUsernameAndPassword,
@@ -13,32 +8,31 @@ import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/components/current-user/context";
 import { FormButton } from "@/components/authentication/_components";
 import { formInputStyle } from "../../../constants/styleDefinitions";
+import { loginSchema } from "@/app/(authentication)/definitions";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
+
+type FormData = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
+
   const [isLoading, setLoading] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
   const { setUser } = useCurrentUser();
-  const usernameChangeHandler: ChangeEventHandler<HTMLInputElement> =
-    useCallback((e) => {
-      const value = e.target?.value ?? "";
-      setUsername(value);
-    }, []);
-
-  const passwordChangeHandler: ChangeEventHandler<HTMLInputElement> =
-    useCallback((e) => {
-      const value = e.target?.value ?? "";
-      setPassword(value);
-    }, []);
 
   //TODO: Get cookies from server
 
-  const submitForm: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+  const submitForm = async (data: FieldValues) => {
+    const { email, password } = data;
     setLoading(true);
     try {
-      const token = await loginByUsernameAndPassword(username, password);
+      const token = await loginByUsernameAndPassword(email, password);
       // ? TO DO
       // get token and save it to localStorage
       if (!token) return;
@@ -56,10 +50,11 @@ const LoginPage = () => {
     } catch (error) {}
     setTimeout(() => setLoading(false), 2000);
   };
+
   return (
     <div className="flex h-screen w-full items-center justify-center bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
       <form
-        onSubmit={submitForm}
+        onSubmit={handleSubmit(submitForm)}
         className="mb-4 
       flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
       >
@@ -74,10 +69,14 @@ const LoginPage = () => {
             type="text"
             id="email"
             placeholder="Email"
-            value={username}
-            onChange={usernameChangeHandler}
             className={formInputStyle}
+            {...register("email")}
           />
+          {errors.email && (
+            <p className="text-xs font-semibold text-red-700">
+              {errors.email.message}
+            </p>
+          )}
         </div>
         <div className="mb-4">
           <label
@@ -90,10 +89,14 @@ const LoginPage = () => {
             type="password"
             id="password"
             placeholder="Password"
-            value={password}
-            onChange={passwordChangeHandler}
             className={formInputStyle}
+            {...register("password")}
           />
+          {errors.password && (
+            <p className="text-xs font-semibold text-red-700">
+              {errors.password.message}
+            </p>
+          )}
         </div>
         <FormButton text={"Login"} isLoading={isLoading} />
       </form>

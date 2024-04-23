@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <nav
       className={`z-50  flex w-full  justify-center border-b-[1px]
-     border-b-slate-400/80  bg-slate-100 px-6 py-3`}
+     border-b-slate-200  bg-neutral-50 px-6 py-3`}
     >
       <div className="flex max-w-6xl items-center justify-around gap-5 2xl:max-w-[96rem] 2xl:gap-8">
         <Link href="/">

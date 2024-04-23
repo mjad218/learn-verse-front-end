@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const registerSchema = z
   .object({
-    name: z
+    username: z
       .string()
       .min(3, { message: "Username must be greater than 3 characters" }),
     email: z
