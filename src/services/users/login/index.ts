@@ -18,10 +18,21 @@ export const loginByUsernameAndPassword = async (
       Authorization: `Basic ${credentials}`,
     },
   });
-  if (!request.ok) return null;
+  console.log(`Getting Access Token ${username + ":" + password}`);
+  if (!request.ok) {
+    console.log(
+      `Couldn't get access token, ${API_URL}/sign-in , Status ${request.status} Status ${request.statusText}`,
+    );
+    return null;
+  }
 
   const res = await request.json();
+
   const token = res.token;
+  console.log({
+    token,
+    res,
+  });
   return token as string;
 };
 

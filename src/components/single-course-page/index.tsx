@@ -4,14 +4,25 @@ import { CourseDetails } from "./course-details";
 import { CourseReviews } from "./course-reviews";
 import { RelatedCourses } from "./related-courses";
 import { CourseSideBar } from "./side-bar";
+import { CourseSchema } from "@/types/course.type";
 
 type IProps = {
   courseId: number;
 };
 export const SingleCoursePage = async (props: IProps) => {
-  const course = await getSingleCourse(props.courseId);
+  const res = await getSingleCourse(props.courseId);
 
-  console.log(course);
+  if (!res) {
+    console.log(res);
+    return null;
+  }
+
+  const { data, course } = res;
+  console.log({
+    data,
+    course,
+    schema: CourseSchema.safeParse(data),
+  });
   return (
     <div className="pb-16 pt-8">
       {props.courseId}

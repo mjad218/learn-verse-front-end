@@ -15,13 +15,22 @@ export const getSingleCourse = async (courseId: number | undefined) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
+    console.log(`Getting Single course, Course Id ${courseId}`);
+    if (!request.ok) {
+      console.log(`${request.ok} ${request.status} ${request.statusText} `);
+      throw `${request.ok} ${request.status} ${request.statusText} `;
+    }
     const data = await request.json();
+    console.log({
+      course: data,
+    });
+
     const parseResult = CourseSchema.safeParse(data);
     let course: Course | null = null;
     if (parseResult.success) course = parseResult.data;
-    return course;
+    return { data, course };
   } catch (error) {
+    console.log(error);
     return null;
   }
 };
