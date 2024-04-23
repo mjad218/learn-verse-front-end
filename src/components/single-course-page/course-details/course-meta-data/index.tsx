@@ -1,4 +1,11 @@
-export const CourseMetaData = () => {
+import { Course } from "@/types/course.type";
+
+type IProps = {
+  course?: Course | null;
+};
+export const CourseMetaData = (props: IProps) => {
+  props.course;
+
   return (
     <div className="flex flex-col flex-wrap justify-between gap-3 lg:flex-row">
       {/* Just dummy emojis, will get replaced later */}

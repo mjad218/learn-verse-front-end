@@ -3,9 +3,11 @@ import { CourseDescription } from "./course-description";
 import { CourseMetaData } from "./course-meta-data";
 import { CourseThumbnail } from "./course-thumb";
 import { CourseTitle } from "./course-title";
+import { Course } from "@/types/course.type";
 
 type IProps = {
   className?: string | undefined;
+  course?: Course | null;
 };
 
 export const CourseDetails = (props: IProps) => {
