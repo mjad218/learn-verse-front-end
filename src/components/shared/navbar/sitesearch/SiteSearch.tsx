@@ -15,6 +15,7 @@ const SiteSearch = () => {
       router.refresh();
     }
   };
+
   return (
     <form
       className="w-[50dvw] max-md:hidden"
@@ -26,7 +27,7 @@ const SiteSearch = () => {
         <TextField.Slot>
           <MagnifyingGlassIcon height="24" width="24" />
         </TextField.Slot>
-        <TextField.Input
+        <TextField.Root
           placeholder="Search for Courses"
           size={"3"}
           ref={searchRef}
