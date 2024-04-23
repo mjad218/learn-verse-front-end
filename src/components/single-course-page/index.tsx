@@ -24,7 +24,7 @@ export const SingleCoursePage = async (props: IProps) => {
         <RelatedCourses />
       </Row>
       <Row>
-        <CourseReviews />
+        <CourseReviews courseId={props.courseId} />
       </Row>
     </div>
   );
