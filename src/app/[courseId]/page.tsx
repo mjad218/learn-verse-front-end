@@ -4,7 +4,7 @@ type IProps = {
   params: { slug: string };
 };
 const ServerSingleCoursePage = (props: IProps) => {
-  return <SingleCoursePage slug={props.params.slug} />;
+  return <SingleCoursePage courseId={Number(props.params.slug ?? 0)} />;
 };
 
 export default ServerSingleCoursePage;
