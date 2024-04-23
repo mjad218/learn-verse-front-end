@@ -13,10 +13,10 @@ type IProps = {
 export const CourseDetails = (props: IProps) => {
   return (
     <div className={cn("flex flex-col gap-3", props.className)}>
-      <CourseThumbnail />
-      <CourseTitle />
-      <CourseMetaData />
-      <CourseDescription />
+      <CourseThumbnail course={props.course} />
+      <CourseTitle course={props.course} />
+      <CourseMetaData course={props.course} />
+      <CourseDescription course={props.course} />
     </div>
   );
 };

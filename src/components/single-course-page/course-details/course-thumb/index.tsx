@@ -10,7 +10,7 @@ export const CourseThumbnail = (props: IProps) => {
   return (
     <div className="h-96 w-full overflow-hidden rounded-2xl">
       <Image
-        src={"/assets/how-to-be-happy.jpg"}
+        src={"/assets/placeholder.webp"}
         width={900}
         height={600}
         alt="Course thumbnail"
