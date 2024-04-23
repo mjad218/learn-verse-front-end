@@ -1,10 +1,10 @@
 import { SingleCoursePage } from "@/components/single-course-page";
 
 type IProps = {
-  params: { slug: string };
+  params: { courseId: string };
 };
 const ServerSingleCoursePage = (props: IProps) => {
-  return <SingleCoursePage courseId={Number(props.params.slug ?? 0)} />;
+  return <SingleCoursePage courseId={Number(props.params.courseId ?? 0)} />;
 };
 
 export default ServerSingleCoursePage;
