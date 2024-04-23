@@ -10,6 +10,7 @@ import {
   formInputLabelSettings,
 } from "@/constants/styleDefinitions";
 import { Label } from "@/components/ui/label";
+import AccountPanelProfile from "./AccountPanelProfile";
 
 type AccountDetailsData = z.infer<typeof AccountDetailsSchema>;
 
@@ -32,16 +33,7 @@ const AccountPanel = () => {
       <Text className="text-2xl font-semibold">Account</Text>
       <Box className="mx-auto w-[75%] " pb="4" mt="4">
         <Flex direction={"column"} align={"center"} gap="2">
-          <Flex direction={"column"} gap="1" className="self-start">
-            <Button className="w-max bg-[#3e63dd] hover:bg-[#3e63dd]">
-              Choose File
-            </Button>
-            <Flex className="text-sm text-gray-700/60" direction={"column"}>
-              <Text>No file selected</Text>
-              <Text>Maximum image size is 1MB</Text>
-            </Flex>
-          </Flex>
-
+          <AccountPanelProfile />
           <form className="w-full" onSubmit={handleSubmit(submitForm)}>
             <Flex direction={"column"} gap="4" className="mx-auto w-[80%]">
               <Flex align={"center"} gap="2">
@@ -57,9 +49,9 @@ const AccountPanel = () => {
                     {...register("firstname")}
                   />
                   {errors.firstname && (
-                    <p className="text-xs font-semibold text-red-700">
+                    <Text className="text-xs font-semibold text-red-700">
                       {errors.firstname.message}
-                    </p>
+                    </Text>
                   )}
                 </Flex>
               </Flex>
@@ -126,7 +118,7 @@ const AccountPanel = () => {
               <Button
                 type="submit"
                 className={`${settingsButtonStyle} self-center text-black disabled:border-gray-500`}
-                disabled={isDirty ? false : true}
+                disabled={!isDirty}
               >
                 Submit
               </Button>

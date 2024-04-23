@@ -11,7 +11,6 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   const options = [
     { name: "Account", key: "account" },
     { name: "Purchased Courses", key: "purchased" },
-    { name: "Manage Courses", key: "manage" },
   ];
 
   return (
