@@ -1,13 +1,19 @@
 import { API_URL } from "@/constants/api";
 import { Course, CourseSchema } from "@/types/course.type";
+import { getToken } from "../users/login";
 
 export const getSingleCourse = async (courseId: number | undefined) => {
   if (!courseId) return null;
   try {
+    const token = await getToken();
+
     const request = await fetch(`${API_URL}/course/${courseId}`, {
       method: "GET",
       credentials: "include",
-      headers: {},
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     const data = await request.json();
