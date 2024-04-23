@@ -39,12 +39,6 @@ const LoginPage = () => {
       const user = await findCurentAuthenticatedUser(token);
       // after getting the token
       // get the user
-      await fetch("/api/token", {
-        method: "POST",
-        body: JSON.stringify({
-          token,
-        }),
-      });
       setUser(user);
       router.push("/"); // Redirect when success login
     } catch (error) {}
