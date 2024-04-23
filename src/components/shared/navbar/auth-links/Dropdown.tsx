@@ -28,11 +28,6 @@ const Dropdown = ({ user }: Props) => {
             {user.userName}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-
-          <DropdownMenuLabel className="text-lg font-medium">
-            {user.email}
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
           <Link href="/settings">
             <DropdownMenuItem className={menuItemStyle}>
               Settings
