@@ -28,7 +28,7 @@ export const getSingleCourse = async (courseId: number | undefined) => {
     const parseResult = CourseSchema.safeParse(data);
     let course: Course | null = null;
     if (parseResult.success) course = parseResult.data;
-    return { data, course };
+    return course;
   } catch (error) {
     console.log(error);
     return null;

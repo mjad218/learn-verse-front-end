@@ -5,6 +5,7 @@ export const CourseSchema = z.object({
   courseName: z.string().nullish(),
   description: z.string().nullish(),
   price: z.number().nullish(),
+  image: z.string().nullish(),
 });
 
 export type Course = z.infer<typeof CourseSchema>;
