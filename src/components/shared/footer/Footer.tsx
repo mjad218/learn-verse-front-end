@@ -13,13 +13,13 @@ import {
   BsTwitter,
   BsInstagram,
 } from "react-icons/bs";
+
 const Footer = () => {
   const icons = [BsFacebook, BsYoutube, BsLinkedin, BsTwitter, BsInstagram];
 
   return (
     <footer className="text-md flex w-full flex-col justify-center bg-[#0C090A] pb-6 pt-4 text-sm">
-      {/*Top Section*/}
-      <div className="flex flex-row justify-around pb-4 text-white">
+      <div className="flex flex-col justify-between px-4 pb-4 text-white lg:flex-row">
         <div className="list-none">
           <p className="text-lg font-bold">Company</p>
           <ul>
@@ -53,7 +53,6 @@ const Footer = () => {
         </div>
         <FooterForm />
       </div>
-      {/* Bottom Section */}
       <div className="flex flex-col justify-center gap-2 self-center">
         <p className="font-roboto text-sm text-white">
           © 2024 LearnVerse. All rights reserved.
