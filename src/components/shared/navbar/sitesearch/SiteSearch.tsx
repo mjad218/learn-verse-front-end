@@ -23,15 +23,15 @@ const SiteSearch = () => {
         handleSubmit(e);
       }}
     >
-      <TextField.Root size={"3"} radius="full">
+      <TextField.Root
+        size={"3"}
+        radius="full"
+        placeholder="Search for Courses"
+        ref={searchRef}
+      >
         <TextField.Slot>
           <MagnifyingGlassIcon height="24" width="24" />
         </TextField.Slot>
-        <TextField.Root
-          placeholder="Search for Courses"
-          size={"3"}
-          ref={searchRef}
-        />
       </TextField.Root>
     </form>
   );
