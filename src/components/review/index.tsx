@@ -10,13 +10,16 @@ export const SingleReview = (props: IProps) => {
     <div className="flex flex-col gap-1 rounded-xl bg-slate-300 p-2">
       <h1>{props?.review?.student?.firstName}</h1>
       <p>{props?.review?.content}</p>
-      <ReactStars
-        half
-        edit={false}
-        size={20}
-        value={props?.review?.n_stars ?? 0}
-      />
-      stars,
+
+      <div className="flex gap-2">
+        <ReactStars
+          half
+          edit={false}
+          size={20}
+          value={props?.review?.n_stars ?? 0}
+        />
+        stars
+      </div>
     </div>
   );
 };
