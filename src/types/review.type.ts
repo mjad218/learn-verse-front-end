@@ -3,7 +3,7 @@ import { z } from "zod";
 export const ReviewSchema = z.object({
   id: z.number().nullish(),
   content: z.string().nullish(),
-  stars: z.number().nullish(),
+  n_stars: z.number().nullish(),
   student: z
     .object({
       firstName: z.string().nullish(),

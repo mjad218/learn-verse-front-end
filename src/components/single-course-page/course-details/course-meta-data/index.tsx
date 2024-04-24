@@ -1,19 +1,19 @@
 import { Course } from "@/types/course.type";
+import ReactStars from "react-stars";
 
 type IProps = {
   course?: Course | null;
 };
 export const CourseMetaData = (props: IProps) => {
-  props.course;
-
   return (
     <div className="flex flex-col flex-wrap justify-between gap-3 lg:flex-row">
       {/* Just dummy emojis, will get replaced later */}
       <p className="flex w-fit flex-wrap gap-2">
-        ⭐⭐⭐⭐⭐ 5.00 stars,
-        <span className="w-fit">25 Ratings</span>
+        <ReactStars edit={false} size={20} value={props.course?.rating ?? 0} />
+        stars,
+        {/* <span className="w-fit">25 Ratings</span> */}
       </p>
-      <span className="w-fit">1000 Students</span>
+      <span className="w-fit">{props.course?.nStudents ?? 0} Students</span>
     </div>
   );
 };

@@ -5,6 +5,8 @@ export const CourseSchema = z.object({
   courseName: z.string().nullish(),
   description: z.string().nullish(),
   price: z.number().nullish(),
+  rating: z.number().nullish(),
+  nStudents: z.number().nullish(),
   image: z.string().nullish(),
 });
 
