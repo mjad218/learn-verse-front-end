@@ -4,12 +4,14 @@ import { Button } from "@radix-ui/themes";
 interface Props {
   href: string;
   name: string;
+  variant: string;
 }
 
-function CustomNavLink({ href, name }: Props) {
+function CustomNavLink({ href, name, variant }: Props) {
   return (
     <Link href={href} passHref legacyBehavior>
-      <Button>{name}</Button>
+      {/* @ts-ignore */}
+      <Button variant={variant}>{name}</Button>
     </Link>
   );
 }

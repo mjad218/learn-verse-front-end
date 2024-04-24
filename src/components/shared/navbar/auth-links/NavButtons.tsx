@@ -4,8 +4,8 @@ import CustomNavLink from "./CustomNavLink";
 import Dropdown from "./Dropdown";
 const NavButtons = () => {
   const links_loggedOut = [
-    { name: "Login", href: "/login" },
-    { name: "Register", href: "/register" },
+    { name: "Login", href: "/login", variant: "outline" },
+    { name: "Register", href: "/register", variant: "solid" },
   ];
 
   const { user } = useCurrentUser();
@@ -16,6 +16,7 @@ const NavButtons = () => {
           <CustomNavLink
             href={link.href}
             name={link.name}
+            variant={link.variant}
             key={link.name.toLowerCase()}
           />
         ))}
