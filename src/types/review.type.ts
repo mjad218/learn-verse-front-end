@@ -6,7 +6,7 @@ export const ReviewSchema = z.object({
   stars: z.number().nullish(),
   student: z
     .object({
-      name: z.string().nullish(),
+      firstName: z.string().nullish(),
     })
     .nullish(),
 });
