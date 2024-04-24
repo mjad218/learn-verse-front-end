@@ -7,7 +7,7 @@ const CategoriesButton = () => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <Button variant="solid" className="text-md bg-blue-600 text-white">
+        <Button variant="outline" className="text-md bg-blue-600 text-white">
           Browse
           <CaretDownIcon />
         </Button>
