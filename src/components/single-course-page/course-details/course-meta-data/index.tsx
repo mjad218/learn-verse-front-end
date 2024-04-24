@@ -9,7 +9,7 @@ export const CourseMetaData = (props: IProps) => {
   return (
     <div className="flex flex-col flex-wrap justify-between gap-3 lg:flex-row">
       {/* Just dummy emojis, will get replaced later */}
-      <div className="flex gap-2">
+      <div className="flex items-center gap-2">
         <ReactStars
           half
           edit={false}
