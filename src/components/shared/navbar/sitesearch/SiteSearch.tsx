@@ -16,7 +16,7 @@ const SiteSearch = () => {
 
   return (
     <form
-      className="hidden w-[400px] max-w-full md:block"
+      className="hidden w-[550px] max-w-full self-center md:block"
       onSubmit={(e) => {
         handleSubmit(e);
       }}
@@ -24,7 +24,7 @@ const SiteSearch = () => {
       <div className="w-full">
         <input
           ref={searchRef}
-          className="h-8 w-full rounded-xl border border-black px-4 outline-blue-500"
+          className="outline-accent3 h-8 w-full rounded-xl border border-black px-4"
           placeholder={"Search for Courses.."}
         />
       </div>

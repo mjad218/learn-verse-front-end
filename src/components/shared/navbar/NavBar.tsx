@@ -7,15 +7,15 @@ import { Row } from "../row";
 
 const NavBar = () => {
   return (
-    <div className="bg-neutral-50">
+    <div className="bg-neutral-50/70 shadow-md">
       <Row>
         <nav
-          className={`z-50  flex w-full  justify-between border-b-[1px]
-     border-b-slate-200   px-6 py-3`}
+          className={`z-50 flex w-full justify-between border-b-[1px]
+     border-b-slate-200 px-6 py-3`}
         >
-          <div className="flex max-w-6xl items-center justify-around gap-5 2xl:max-w-[96rem] 2xl:gap-8">
+          <div className="flex items-center justify-around gap-8">
             <Link href="/">
-              <AppLogo className=" h-auto w-40 text-accent" />
+              <AppLogo className=" text-accent h-auto w-40" />
             </Link>
             <CategoriesButton />
           </div>
