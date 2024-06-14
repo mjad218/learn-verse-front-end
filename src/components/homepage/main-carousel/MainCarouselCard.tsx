@@ -19,7 +19,10 @@ const MainCarouselCard = ({ image, title, instructor, slug }: IProps) => {
   return (
     <div className="font-roboto">
       <Card
-        className={`relative mx-auto h-96 w-full cursor-pointer bg-[url('/${image}')] bg-cover`}
+        className={`relative mx-auto h-96 w-full cursor-pointer bg-cover`}
+        style={{
+          backgroundImage: `url('/${image}')`,
+        }}
       >
         <CardHeader className="absolute left-0 right-0 top-8 bg-zinc-800/80">
           <div className="flex flex-col items-center justify-center gap-4">
