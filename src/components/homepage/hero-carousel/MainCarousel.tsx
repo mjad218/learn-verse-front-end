@@ -3,8 +3,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 const HeroCarousel = () => {
   return (
@@ -35,8 +33,6 @@ const HeroCarousel = () => {
           />
         </CarouselItem>
       </CarouselContent>
-      <CarouselPrevious className="border-2 border-gray-600" />
-      <CarouselNext className="border-2 border-gray-600" />
     </Carousel>
   );
 };
