@@ -21,11 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable}`}>
         <CurrentUserProvider>
-            <NavBar />
-            <main>
-              {children}
-              <Footer />
-            </main>
+          <NavBar />
+          <main>
+            {children}
+            <Footer />
+          </main>
         </CurrentUserProvider>
       </body>
     </html>
