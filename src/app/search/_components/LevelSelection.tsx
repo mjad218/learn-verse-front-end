@@ -37,7 +37,7 @@ const LevelSelection = () => {
               <IoIosRadioButtonOff size={23} />
             )}
           </div>
-          <span style={{ gridColumn: "4/7" }} className="text-md font-medium">
+          <span style={{ gridColumn: "4/6" }} className="text-md font-medium">
             {Lvl.name}
           </span>
         </div>
