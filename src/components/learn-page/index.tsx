@@ -3,5 +3,5 @@ type IProps = {
 };
 export const LearnPage = (props: IProps) => {
   const courseId = props.courseId;
-  return <div>LearnPage</div>;
+  return <div>{courseId}</div>;
 };
