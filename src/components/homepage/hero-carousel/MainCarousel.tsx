@@ -1,13 +1,25 @@
+"use client";
 import MainCarouselCard from "./MainCarouselCard";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
 const HeroCarousel = () => {
   return (
-    <Carousel className="relative mx-auto w-full ">
-      <CarouselContent className="flex gap-0 ">
+    <Carousel
+      className="relative mx-auto w-full"
+      plugins={[
+        Autoplay({
+          delay: 2000,
+          stopOnInteraction: true,
+          stopOnLastSnap: true,
+        }),
+      ]}
+    >
+      <CarouselContent className="flex gap-0">
         <CarouselItem className="w-full">
           <MainCarouselCard
             image="/assets/home/pexels-gabby-k-6238120.jpg
