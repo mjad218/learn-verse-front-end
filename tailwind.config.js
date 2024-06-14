@@ -18,13 +18,22 @@ module.exports = {
     },
     extend: {
       colors: {
-        accent: "#3e63dd",
+        accent: "#03045E",
+        accent2: "#023E8A",
+        accent3: "#0077B6",
+        accent4: "#0096C7",
+        accent5: "#00B4D8",
+        accent6: "#48CAE4",
+        accent7: "#90E0EF",
+        accent8: "#ADE8F4",
+        accent9: "#CAF0F8",
       },
       backgroundColor: {
         accent: "#3e63dd",
       },
       fontFamily: {
         roboto: "var(--font-roboto)",
+        dmSerif: "var(--font-title)",
       },
       keyframes: {
         "accordion-down": {

@@ -16,7 +16,7 @@ const SiteSearch = () => {
 
   return (
     <form
-      className="w-[50dvw] max-md:hidden"
+      className="w-[400px] max-w-full max-md:hidden"
       onSubmit={(e) => {
         handleSubmit(e);
       }}

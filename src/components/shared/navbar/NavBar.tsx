@@ -1,29 +1,29 @@
-import Image from "next/image";
 import SiteSearch from "./sitesearch/SiteSearch";
 import Link from "next/link";
 import NavButtons from "./auth-links/NavButtons";
 import CategoriesButton from "./CategoriesButton";
+import { AppLogo } from "@/components/app-logo";
+import { Row } from "../row";
 
 const NavBar = () => {
   return (
-    <nav
-      className={`z-50  flex w-full  justify-center border-b-[1px]
-     border-b-slate-200  bg-neutral-50 px-6 py-3`}
-    >
-      <div className="flex max-w-6xl items-center justify-around gap-5 2xl:max-w-[96rem] 2xl:gap-8">
-        <Link href="/">
-          <Image
-            src="/assets/templogo.png"
-            alt="website logo"
-            width={200}
-            height={200}
-          />
-        </Link>
-        <CategoriesButton />
-        <SiteSearch />
-        <NavButtons />
-      </div>
-    </nav>
+    <div className="bg-neutral-50">
+      <Row>
+        <nav
+          className={`z-50  flex w-full  justify-between border-b-[1px]
+     border-b-slate-200   px-6 py-3`}
+        >
+          <div className="flex max-w-6xl items-center justify-around gap-5 2xl:max-w-[96rem] 2xl:gap-8">
+            <Link href="/">
+              <AppLogo className=" h-auto w-40 text-accent" />
+            </Link>
+            <CategoriesButton />
+          </div>
+          <SiteSearch />
+          <NavButtons />
+        </nav>
+      </Row>
+    </div>
   );
 };
 

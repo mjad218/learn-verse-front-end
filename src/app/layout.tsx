@@ -1,11 +1,16 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Roboto_Serif } from "next/font/google";
+import { Roboto_Serif, DM_Serif_Display } from "next/font/google";
 import NavBar from "@/components/shared/navbar/NavBar";
 import Footer from "@/components/shared/footer/Footer";
 import CurrentUserProvider from "@/components/current-user/provider";
 
 const roboto = Roboto_Serif({ subsets: ["latin"], variable: "--font-roboto" });
+const serifFont = DM_Serif_Display({
+  subsets: ["latin"],
+  variable: "--font-title",
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,10 +24,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable}`}>
+      <body className={`${roboto.variable} ${serifFont.variable}`}>
         <CurrentUserProvider>
-          <NavBar />
-          <main>
+          <main className="flex min-h-svh flex-col">
+            <NavBar />
+
             {children}
             <Footer />
           </main>
