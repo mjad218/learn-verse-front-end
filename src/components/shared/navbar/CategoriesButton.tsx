@@ -21,8 +21,8 @@ const CategoriesButton = () => {
       <DropdownMenuContent>
         {navigationItems.map((item) => (
           <Link href={`/categories/${item.slug}`} key={item.slug}>
-            <DropdownMenuItem className="cursor-pointer">
-              {item.name}
+            <DropdownMenuItem className="focus:bg-accent hover:bg-accent hover:text-white focus:text-white">
+              <div className="mx-auto">{item.name}</div>
             </DropdownMenuItem>
           </Link>
         ))}
