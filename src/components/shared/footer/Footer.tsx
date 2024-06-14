@@ -21,10 +21,10 @@ const Footer = () => {
   return (
     <footer className="text-md mt-auto flex w-full flex-col justify-center bg-[#0C090A] pb-6 pt-4 text-sm">
       <Row>
-        <div className="flex flex-col justify-between pb-4 text-white lg:flex-row">
+        <div className="flex flex-col justify-between gap-10 pb-4 text-white lg:flex-row">
           <div className="list-none">
             <p className="text-lg font-bold">Company</p>
-            <ul>
+            <ul className="m-0 p-0">
               {footerCompanyLinks.map((link) => (
                 <li key={link.slug} className="my-2">
                   <Link href={link.slug}>{link.name}</Link>
@@ -35,7 +35,7 @@ const Footer = () => {
           <div className="list-none">
             {/* Categories Section */}
             <p className="text-lg font-bold">Top Categories</p>
-            <ul>
+            <ul className="m-0 p-0">
               {navigationItems.map((item) => (
                 <li key={item.name} className="my-2">
                   <Link href={`/categories/${item.slug}`}>{item.name}</Link>
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
           <div className="list-none">
             <p className="text-lg font-bold">Help</p>
-            <ul>
+            <ul className="m-0 p-0">
               {footerHelpLinks.map((link) => (
                 <li key={link.slug} className="my-2">
                   <Link href={link.slug}>{link.name}</Link>

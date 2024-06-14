@@ -12,7 +12,7 @@ const NavButtons = () => {
 
   const { user } = useCurrentUser();
   return (
-    <div className="flex w-44 max-w-44 items-center justify-center gap-6">
+    <div className="hidden w-44 max-w-44 items-center justify-center gap-6 md:flex">
       {!user &&
         links_loggedOut.map((link) => (
           <CustomNavLink
