@@ -1,5 +1,6 @@
 import React from "react";
 import SidePanel from "./_components/SidePanel";
+import { Row } from "@/components/shared/row";
 
 export interface Option {
   key: string;
@@ -13,12 +14,12 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <div className="m-4">
+    <Row className="my-4">
       <div className="grid grid-cols-8">
         <SidePanel options={options} />
         <div style={{ gridColumn: "3/9" }}>{children}</div>
       </div>
-    </div>
+    </Row>
   );
 };
 
