@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         accent: "#3e63dd",
       },
+      backgroundColor: {
+        accent: "#3e63dd",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

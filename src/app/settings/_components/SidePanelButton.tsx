@@ -6,12 +6,12 @@ interface Props {
   slug: string | string[] | undefined;
 }
 const SidePanelButton = ({ option, slug }: Props) => {
-  const active = "bg-[#3e63dd] text-white border-none";
+  const active = "bg-accent text-white border-none";
   return (
     <div
       className={`w-[95%] rounded-2xl border border-black text-center hover:cursor-pointer
     ${option.key === slug ? active : ""}
-     hover:bg-[#3e63dd] hover:text-white`}
+     hover:bg-accent hover:text-white`}
     >
       <Link href={`/settings/${option.key}`} className="block py-4">
         {option.name}
