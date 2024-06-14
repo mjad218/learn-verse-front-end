@@ -13,7 +13,7 @@ const ResultsMessage = dynamic(
 const SearchPage = () => {
   return (
     <Row>
-      <div className="flex gap-6 py-10 text-center text-xl">
+      <div className="flex flex-col gap-6 py-10 text-center text-xl lg:flex-row">
         <div className="flex basis-1/3 flex-col">
           <SearchOptions />
         </div>
