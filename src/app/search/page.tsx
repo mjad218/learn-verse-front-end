@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import PaginationComponent from "./_results/PaginationComponent";
 import CourseCard from "./_results/CourseCard";
 import { Suspense } from "react";
+import { Row } from "@/components/shared/row";
 
 const SearchOptions = dynamic(() => import("./_components/SearchOptions"), {});
 const ResultsMessage = dynamic(
@@ -11,14 +12,14 @@ const ResultsMessage = dynamic(
 
 const SearchPage = () => {
   return (
-    <div className="font-roboto mx-auto my-6 max-w-[95%]">
-      <div className="grid grid-cols-5 grid-rows-1 text-center text-xl">
-        <div style={{ gridColumn: "1/2" }} className="flex flex-col">
+    <Row>
+      <div className="flex gap-6 py-10 text-center text-xl">
+        <div className="flex basis-1/3 flex-col">
           <SearchOptions />
         </div>
-        <div style={{ gridColumn: "2/6" }}>
+        <div className="flex basis-2/3 flex-col gap-5">
           <ResultsMessage />
-          <div className="ml-4 mt-4 grid grid-cols-3 grid-rows-2 gap-y-4">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,320px))] gap-3">
             {[1, 2, 3, 4, 5, 6].map((_, index) => (
               <CourseCard key={index} />
             ))}
@@ -28,7 +29,7 @@ const SearchPage = () => {
       <Suspense>
         <PaginationComponent />
       </Suspense>
-    </div>
+    </Row>
   );
 };
 

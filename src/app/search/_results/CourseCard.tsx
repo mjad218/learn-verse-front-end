@@ -3,24 +3,25 @@ import { FaStar } from "react-icons/fa";
 
 const CourseCard = () => {
   return (
-    <div className="grid h-[250px] w-[300px] grid-rows-5 rounded-2xl border border-t-0 border-slate-400">
-      <div
-        className="rounded-t-2xl"
-        style={{ gridRow: "1/4", overflow: "hidden" }}
-      >
+    <div className="grid h-[250px] w-full grid-rows-5 overflow-hidden rounded-xl border border-slate-200 px-2 py-4">
+      <div style={{ gridRow: "1/4" }} className="overflow-hidden rounded-lg">
         <Image
           src={"/assets/TempImages/TempCourse.jpg"}
           alt="course"
           width={`${300}`}
           height={`${150}`}
           style={{ objectFit: "cover" }}
+          className="h-full w-full"
         />
       </div>
       <div
         style={{ gridRow: "4/6" }}
         className="my-2 grid grid-rows-3 items-center justify-center"
       >
-        <span className="text-base" style={{ gridRow: "1/2" }}>
+        <span
+          className="font-dmSerif text-lg font-bold"
+          style={{ gridRow: "1/2" }}
+        >
           Course Title
         </span>
         <span className="text-base" style={{ gridRow: "2/3" }}>

@@ -24,10 +24,8 @@ const SearchOptions = () => {
   };
 
   return (
-    <div
-      className="rounded-xl border border-gray-400/70 flex flex-col gap-4"
-    >
-      <span className="pt-2 font-medium text-lg items-center">
+    <div className="flex flex-col gap-4 rounded-xl border border-slate-300 py-5 text-base">
+      <span className="items-center pt-2 text-base font-medium">
         Search Filters
       </span>
 
@@ -58,7 +56,7 @@ const SearchOptions = () => {
       </Accordion>
 
       <Button
-        className="mb-2 self-center p-2 py-5 text-2xl font-normal"
+        className="mb-2 self-center p-2 py-5 font-normal"
         onClick={resetURL}
       >
         Reset

@@ -6,7 +6,7 @@ const ResultsMessage = () => {
   const searchQuery = searchParams.get("q");
 
   return (
-    <span className="text-start text-4xl font-semibold">
+    <span className="text-start font-dmSerif text-xl">
       Showing results for {searchQuery || "..."}
     </span>
   );

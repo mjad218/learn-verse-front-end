@@ -13,7 +13,7 @@ const PaginationComponent = () => {
   const [page, setPage] = useQueryState("p", parseAsInteger.withDefault(1));
 
   return (
-    <Pagination className="mt-4">
+    <Pagination className="pb-4 pt-1">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
