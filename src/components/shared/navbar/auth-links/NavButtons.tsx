@@ -2,10 +2,12 @@
 import { useCurrentUser } from "@/components/current-user/context";
 import CustomNavLink from "./CustomNavLink";
 import Dropdown from "./Dropdown";
+import { ButtonPropsType } from "./CustomNavLink";
+
 const NavButtons = () => {
-  const links_loggedOut = [
-    { name: "Login", href: "/login", variant: "outline" },
-    { name: "Register", href: "/register", variant: "solid" },
+  const links_loggedOut: ButtonPropsType[] = [
+    { name: "Login", href: "/login", variant: "default" },
+    { name: "Register", href: "/register", variant: "outline" },
   ];
 
   const { user } = useCurrentUser();

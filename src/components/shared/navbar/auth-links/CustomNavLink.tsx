@@ -1,16 +1,23 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-interface Props {
+export interface ButtonPropsType {
   href: string;
   name: string;
-  variant: string;
+  variant:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | null
+    | undefined;
 }
 
-function CustomNavLink({ href, name, variant }: Props) {
+function CustomNavLink({ href, name, variant }: ButtonPropsType) {
   return (
     <Link href={href} passHref legacyBehavior>
-      {/* @ts-ignore */}
       <Button variant={variant}>{name}</Button>
     </Link>
   );
