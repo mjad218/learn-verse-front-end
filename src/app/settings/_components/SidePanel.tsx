@@ -17,7 +17,7 @@ const SidePanel = ({ options }: Props) => {
       className="w-full gap-y-6 place-self-start"
       style={{ gridColumn: "1/3" }}
     >
-      <div className="flex flex-col items-center justify-center gap-4 rounded-xl bg-neutral-300/80 pb-4">
+      <div className="flex flex-col items-center justify-center gap-4 rounded-xl bg-gray-50/10 pb-4 shadow-md shadow-blue-100">
         <div className="grid-col-5 grid pt-4">
           <div className="justify-self-center" style={{ gridColumn: "1/2" }}>
             <DropdownAvatar />

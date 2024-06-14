@@ -4,12 +4,12 @@ import { z } from "zod";
 import { AccountDetailsSchema, settingsButtonStyle } from "./definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import {
-  formInputStyle,
-  formInputLabelSettings,
-} from "@/constants/styleDefinitions";
 import { Label } from "@/components/ui/label";
 import AccountPanelProfile from "./AccountPanelProfile";
+import {
+  formInputLabelSettings,
+  formInputStyle,
+} from "@/app/auth/styleDefinitions";
 
 type AccountDetailsData = z.infer<typeof AccountDetailsSchema>;
 
@@ -28,7 +28,7 @@ const AccountPanel = () => {
   };
 
   return (
-    <div className="mx-auto w-[85%] rounded-2xl bg-neutral-300/80 p-4">
+    <div className="mx-auto w-[85%] rounded-2xl bg-gray-50/5 p-4 shadow shadow-accent/40">
       <span className="text-2xl font-semibold">Account</span>
       <div className="mx-auto mt-4 w-[75%] pb-4">
         <div className="flex flex-col items-center gap-2">
