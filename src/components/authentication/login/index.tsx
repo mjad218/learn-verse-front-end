@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/components/current-user/context";
 import { FormButton } from "@/components/authentication/_components";
 import { formInputStyle } from "../../../constants/styleDefinitions";
-import { loginSchema } from "@/app/(authentication)/definitions";
+import { loginSchema } from "@/app/auth/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -46,11 +46,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
       <form
         onSubmit={handleSubmit(submitForm)}
-        className="mb-4 
-      flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
+        className="mb-4 flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
       >
         <div className="mb-4">
           <label
@@ -94,7 +92,6 @@ const LoginPage = () => {
         </div>
         <FormButton text={"Login"} isLoading={isLoading} />
       </form>
-    </div>
   );
 };
 

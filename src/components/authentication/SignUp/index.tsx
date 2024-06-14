@@ -4,7 +4,7 @@ import { getToken, signUp } from "@/services/users/login";
 import { FormButton } from "@/components/authentication/_components";
 import { formInputStyle } from "../../../constants/styleDefinitions";
 import { z } from "zod";
-import { registerSchema } from "@/app/(authentication)/definitions";
+import { registerSchema } from "@/app/auth/definitions";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -35,11 +35,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-[url('/assets/AuthbackgroundTemp.jpg')] bg-contain">
       <form
         onSubmit={handleSubmit(submitForm)}
-        className="mb-4
-        flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
+        className="mb-4 flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
       >
         {/********************/}
         <div className="mb-4">
@@ -127,7 +125,6 @@ const SignUp = () => {
         </div>
         <FormButton text={"Register"} isLoading={loading} />
       </form>
-    </div>
   );
 };
 

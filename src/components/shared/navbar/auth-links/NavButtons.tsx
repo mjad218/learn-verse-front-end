@@ -6,8 +6,8 @@ import { ButtonPropsType } from "./CustomNavLink";
 
 const NavButtons = () => {
   const links_loggedOut: ButtonPropsType[] = [
-    { name: "Login", href: "/login", variant: "default" },
-    { name: "Register", href: "/register", variant: "outline" },
+    { name: "Login", href: "/auth/login", variant: "default" },
+    { name: "Register", href: "/auth/register", variant: "outline" },
   ];
 
   const { user } = useCurrentUser();
