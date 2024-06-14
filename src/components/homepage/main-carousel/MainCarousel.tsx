@@ -32,7 +32,12 @@ const MainCarousel = () => {
         <CarouselContent>
           {[1, 2, 3].map((_, index) => (
             <CarouselItem className="w-full" key={`slider${index}`}>
-              <MainCarouselCard />
+              <MainCarouselCard
+                image="assets/TempImages/TempCourse.jpg"
+                title="Learn JavaScript by Doing"
+                instructor="<Instructor>"
+                slug=""
+              />
             </CarouselItem>
           ))}
         </CarouselContent>
