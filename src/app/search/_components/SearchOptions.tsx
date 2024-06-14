@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Flex, Button, Separator, Text } from "@radix-ui/themes";
 import { useSearchParams } from "next/navigation";
 import {
   Accordion,
@@ -11,10 +10,10 @@ import {
 import Rating from "./Rating";
 import LanguageSelection from "./LanguageSelection";
 import LevelSelection from "./LevelSelection";
+import { Button } from "@/components/ui/button";
 
 const SearchOptions = () => {
   const router = useRouter();
-  // const [price, setPrice] = useQueryState("price");
 
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("q");
@@ -25,15 +24,13 @@ const SearchOptions = () => {
   };
 
   return (
-    <Flex
-      direction={"column"}
-      gap={"4"}
-      className="rounded-xl border border-gray-400/70"
+    <div
+      className="rounded-xl border border-gray-400/70 flex flex-col gap-4"
     >
-      <Text size={"6"} align={"center"} className="pt-2 font-medium">
+      <span className="pt-2 font-medium text-lg items-center">
         Search Filters
-      </Text>
-      <Separator size={"4"} orientation="horizontal" color="gray" />
+      </span>
+
       <Accordion type="single" collapsible>
         <Rating />
         <AccordionItem value="level">
@@ -59,13 +56,14 @@ const SearchOptions = () => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+
       <Button
         className="mb-2 self-center p-2 py-5 text-2xl font-normal"
         onClick={resetURL}
       >
         Reset
       </Button>
-    </Flex>
+    </div>
   );
 };
 

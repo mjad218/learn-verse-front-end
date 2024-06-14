@@ -1,7 +1,6 @@
 import { IoIosRadioButtonOn, IoIosRadioButtonOff } from "react-icons/io";
 import { useQueryState } from "nuqs";
 import { useRouter } from "next/navigation";
-import { Text, Flex, Grid } from "@radix-ui/themes";
 
 const LanguageSelection = () => {
   const router = useRouter();
@@ -18,19 +17,17 @@ const LanguageSelection = () => {
   };
 
   return (
-    <Flex direction={"column"}>
+    <div className="flex flex-col">
       {languages.map((language) => (
-        <Grid
+        <div
           key={`lang-${language.value}`}
-          className="items-center justify-center py-1 hover:cursor-pointer hover:bg-neutral-200/80"
-          columns={"7"}
+          className="grid grid-cols-7 items-center justify-center py-1 hover:cursor-pointer hover:bg-neutral-200/80"
           onClick={() => changeLang(language.value)}
         >
-          <Flex
+          <div
+            className="items-cent justify-center"
             style={{
               gridColumn: "3/4",
-              justifyContent: "center",
-              alignItems: "center",
             }}
           >
             {lang == language.value ? (
@@ -38,13 +35,13 @@ const LanguageSelection = () => {
             ) : (
               <IoIosRadioButtonOff size={23} />
             )}
-          </Flex>
-          <Text size={"4"} weight={"medium"} style={{ gridColumn: "4/6" }}>
+          </div>
+          <span style={{ gridColumn: "4/6" }} className="text-md font-medium">
             {language.name}
-          </Text>
-        </Grid>
+          </span>
+        </div>
       ))}
-    </Flex>
+    </div>
   );
 };
 

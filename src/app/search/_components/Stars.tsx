@@ -3,7 +3,6 @@ import ReactStars from "react-stars";
 import { IoIosRadioButtonOn, IoIosRadioButtonOff } from "react-icons/io";
 import { parseAsFloat, useQueryState } from "nuqs";
 import { useRouter } from "next/navigation";
-import { Grid, Text, Flex } from "@radix-ui/themes";
 
 const Stars = ({ value }: { value: number }) => {
   const router = useRouter();
@@ -15,23 +14,25 @@ const Stars = ({ value }: { value: number }) => {
     router.refresh();
   };
   return (
-    <Grid
+    <div
       onClick={changeRating}
-      columns={"7"}
-      className="place-items-center hover:cursor-pointer hover:bg-neutral-200/80"
+      className="grid grid-cols-7 place-items-center hover:cursor-pointer hover:bg-neutral-200/80"
     >
-      <Flex gap="2" pl={"2"} align={"center"} style={{ gridColumn: " 1/4" }}>
+      <div
+        style={{ gridColumn: " 1/4" }}
+        className="flex items-center gap-2 pl-2"
+      >
         {rating == value ? (
           <IoIosRadioButtonOn size={20} />
         ) : (
           <IoIosRadioButtonOff size={20} />
         )}
         <ReactStars edit={false} size={20} value={value} />
-      </Flex>
-      <Text size={"4"} className="font-thin" style={{ gridColumn: "4 / 8" }}>
+      </div>
+      <span className="text-base font-thin" style={{ gridColumn: "4 / 8" }}>
         {value} Stars {value == 5 ? "" : "& above"}
-      </Text>
-    </Grid>
+      </span>
+    </div>
   );
 };
 

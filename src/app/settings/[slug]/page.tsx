@@ -1,4 +1,3 @@
-import { Box } from "@radix-ui/themes";
 import AccountPanel from "./_components/AccountPanel";
 
 interface Props {
@@ -9,7 +8,7 @@ const page = ({ params: { slug } }: Props) => {
   const accountPanel = slug === "account";
   // const purchaedCoursesPanel = slug === "purchased";
 
-  return <Box>{accountPanel ? <AccountPanel /> : null}</Box>;
+  return <div>{accountPanel ? <AccountPanel /> : null}</div>;
 };
 
 export default page;

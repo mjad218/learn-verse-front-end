@@ -1,6 +1,4 @@
 "use client";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { TextField } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef } from "react";
 
@@ -23,7 +21,14 @@ const SiteSearch = () => {
         handleSubmit(e);
       }}
     >
-      <TextField.Root
+      <div className="w-full">
+        <input
+          ref={searchRef}
+          className="h-8 w-full rounded-xl border border-black px-4 outline-blue-500"
+          placeholder={"Search for Courses.."}
+        />
+      </div>
+      {/* <TextField.Root
         size={"3"}
         radius="full"
         placeholder="Search for Courses"
@@ -32,7 +37,7 @@ const SiteSearch = () => {
         <TextField.Slot>
           <MagnifyingGlassIcon height="24" width="24" />
         </TextField.Slot>
-      </TextField.Root>
+      </TextField.Root> */}
     </form>
   );
 };

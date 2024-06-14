@@ -1,9 +1,6 @@
-// const [level, setLevel] = useQueryState("level");
-
 import { IoIosRadioButtonOn, IoIosRadioButtonOff } from "react-icons/io";
 import { useQueryState } from "nuqs";
 import { useRouter } from "next/navigation";
-import { Text, Flex, Grid } from "@radix-ui/themes";
 
 const LevelSelection = () => {
   const router = useRouter();
@@ -21,19 +18,17 @@ const LevelSelection = () => {
   };
 
   return (
-    <Flex direction={"column"}>
+    <div className="flex flex-col">
       {levels.map((Lvl) => (
-        <Grid
+        <div
           key={`lang-${Lvl.value}`}
-          className="items-center justify-center py-1 hover:cursor-pointer hover:bg-neutral-200/80"
-          columns={"7"}
+          className="grid grid-cols-7 items-center justify-center py-1 hover:cursor-pointer hover:bg-neutral-200/80"
           onClick={() => changeLevel(Lvl.value)}
         >
-          <Flex
+          <div
+            className="flex items-center justify-center"
             style={{
               gridColumn: "3/4",
-              justifyContent: "center",
-              alignItems: "center",
             }}
           >
             {level == Lvl.value ? (
@@ -41,13 +36,13 @@ const LevelSelection = () => {
             ) : (
               <IoIosRadioButtonOff size={23} />
             )}
-          </Flex>
-          <Text size={"4"} weight={"medium"} style={{ gridColumn: "4/7" }}>
+          </div>
+          <span style={{ gridColumn: "4/7" }} className="text-md font-medium">
             {Lvl.name}
-          </Text>
-        </Grid>
+          </span>
+        </div>
       ))}
-    </Flex>
+    </div>
   );
 };
 

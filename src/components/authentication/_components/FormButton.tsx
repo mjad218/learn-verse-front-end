@@ -1,4 +1,4 @@
-import { Button } from "@radix-ui/themes";
+import { Button } from "@/components/ui/button";
 import LoadingSpinnerForm from "./LoadingSpinnerForm";
 interface Props {
   text: string;
@@ -9,11 +9,8 @@ const FormButton = ({ text, isLoading }: Props) => {
   return (
     <Button
       type="submit"
-      className="cursor-pointer self-center"
+      className="cursor-pointer self-center rounded-lg bg-[#3e63dd] px-8 text-base/3"
       disabled={isLoading}
-      radius="large"
-      size="3"
-      variant="solid"
     >
       <div className="flex cursor-pointer items-center justify-center gap-1">
         <span>{text}</span>

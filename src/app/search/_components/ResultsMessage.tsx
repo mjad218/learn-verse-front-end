@@ -1,5 +1,4 @@
 "use client";
-import { Text } from "@radix-ui/themes";
 import { useSearchParams } from "next/navigation";
 
 const ResultsMessage = () => {
@@ -7,9 +6,9 @@ const ResultsMessage = () => {
   const searchQuery = searchParams.get("q");
 
   return (
-    <Text className="text-start text-4xl font-semibold">
+    <span className="text-start text-4xl font-semibold">
       Showing results for {searchQuery || "..."}
-    </Text>
+    </span>
   );
 };
 

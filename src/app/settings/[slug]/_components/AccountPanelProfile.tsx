@@ -1,16 +1,16 @@
-import { Flex, Button, Text } from "@radix-ui/themes";
+import { Button } from "@/components/ui/button";
 
 const AccountPanelProfile = () => {
   return (
-    <Flex direction={"column"} gap="1" className="self-start">
+    <div className="flex flex-col gap-1 self-start">
       <Button className="w-max bg-[#3e63dd] hover:bg-[#3e63dd]">
         Choose File
       </Button>
-      <Flex className="text-sm text-gray-700/60" direction={"column"}>
-        <Text>No file selected</Text>
-        <Text>Maximum image size is 1MB</Text>
-      </Flex>
-    </Flex>
+      <div className="flex flex-col text-sm text-gray-700/60">
+        <span>No file selected</span>
+        <span>Maximum image size is 1MB</span>
+      </div>
+    </div>
   );
 };
 

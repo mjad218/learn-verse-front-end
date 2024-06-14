@@ -1,4 +1,3 @@
-import { Box, Grid, Flex } from "@radix-ui/themes";
 import dynamic from "next/dynamic";
 import PaginationComponent from "./_results/PaginationComponent";
 import CourseCard from "./_results/CourseCard";
@@ -12,33 +11,24 @@ const ResultsMessage = dynamic(
 
 const SearchPage = () => {
   return (
-    <Box mx={"4"} my={"6"} className="font-roboto mx-auto max-w-[95%]">
-      <Grid columns={"5"} rows={"1"} className="text-center text-xl">
-        <Flex style={{ gridColumn: "1/2" }} direction={"column"}>
+    <div className="font-roboto mx-auto my-6 max-w-[95%]">
+      <div className="grid grid-cols-5 grid-rows-1 text-center text-xl">
+        <div style={{ gridColumn: "1/2" }} className="flex flex-col">
           <SearchOptions />
-        </Flex>
-        <Box style={{ gridColumn: "2/6" }}>
+        </div>
+        <div style={{ gridColumn: "2/6" }}>
           <ResultsMessage />
-          <Grid
-            columns={{ lg: "3", xl: "4" }}
-            rows={"2"}
-            ml="4"
-            mt="4"
-            gapY={"4"}
-          >
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-          </Grid>
-        </Box>
-      </Grid>
+          <div className="ml-4 mt-4 grid grid-cols-3 grid-rows-2 gap-y-4">
+            {[1, 2, 3, 4, 5, 6].map((_, index) => (
+              <CourseCard key={index} />
+            ))}
+          </div>
+        </div>
+      </div>
       <Suspense>
         <PaginationComponent />
       </Suspense>
-    </Box>
+    </div>
   );
 };
 

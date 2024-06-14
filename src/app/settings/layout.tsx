@@ -1,4 +1,3 @@
-import { Box, Grid } from "@radix-ui/themes";
 import React from "react";
 import SidePanel from "./_components/SidePanel";
 
@@ -14,12 +13,12 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <Box mx={"4"} mt="4" mb="4">
-      <Grid columns={"8"}>
+    <div className="m-4">
+      <div className="grid grid-cols-8">
         <SidePanel options={options} />
-        <Box style={{ gridColumn: "3/9" }}>{children}</Box>
-      </Grid>
-    </Box>
+        <div style={{ gridColumn: "3/9" }}>{children}</div>
+      </div>
+    </div>
   );
 };
 

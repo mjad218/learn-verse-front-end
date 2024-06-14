@@ -3,7 +3,6 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { AccountDetailsSchema, settingsButtonStyle } from "./definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Flex, Text } from "@radix-ui/themes";
 import { Button } from "@/components/ui/button";
 import {
   formInputStyle,
@@ -29,18 +28,18 @@ const AccountPanel = () => {
   };
 
   return (
-    <Box className="mx-auto w-[85%] rounded-2xl bg-neutral-300/80 p-4">
-      <Text className="text-2xl font-semibold">Account</Text>
-      <Box className="mx-auto w-[75%] " pb="4" mt="4">
-        <Flex direction={"column"} align={"center"} gap="2">
+    <div className="mx-auto w-[85%] rounded-2xl bg-neutral-300/80 p-4">
+      <span className="text-2xl font-semibold">Account</span>
+      <div className="mx-auto mt-4 w-[75%] pb-4">
+        <div className="flex flex-col items-center gap-2">
           <AccountPanelProfile />
           <form className="w-full" onSubmit={handleSubmit(submitForm)}>
-            <Flex direction={"column"} gap="4" className="mx-auto w-[80%]">
-              <Flex align={"center"} gap="2">
+            <div className="mx-auto flex w-[80%] flex-col gap-4">
+              <div className="flex gap-2">
                 <Label htmlFor="firstname" className={formInputLabelSettings}>
                   First name
                 </Label>
-                <Flex direction={"column"} className="w-full">
+                <div className="flex w-full flex-col">
                   <input
                     type="text"
                     id="firstname"
@@ -49,17 +48,17 @@ const AccountPanel = () => {
                     {...register("firstname")}
                   />
                   {errors.firstname && (
-                    <Text className="text-xs font-semibold text-red-700">
+                    <span className="text-xs font-semibold text-red-700">
                       {errors.firstname.message}
-                    </Text>
+                    </span>
                   )}
-                </Flex>
-              </Flex>
-              <Flex align={"center"} gap="2">
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
                 <Label htmlFor="lastname" className={formInputLabelSettings}>
                   Last name
                 </Label>
-                <Flex direction={"column"} className="w-full">
+                <div className="flex w-full flex-col">
                   <input
                     type="text"
                     id="lastname"
@@ -68,20 +67,20 @@ const AccountPanel = () => {
                     {...register("lastname")}
                   />
                   {errors.lastname && (
-                    <p className="text-xs font-semibold text-red-700">
+                    <span className="text-xs font-semibold text-red-700">
                       {errors.lastname.message}
-                    </p>
+                    </span>
                   )}
-                </Flex>
-              </Flex>
-              <Flex align={"center"} gap="2">
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
                 <Label
                   htmlFor="username"
                   className={`${formInputLabelSettings}`}
                 >
                   Username
                 </Label>
-                <Flex direction={"column"} className="w-full">
+                <div className="flex w-full flex-col">
                   <input
                     type="text"
                     id="username"
@@ -90,17 +89,17 @@ const AccountPanel = () => {
                     {...register("username")}
                   />
                   {errors.username && (
-                    <p className="text-xs font-semibold text-red-700">
+                    <span className="text-xs font-semibold text-red-700">
                       {errors.username.message}
-                    </p>
+                    </span>
                   )}
-                </Flex>
-              </Flex>
-              <Flex align={"center"} gap="2" justify={"center"}>
+                </div>
+              </div>
+              <div className="flex items-center justify-center gap-2">
                 <Label htmlFor="email" className={formInputLabelSettings}>
                   Email
                 </Label>
-                <Flex direction={"column"} className="w-full">
+                <div className="flex w-full flex-col">
                   <input
                     type="text"
                     id="email"
@@ -109,12 +108,12 @@ const AccountPanel = () => {
                     {...register("email")}
                   />
                   {errors.email && (
-                    <p className="text-xs font-semibold text-red-700">
+                    <span className="text-xs font-semibold text-red-700">
                       {errors.email.message}
-                    </p>
+                    </span>
                   )}
-                </Flex>
-              </Flex>
+                </div>
+              </div>
               <Button
                 type="submit"
                 className={`${settingsButtonStyle} self-center text-black disabled:border-gray-500`}
@@ -122,16 +121,16 @@ const AccountPanel = () => {
               >
                 Submit
               </Button>
-            </Flex>
+            </div>
           </form>
-        </Flex>
-        <Flex direction={"column"} align={"center"} gap="4" pt="4">
+        </div>
+        <div className="flex flex-col items-center gap-4 pt-4">
           <Button className={`${settingsButtonStyle} text-red-500`}>
             Delete Account
           </Button>
-        </Flex>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 
