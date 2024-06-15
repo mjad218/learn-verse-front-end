@@ -27,7 +27,7 @@ const ContentSection = () => {
             </div>
             <div className="mt-2">
               <Link href={"/auth/register"}>
-                <Button className="rounded-2xl bg-[#FFBB02] px-[15px] py-[11px] font-roboto text-xl text-[#2E3192] transition-transform delay-150 ease-in-out hover:scale-110 hover:bg-[#FFBB02]">
+                <Button className="rounded-2xl bg-[#FFBB02] px-[15px] py-[11px] font-roboto text-xl text-[#2E3192] transition-transform delay-75 ease-in-out hover:scale-110 hover:bg-[#FFBB02]">
                   Sign Up
                 </Button>
               </Link>
