@@ -1,24 +1,24 @@
 "use client";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
-import { AccountDetailsSchema, settingsButtonStyle } from "./definitions";
+import { AccountDetailsSchema } from "./definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import AccountPanelProfile from "./AccountPanelProfile";
 import {
   formInputLabelSettings,
   formInputStyle,
 } from "@/app/auth/styleDefinitions";
+import SettingsFormButton from "./SettingsFormButton";
 
-type AccountDetailsData = z.infer<typeof AccountDetailsSchema>;
+type AccountDetailsType = z.infer<typeof AccountDetailsSchema>;
 
 const AccountPanel = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isDirty },
-  } = useForm<AccountDetailsData>({
+  } = useForm<AccountDetailsType>({
     resolver: zodResolver(AccountDetailsSchema),
     defaultValues: { username: "", email: "", firstname: "", lastname: "" },
   });
@@ -28,12 +28,12 @@ const AccountPanel = () => {
   };
 
   return (
-    <div className="mx-auto w-[85%] rounded-2xl bg-gray-50/5 p-4 shadow shadow-accent/40">
-      <span className="text-2xl font-semibold">Account</span>
+    <>
+      <span className="font-roboto text-2xl font-semibold">Account</span>
       <div className="mx-auto mt-4 w-[75%] pb-4">
         <div className="flex flex-col items-center gap-2">
           <AccountPanelProfile />
-          <form className="w-full" onSubmit={handleSubmit(submitForm)}>
+          <form className="w-full" onSubmit={() => handleSubmit(submitForm)}>
             <div className="mx-auto flex w-[80%] flex-col gap-4">
               <div className="flex gap-2">
                 <Label htmlFor="firstname" className={formInputLabelSettings}>
@@ -114,23 +114,23 @@ const AccountPanel = () => {
                   )}
                 </div>
               </div>
-              <Button
+              <SettingsFormButton
                 type="submit"
-                className={`${settingsButtonStyle} self-center text-black disabled:border-gray-500`}
+                className={"self-center text-black disabled:border-gray-500"}
                 disabled={!isDirty}
               >
                 Submit
-              </Button>
+              </SettingsFormButton>
             </div>
           </form>
         </div>
         <div className="flex flex-col items-center gap-4 pt-4">
-          <Button className={`${settingsButtonStyle} text-red-500`}>
+          <SettingsFormButton className={"text-red-500"}>
             Delete Account
-          </Button>
+          </SettingsFormButton>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

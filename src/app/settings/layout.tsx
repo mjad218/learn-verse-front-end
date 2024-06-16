@@ -12,18 +12,16 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   const options = [
     { name: "Account", key: "account" },
     { name: "Purchased Courses", key: "purchased" },
-    { name: "Add/Edit Courses", key: "manage" },
+    { name: "Add Course", key: "manage" },
   ];
 
   return (
-    <WithAuth>
-      <Row className="my-4">
-        <div className="grid grid-cols-8">
-          <SidePanel options={options} />
-          <div style={{ gridColumn: "3/9" }}>{children}</div>
-        </div>
-      </Row>
-    </WithAuth>
+    <Row className="my-4">
+      <div className="grid grid-cols-8">
+        <SidePanel options={options} />
+        <div style={{ gridColumn: "3/9" }}>{children}</div>
+      </div>
+    </Row>
   );
 };
 
