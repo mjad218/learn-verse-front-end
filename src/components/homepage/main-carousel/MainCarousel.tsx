@@ -46,7 +46,7 @@ const MainCarousel = () => {
         {Array.from(Array(count).keys()).map((i) => (
           <Button
             key={`{dot-count-${i}}`}
-            className={`h-0.5 rounded-full  ${
+            className={`h-0.5 rounded-full ${
               i === current - 1
                 ? "bg-black hover:bg-black"
                 : "bg-neutral-600/60"

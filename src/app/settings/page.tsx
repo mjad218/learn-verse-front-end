@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
 const page = async () => {
-  redirect("/settings/account");
+  return <></>;
 };
 
 export default page;

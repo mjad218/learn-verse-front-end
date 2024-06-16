@@ -21,13 +21,13 @@ const LanguageSelection = () => {
       {languages.map((language) => (
         <div
           key={`lang-${language.value}`}
-          className="grid grid-cols-7 items-center justify-center py-1 hover:cursor-pointer hover:bg-neutral-200/80"
+          className="grid grid-cols-9 items-center justify-center py-1 hover:cursor-pointer hover:bg-neutral-200/80"
           onClick={() => changeLang(language.value)}
         >
           <div
-            className="items-cent justify-center"
+            className="mx-auto"
             style={{
-              gridColumn: "3/4",
+              gridColumn: "4/5",
             }}
           >
             {lang == language.value ? (
@@ -36,7 +36,7 @@ const LanguageSelection = () => {
               <IoIosRadioButtonOff size={23} />
             )}
           </div>
-          <span style={{ gridColumn: "4/6" }} className="text-md font-medium">
+          <span style={{ gridColumn: "5/7" }} className="text-md font-medium">
             {language.name}
           </span>
         </div>

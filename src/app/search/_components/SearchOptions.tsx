@@ -56,7 +56,8 @@ const SearchOptions = () => {
       </Accordion>
 
       <Button
-        className="mb-2 self-center p-2 py-5 font-normal"
+        className="self-center p-2 py-4 text-xl font-normal"
+        variant={"destructive"}
         onClick={resetURL}
       >
         Reset

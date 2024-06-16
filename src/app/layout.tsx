@@ -4,6 +4,7 @@ import { Roboto_Serif, DM_Serif_Display } from "next/font/google";
 import NavBar from "@/components/shared/navbar/NavBar";
 import Footer from "@/components/shared/footer/Footer";
 import CurrentUserProvider from "@/components/current-user/provider";
+import { Toaster } from "react-hot-toast";
 
 const roboto = Roboto_Serif({ subsets: ["latin"], variable: "--font-roboto" });
 const serifFont = DM_Serif_Display({
@@ -25,10 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} ${serifFont.variable}`}>
+        <Toaster position="top-center" />
         <CurrentUserProvider>
           <main className="flex min-h-svh flex-col">
             <NavBar />
-
             {children}
             <Footer />
           </main>

@@ -24,11 +24,11 @@ function CustomNavLink({ href, name, variant }: ButtonPropsType) {
       <Button
         variant={variant}
         className={cn(
-          "font-bold transition-transform delay-150 hover:scale-95 focus:outline-none",
+          "font-bold transition-transform delay-75 hover:scale-110 focus:outline-none",
           "",
           {
-            "bg-accent focus:bg-accent hover:bg-accent": variant === "default",
-            "border-accent border-2 hover:bg-white": variant === "outline",
+            "bg-accent hover:bg-accent focus:bg-accent": variant === "default",
+            "border-2 border-accent hover:bg-white": variant === "outline",
           },
         )}
       >

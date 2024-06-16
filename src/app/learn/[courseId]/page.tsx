@@ -1,10 +1,7 @@
-import { LearnPage } from "@/components/learn-page";
+import { LearnSkelton } from "@/components/learn-page/learn-skelton";
 
-type IProps = {
-  params: { courseId: string };
-};
-const ServerSingleLearnCoursePage = (props: IProps) => {
-  return <LearnPage courseId={Number(props.params.courseId ?? 0)} />;
+const ServerSingleLearnCoursePage = () => {
+  return <LearnSkelton />;
 };
 
 export default ServerSingleLearnCoursePage;

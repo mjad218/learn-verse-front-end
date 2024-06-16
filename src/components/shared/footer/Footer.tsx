@@ -56,7 +56,7 @@ const Footer = () => {
           <FooterForm />
         </div>
         <div className="flex flex-col justify-center gap-2 self-center">
-          <p className="font-roboto text-sm text-white">
+          <p className="self-center font-roboto text-sm text-white">
             © 2024 LearnVerse. All rights reserved.
           </p>
           <div className="flex gap-6 self-center">
