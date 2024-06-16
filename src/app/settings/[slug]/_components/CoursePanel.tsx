@@ -6,15 +6,10 @@ import { NewCourseSchema, NewCourseType } from "@/types/course.type";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import SettingsFormButton from "./SettingsFormButton";
 
 const CoursePanel = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<NewCourseType>({
+  const { handleSubmit, register } = useForm<NewCourseType>({
     resolver: zodResolver(NewCourseSchema),
   });
 
@@ -29,12 +24,22 @@ const CoursePanel = () => {
         <div className="mx-auto flex h-full max-w-md flex-col gap-6 py-4">
           <div className="grid w-full max-w-xs items-center gap-1.5">
             <Label htmlFor="course-name">Course Name</Label>
-            <Input id="course-name" type="text" />
+            <Input
+              id="course-name"
+              type="text"
+              placeholder="Enter your course name"
+              {...register("courseName")}
+            />
             <p className="text-xs text-gray-700/60">Enter your course name.</p>
           </div>
+
           <div className="grid w-full gap-1.5">
-            <Label htmlFor="message-2">Course Description</Label>
-            <Textarea placeholder="Course Description" id="message-2" />
+            <Label htmlFor="course-description">Course Description</Label>
+            <Textarea
+              placeholder="Enter your course description"
+              id="course-description"
+              {...register("description")}
+            />
             <p className="text-xs text-gray-700/60">
               Provide a description that is both attractive and concise.
             </p>
@@ -45,6 +50,7 @@ const CoursePanel = () => {
               id="picture"
               type="file"
               className="file:cursor-pointer file:rounded-md file:bg-gray-800 file:text-white hover:cursor-pointer"
+              {...register("image")}
             />
             <p className="text-xs text-gray-700/60">
               Make sure to include a high-quality Image.
@@ -52,7 +58,12 @@ const CoursePanel = () => {
           </div>
           <div className="grid w-full max-w-xs items-center gap-1.5">
             <Label htmlFor="course-name">Course Price</Label>
-            <Input id="course-price" type="number" />
+            <Input
+              id="course-price"
+              type="number"
+              placeholder="Enter your course price"
+              {...register("price")}
+            />
           </div>
           <div className="mx-auto">
             <SettingsFormButton

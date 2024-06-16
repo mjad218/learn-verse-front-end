@@ -1,7 +1,6 @@
 import React from "react";
 import SidePanel from "./_components/SidePanel";
 import { Row } from "@/components/shared/row";
-import WithAuth from "@/components/authentication/WithAuth";
 
 export interface Option {
   key: string;
