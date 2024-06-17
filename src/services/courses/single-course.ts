@@ -1,8 +1,9 @@
 import { API_URL } from "@/constants/api";
 import { Course, CourseSchema } from "@/types/course.type";
 import { getToken } from "../users/login";
+import { CourseVideo } from "@/types/video.type";
 
-export const getSingleCourse = async (courseId: number | undefined) => {
+export const getSingleCourse = async (courseId: number | string | undefined) => {
   if (!courseId) return null;
   try {
     const token = await getToken();
@@ -34,3 +35,39 @@ export const getSingleCourse = async (courseId: number | undefined) => {
     return null;
   }
 };
+
+
+export const getCourseVideos = async (courseId: number | string| undefined) => {
+  if (!courseId) return [];
+  try {
+    const token = await getToken();
+    const request = await fetch(`${API_URL}/videos/courses/${courseId}`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(`Getting Single course, Course Id ${courseId}`);
+    if (!request.ok) {
+      console.log(`${request.ok} ${request.status} ${request.statusText} `);
+      throw `${request.ok} ${request.status} ${request.statusText} `;
+    }
+    const data = await request.json();
+    console.log({
+      course: data,
+    });
+
+    // const parseResult = CourseSchema.safeParse(data);
+    // let course: Course | null = null;
+    // if (parseResult.success) course = parseResult.data;
+    const vids = data.payload;
+
+    return vids as CourseVideo[];
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+

@@ -1,13 +1,12 @@
 import { LearnVideoPlayer } from "@/components/learn-page/learn-player";
 
 type IProps = {
-  videoId?: number | undefined;
+  params: {   videoId?: number | undefined| string 
+  };
 };
 const VideoPage = (props: IProps) => {
   return (
-    <div>
-      <LearnVideoPlayer />
-    </div>
+      <LearnVideoPlayer videoId={props.params?.videoId}/>
   );
 };
 

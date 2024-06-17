@@ -2,11 +2,13 @@ import { LearnLayout } from "@/components/learn-page/learn-layout";
 import { ReactNode } from "react";
 
 type IProps = {
-  courseId?: number | undefined;
   children?: ReactNode;
+  params: {   courseId?: number | undefined| string 
+  };
 };
+
 const LearnPageLayout = (props: IProps) => {
-  return <LearnLayout courseId={props.courseId}>{props.children}</LearnLayout>;
+  return <LearnLayout courseId={props?.params?.courseId}>{props.children}</LearnLayout>;
 };
 
 export default LearnPageLayout;
