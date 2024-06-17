@@ -3,8 +3,8 @@ import { MaterialsList } from "../materials-list";
 import { Row } from "@/components/shared/row";
 
 type IProps = {
-  courseId?: number | undefined;
-  children?: ReactNode;
+  courseId?: number | undefined| string;
+    children?: ReactNode;
 };
 
 export const LearnLayout = (props: IProps) => {
