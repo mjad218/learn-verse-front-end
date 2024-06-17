@@ -1,7 +1,6 @@
 "use client";
 import { useCurrentUser } from "@/components/current-user/context";
 import CustomNavLink from "./CustomNavLink";
-import Dropdown from "./Dropdown";
 import { ButtonPropsType } from "./CustomNavLink";
 
 const NavButtons = () => {
@@ -11,18 +10,19 @@ const NavButtons = () => {
   ];
 
   const { user } = useCurrentUser();
+
+  if (user) return null;
+
   return (
-    <div className="hidden w-44 max-w-44 items-center justify-center gap-6 md:flex">
-      {!user &&
-        links_loggedOut.map((link) => (
-          <CustomNavLink
-            href={link.href}
-            name={link.name}
-            variant={link.variant}
-            key={link.name.toLowerCase()}
-          />
-        ))}
-      {user && <Dropdown user={user} />}
+    <div className="flex items-center justify-center gap-4">
+      {links_loggedOut.map((link) => (
+        <CustomNavLink
+          href={link.href}
+          name={link.name}
+          variant={link.variant}
+          key={link.name.toLowerCase()}
+        />
+      ))}
     </div>
   );
 };

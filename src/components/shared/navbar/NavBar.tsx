@@ -1,27 +1,54 @@
+"use client";
 import SiteSearch from "./sitesearch/SiteSearch";
-import Link from "next/link";
 import NavButtons from "./auth-links/NavButtons";
 import CategoriesButton from "./CategoriesButton";
-import { AppLogo } from "@/components/app-logo";
-import { Row } from "../row";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoCloseSharp } from "react-icons/io5";
+import { cn } from "@/lib/utils";
+import Dropdown from "./auth-links/Dropdown";
 
 const NavBar = () => {
+  const [isMobile, setIsMobile] = useState(false);
   return (
-    <div className="bg-gray-50/50 shadow-md">
-      <Row>
-        <nav
-          className={`z-50 flex w-full justify-between border-b-[1px] border-b-slate-200 px-6 py-3`}
+    <div className="flex items-center gap-5">
+      <div>
+        <Dropdown />
+        <Button
+          className="flex bg-transparent hover:bg-transparent lg:hidden"
+          title="Toggle Menu"
+          onClick={() => setIsMobile((prev) => !prev)}
         >
-          <div className="flex items-center justify-around gap-8">
-            <Link href="/">
-              <AppLogo className="h-auto w-40 text-accent" />
-            </Link>
-            <CategoriesButton />
-          </div>
-          <SiteSearch />
-          <NavButtons />
-        </nav>
-      </Row>
+          {!isMobile && (
+            <RxHamburgerMenu className="block h-auto w-10 text-accent" />
+          )}
+          {isMobile && (
+            <IoCloseSharp className="block h-auto w-10 text-accent" />
+          )}
+        </Button>
+      </div>
+      <div
+        className={cn(
+          "hidden flex-row items-center gap-5 lg:flex",
+          isMobile
+            ? "fixed right-0 top-0 flex h-screen w-[70vw] flex-col items-start bg-accent9 px-7 pt-24"
+            : "",
+        )}
+      >
+        {isMobile && (
+          <Button
+            className="absolute left-5 top-5 flex bg-transparent hover:bg-transparent lg:hidden"
+            title="Toggle Menu"
+            onClick={() => setIsMobile((prev) => !prev)}
+          >
+            <IoCloseSharp className="block h-auto w-10 text-accent" />
+          </Button>
+        )}
+        <CategoriesButton />
+        <SiteSearch />
+        <NavButtons />
+      </div>
     </div>
   );
 };

@@ -16,28 +16,16 @@ const SiteSearch = () => {
 
   return (
     <form
-      className="hidden w-[550px] max-w-full self-center md:block"
+      className="w-[550px] max-w-full"
       onSubmit={(e) => {
         handleSubmit(e);
       }}
     >
-      <div className="w-full">
-        <input
-          ref={searchRef}
-          className="outline-accent3 h-8 w-full rounded-xl border border-black px-4"
-          placeholder={"Search for Courses.."}
-        />
-      </div>
-      {/* <TextField.Root
-        size={"3"}
-        radius="full"
-        placeholder="Search for Courses"
+      <input
         ref={searchRef}
-      >
-        <TextField.Slot>
-          <MagnifyingGlassIcon height="24" width="24" />
-        </TextField.Slot>
-      </TextField.Root> */}
+        className="h-8 w-full rounded-xl border border-black px-4 outline-accent3"
+        placeholder={"Search for Courses.."}
+      />
     </form>
   );
 };

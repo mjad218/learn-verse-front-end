@@ -27,6 +27,7 @@ module.exports = {
         accent7: "#90E0EF",
         accent8: "#ADE8F4",
         accent9: "#CAF0F8",
+        accent10: "#f9feff",
       },
       backgroundColor: {
         accent: "#3e63dd",

@@ -8,15 +8,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import DropdownAvatar from "./DropDownAvatar";
 import Link from "next/link";
-import { User } from "@/components/current-user/context";
-interface Props {
-  user: User;
-}
+import { useCurrentUser } from "@/components/current-user/context";
 
 const menuItemStyle =
   "cursor-pointer text-lg font-medium focus:bg-[#2563EB] focus:rounded focus:text-white";
 
-const Dropdown = ({ user }: Props) => {
+const Dropdown = () => {
+  const { user } = useCurrentUser();
+  if (!user) return null;
   return (
     <div className="">
       <DropdownMenu>
