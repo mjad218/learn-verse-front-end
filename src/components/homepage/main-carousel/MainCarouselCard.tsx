@@ -19,7 +19,7 @@ const MainCarouselCard = ({ image, title, instructor, slug }: IProps) => {
   return (
     <div className="font-roboto">
       <Card
-        className={`relative mx-auto h-96 w-full cursor-pointer bg-cover`}
+        className={`relative mx-3 h-96 w-full cursor-pointer bg-cover rounded-2xl overflow-hidden `}
         style={{
           backgroundImage: `url('/${image}')`,
         }}
