@@ -1,7 +1,12 @@
 import LoginPage from "@/components/authentication/login";
+import { ImageBox } from "@/components/image-box";
 
 const Login = () => {
-  return <LoginPage />;
+  return (
+    <ImageBox>
+      <LoginPage />
+    </ImageBox>
+  );
 };
 
 export default Login;

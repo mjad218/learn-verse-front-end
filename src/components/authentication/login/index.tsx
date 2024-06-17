@@ -48,12 +48,12 @@ const LoginPage = () => {
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
-      className="mb-4 flex w-[500px] flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
+      className="mb-4 flex h-full w-full flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
     >
       <div className="mb-4">
         <label
           htmlFor="email"
-          className="mb-2 block text-sm font-bold text-gray-700"
+          className="mb-2 block font-dmSerif text-sm font-bold text-gray-700"
         >
           Email
         </label>
@@ -73,7 +73,7 @@ const LoginPage = () => {
       <div className="mb-4">
         <label
           htmlFor="password"
-          className="mb-2 block text-sm font-bold text-gray-700"
+          className="mb-2 block font-dmSerif text-sm font-bold text-gray-700"
         >
           Password
         </label>

@@ -1,7 +1,12 @@
 import SignUp from "@/components/authentication/SignUp";
+import { ImageBox } from "@/components/image-box";
 
 const Register = () => {
-  return <SignUp />;
+  return (
+    <ImageBox>
+      <SignUp />
+    </ImageBox>
+  );
 };
 
 export default Register;
