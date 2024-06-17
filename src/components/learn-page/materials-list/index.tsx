@@ -1,24 +1,19 @@
+import { CourseVideo } from "@/types/video.type";
 import Link from "next/link";
 
 type IProps = {
-  courseId?: number | undefined| string};
+  videos?: CourseVideo[];
+  courseId?: string | number | undefined}
+
 export const MaterialsList = (props: IProps) => {
-  props.courseId;
   return (
     <div>
       <ul className="m-0 list-none p-0 flex flex-col gap-2">
-        <li className="bg-[#ddd] border border-solid border-[#eee] py-3 px-3 rounded-xl">
-          <Link href="#">M1</Link>
-        </li>
-        <li>
-          <Link href="#">M2</Link>
-        </li>
-        <li>
-          <Link href="#">M3</Link>
-        </li>
-        <li>
-          <Link href="#">M4</Link>
-        </li>
+        {
+          (props.videos?? []).map(v =>   <li key={v.id} className="bg-[#ddd] border border-solid border-[#eee] py-3 px-3 rounded-xl">
+            <Link href={`/learn/${props.courseId}/${v.id}`}>{v?.title}</Link>
+          </li>)
+        }
       </ul>
     </div>
   );
