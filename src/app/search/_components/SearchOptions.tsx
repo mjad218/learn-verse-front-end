@@ -11,6 +11,7 @@ import Rating from "./Rating";
 import LanguageSelection from "./LanguageSelection";
 import LevelSelection from "./LevelSelection";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const SearchOptions = () => {
   const router = useRouter();
@@ -24,35 +25,21 @@ const SearchOptions = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-slate-300 py-5 text-base">
+    <div className="flex flex-col gap-2 rounded-xl border border-slate-300 py-4 text-base">
       <span className="items-center pt-2 text-base font-medium">
         Search Filters
       </span>
-
+      <Separator />
       <Accordion type="single" collapsible>
         <Rating />
-        <AccordionItem value="level">
-          <AccordionTrigger className="justify-center gap-4">
-            Level
-          </AccordionTrigger>
-          <AccordionContent>
-            <LevelSelection />
-          </AccordionContent>
-        </AccordionItem>
+        <LevelSelection />
         <AccordionItem value="price">
           <AccordionTrigger className="justify-center gap-4">
             Price
           </AccordionTrigger>
           <AccordionContent>dummy text</AccordionContent>
         </AccordionItem>
-        <AccordionItem value="language">
-          <AccordionTrigger className="justify-center gap-4">
-            Primary Language
-          </AccordionTrigger>
-          <AccordionContent>
-            <LanguageSelection />
-          </AccordionContent>
-        </AccordionItem>
+        <LanguageSelection />
       </Accordion>
 
       <Button
