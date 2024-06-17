@@ -19,7 +19,7 @@ const Footer = () => {
   const icons = [BsFacebook, BsYoutube, BsLinkedin, BsTwitter, BsInstagram];
 
   return (
-    <footer className="text-md mt-auto flex w-full flex-col justify-center bg-[#0C090A] pb-6 pt-4 text-sm">
+    <footer className="text-md mt-auto flex w-full flex-col justify-center bg-[#0C090A] pb-6 pt-4 text-sm relative z-10">
       <Row>
         <div className="flex flex-col justify-between gap-10 pb-4 text-white lg:flex-row">
           <div className="list-none">

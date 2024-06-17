@@ -1,5 +1,6 @@
 import ContentSection from "./content-section";
 import HeroCarousel from "./hero-carousel/MainCarousel";
+import { JoinUs } from "./join";
 import MainCarousel from "./main-carousel/MainCarousel";
 
 const HomePage = () => {
@@ -13,6 +14,8 @@ const HomePage = () => {
         <MainCarousel />
         <ContentSection />
       </div>
+      <JoinUs/>
+
     </>
   );
 };
