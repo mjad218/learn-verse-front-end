@@ -1,4 +1,4 @@
-import LoginPage from "@/components/authentication/login";
+import LoginPage from "@/components/authentication/Login";
 import { ImageBox } from "@/components/image-box";
 
 const Login = () => {

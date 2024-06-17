@@ -37,7 +37,7 @@ const SignUp = () => {
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
-      className="mb-4 flex h-full w-full flex-col justify-center rounded-xl bg-white px-8 pb-8 pt-6"
+      className="mb-4 flex h-full w-full flex-col justify-center rounded-xl bg-white px-4 pb-8 pt-6 lg:min-w-80"
     >
       {/********************/}
       <div className="mb-4">
