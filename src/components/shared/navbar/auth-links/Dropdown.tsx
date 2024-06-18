@@ -18,7 +18,7 @@ const Dropdown = () => {
   if (user) return null;
   return (
     <div className="">
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger>
           <DropdownAvatar />
         </DropdownMenuTrigger>
