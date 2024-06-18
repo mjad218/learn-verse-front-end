@@ -8,13 +8,15 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseSharp } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import Dropdown from "./auth-links/Dropdown";
+import { useCurrentUser } from "@/components/current-user/context";
+import NavUser from "./auth-links/NavUser";
 
 const NavBar = () => {
+  const { user } = useCurrentUser();
   const [isMobile, setIsMobile] = useState(false);
   return (
     <div className="flex items-center gap-5">
       <div>
-        <Dropdown />
         <Button
           className="flex bg-transparent hover:bg-transparent lg:hidden"
           title="Toggle Menu"
@@ -47,7 +49,7 @@ const NavBar = () => {
         )}
         <CategoriesButton />
         <SiteSearch />
-        <NavButtons />
+        {!user ? <NavUser /> : <NavButtons />}
       </div>
     </div>
   );

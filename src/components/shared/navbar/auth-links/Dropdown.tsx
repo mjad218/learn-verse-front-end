@@ -15,7 +15,7 @@ const menuItemStyle =
 
 const Dropdown = () => {
   const { user } = useCurrentUser();
-  if (!user) return null;
+  if (user) return null;
   return (
     <div className="">
       <DropdownMenu>
@@ -24,7 +24,8 @@ const Dropdown = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel className="text-lg font-medium">
-            {user.userName}
+            {/* {user.userName} */}
+            {"adel"}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Link href="/settings">
