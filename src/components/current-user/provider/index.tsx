@@ -9,15 +9,16 @@ type IProps = {
 };
 const CurrentUserProvider = async (props: IProps) => {
   let user: User | null = null;
+  let token: string | null = "";
   try {
     const nextCookies = cookies();
-    const token = nextCookies.get("token")?.value;
+    token = nextCookies.get("token")?.value ?? null;
     if (!token) throw "not logged in";
     user = await findCurentAuthenticatedUser(token); // get USer from the backend and pass the nextCookies if needed
   } catch (error) {}
 
   return (
-    <CurrentUserProviderClient user={user}>
+    <CurrentUserProviderClient user={user} token={token}>
       {props.children}
     </CurrentUserProviderClient>
   );

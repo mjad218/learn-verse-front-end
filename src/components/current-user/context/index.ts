@@ -21,3 +21,17 @@ type UserContextType = {
 export const useCurrentUser = () => {
   return useContext(UserContext);
 };
+
+type AccessTokenContextType = {
+  token: string | null;
+  setToken: Dispatch<SetStateAction<string | null>>;
+};
+
+export const AccessTokenContext = createContext<AccessTokenContextType>({
+  token: null,
+  setToken: () => {},
+});
+
+export const useAccessToken = () => {
+  return useContext(AccessTokenContext);
+};
