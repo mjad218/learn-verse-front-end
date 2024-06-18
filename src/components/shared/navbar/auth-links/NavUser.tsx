@@ -1,11 +1,9 @@
 import React from "react";
 import Dropdown from "./Dropdown";
-import NavCart from "./NavCart";
 
 const NavUser = () => {
   return (
-    <div className="flex items-center justify-center gap-4">
-      <NavCart />
+    <div className="flex items-center justify-center lg:mx-2 lg:gap-8">
       <Dropdown />
     </div>
   );
