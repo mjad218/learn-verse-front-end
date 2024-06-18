@@ -8,7 +8,10 @@ const FooterForm = () => {
   return (
     <div>
       <p className="mb-1 text-lg font-bold">Contact Us</p>
-      <form className="flex flex-col items-center justify-center gap-2">
+      <form
+        className="flex flex-col items-center justify-center gap-2"
+        onSubmit={(e) => e.preventDefault()}
+      >
         <input
           type="text"
           className={`${formInputStyles}`}
@@ -26,7 +29,7 @@ const FooterForm = () => {
         />
         <Button
           type="submit"
-          className="rounded-xl bg-white px-4 py-1 text-xl text-black"
+          className="rounded-xl bg-white px-4 py-1 text-xl text-black transition-transform delay-75 hover:bg-white active:scale-95 active:bg-white"
         >
           Send
         </Button>

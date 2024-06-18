@@ -24,6 +24,7 @@ const CheckoutFormContainer = ({
   //fetch course info & display it
   return (
     <div className="lg:flex lg:gap-4">
+      {/* temporary section */}
       <div className="flex flex-col">
         <span>{courseInfo?.courseName || "Course name"}</span>
         <span>{courseInfo?.image || "Course image"}</span>
