@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseSharp } from "react-icons/io5";
 import { cn } from "@/lib/utils";
-import Dropdown from "./auth-links/Dropdown";
 import { useCurrentUser } from "@/components/current-user/context";
 import NavUser from "./auth-links/NavUser";
 
@@ -49,7 +48,7 @@ const NavBar = () => {
         )}
         <CategoriesButton />
         <SiteSearch />
-        {!user ? <NavUser /> : <NavButtons />}
+        {user ? <NavUser /> : <NavButtons />}
       </div>
     </div>
   );
