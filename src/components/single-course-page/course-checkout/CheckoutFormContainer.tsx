@@ -14,13 +14,25 @@ const options: StripeElementsOptions = {
   },
 };
 
+import { Course } from "@/types/course.type";
 
-
-const CheckoutFormContainer = () => {
+const CheckoutFormContainer = ({
+  courseInfo,
+}: {
+  courseInfo: Course | null;
+}) => {
+  //fetch course info & display it
   return (
-    <Elements stripe={stripePromise} options={options}>
-      <CheckoutForm />
-    </Elements>
+    <div className="lg:flex lg:gap-4">
+      <div className="flex flex-col">
+        <span>{courseInfo?.courseName || "Course name"}</span>
+        <span>{courseInfo?.image || "Course image"}</span>
+        <span>{courseInfo?.price || "Course price"}</span>
+      </div>
+      <Elements stripe={stripePromise} options={options}>
+        <CheckoutForm />
+      </Elements>
+    </div>
   );
 };
 
