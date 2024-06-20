@@ -28,7 +28,12 @@ const CoursePanel = () => {
   return (
     <>
       <span className="font-roboto text-2xl font-semibold">Add Course</span>
-      <form onSubmit={() => handleSubmit(submitForm)}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(submitForm);
+        }}
+      >
         <div className="mx-auto flex h-full max-w-md flex-col gap-6 py-4">
           <div className="grid w-full max-w-xs items-center gap-1.5">
             <Label htmlFor="course-name">Course Name</Label>

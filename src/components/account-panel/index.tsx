@@ -57,7 +57,10 @@ const AccountPanel = () => {
 
           <form
             className="flex w-full flex-col gap-4"
-            onSubmit={() => handleSubmit(submitForm)}
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(submitForm);
+            }}
           >
             <div className="flex w-full flex-col">
               <Label htmlFor="firstname" className={formInputLabelSettings}>

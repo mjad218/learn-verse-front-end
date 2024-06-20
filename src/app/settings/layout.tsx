@@ -11,7 +11,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Row className="my-4">
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-10 py-10 md:flex-row">
         <div className="basis-3/12">
           <SidePanel options={options} />
         </div>
