@@ -7,51 +7,50 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 
-const LevelSelection = () => {
+const LanguageSelection = () => {
   const router = useRouter();
-  const [level, setLevel] = useQueryState("level");
+  const [lang, setLang] = useQueryState("lang");
 
-  const levels = [
-    { name: "Beginner", value: "beginner" },
-    { name: "Intermediate", value: "intermediate" },
-    { name: "Advanced", value: "advanced" },
+  const languages = [
+    { name: "English", value: "en" },
+    { name: "Arabic", value: "ar" },
   ];
 
-  const changeLevel = (value: string) => {
-    setLevel(value);
+  const changeLang = (value: string) => {
+    setLang(value);
     router.refresh();
   };
 
   return (
-    <AccordionItem value="level">
-      <AccordionTrigger className="justify-center gap-4">
-        Level
+    <AccordionItem value="language">
+      <AccordionTrigger className="justify-center gap-4 py-2">
+        Primary Language
       </AccordionTrigger>
       <AccordionContent>
         <div className="flex flex-col">
-          {levels.map((Lvl) => (
+          {languages.map((language) => (
             <div
-              key={`lang-${Lvl.value}`}
-              className="grid grid-cols-7 items-center justify-center py-1 hover:cursor-pointer hover:bg-neutral-200/80"
-              onClick={() => changeLevel(Lvl.value)}
+              key={`lang-${language.value}`}
+              className="grid grid-cols-9 items-center justify-center py-1 hover:cursor-pointer hover:bg-neutral-200/80"
+              onClick={() => changeLang(language.value)}
             >
               <div
-                className="flex items-center justify-center"
+                className="mx-auto"
                 style={{
-                  gridColumn: "3/4",
+                  gridColumn: "4/5",
                 }}
               >
-                {level == Lvl.value ? (
+                {lang == language.value ? (
                   <IoIosRadioButtonOn size={23} />
                 ) : (
                   <IoIosRadioButtonOff size={23} />
                 )}
               </div>
               <span
-                style={{ gridColumn: "4/6" }}
+                style={{ gridColumn: "5/7" }}
                 className="text-md font-medium"
               >
-                {Lvl.name}
+                {language.name}
               </span>
             </div>
           ))}
@@ -61,4 +60,4 @@ const LevelSelection = () => {
   );
 };
 
-export default LevelSelection;
+export default LanguageSelection;

@@ -7,7 +7,7 @@ import {
 const Rating = () => {
   return (
     <AccordionItem value="rating">
-      <AccordionTrigger className="justify-center gap-4">
+      <AccordionTrigger className="my-0 justify-center gap-4 py-2">
         Rating
       </AccordionTrigger>
       <AccordionContent>
