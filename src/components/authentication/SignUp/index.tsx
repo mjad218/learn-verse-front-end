@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { getToken, signUp } from "@/services/users/login";
+import { signUp } from "@/services/users/login";
 import { FormButton } from "@/components/authentication/_components";
 import { formInputStyle } from "../../../app/auth/styleDefinitions";
 import { z } from "zod";
@@ -26,9 +26,7 @@ const SignUp = () => {
   const submitForm = async (data: FieldValues) => {
     const { username, email, password } = data;
     try {
-      const token = await getToken();
-      if (!token) return;
-      const requestOk = await signUp(username, email, password, token);
+      const requestOk = await signUp(username, email, password);
       if (requestOk) router.push("/login");
     } catch (error) {}
     setTimeout(() => setLoading(false), 2000);

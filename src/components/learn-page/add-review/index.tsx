@@ -29,7 +29,6 @@ export const AddReview = (props: IProps) => {
         </div>
         <div className="flex flex-col gap-1">
           {rating}
-
           <label htmlFor=""> Stars</label>
           <Rating
             style={{ maxWidth: 250 }}

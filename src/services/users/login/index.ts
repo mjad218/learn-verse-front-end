@@ -40,14 +40,12 @@ export const signUp = async (
   username: string,
   password: string,
   email: string,
-  token: string,
 ) => {
   const request = await fetch(`${API_URL}/sign-up`, {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       userName: username,
