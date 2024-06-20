@@ -1,17 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion } from "@/components/ui/accordion";
 import Rating from "./Rating";
 import LanguageSelection from "./LanguageSelection";
 import LevelSelection from "./LevelSelection";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Price from "./Price";
 
 const SearchOptions = () => {
   const router = useRouter();
@@ -25,25 +21,20 @@ const SearchOptions = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-slate-300 py-4 text-base">
-      <span className="items-center pt-2 text-base font-medium">
+    <div className="flex flex-col rounded-xl border border-slate-300 text-base">
+      <span className="items-center py-2 text-base font-medium">
         Search Filters
       </span>
       <Separator />
-      <Accordion type="single" collapsible>
+      <Accordion type="multiple">
         <Rating />
         <LevelSelection />
-        <AccordionItem value="price">
-          <AccordionTrigger className="justify-center gap-4">
-            Price
-          </AccordionTrigger>
-          <AccordionContent>dummy text</AccordionContent>
-        </AccordionItem>
+        <Price />
         <LanguageSelection />
       </Accordion>
 
       <Button
-        className="self-center p-2 py-4 text-xl font-normal"
+        className="my-2 self-center px-2 py-4 text-xl font-normal"
         variant={"destructive"}
         onClick={resetURL}
       >

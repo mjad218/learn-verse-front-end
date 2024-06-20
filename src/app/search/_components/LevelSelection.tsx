@@ -24,7 +24,7 @@ const LevelSelection = () => {
 
   return (
     <AccordionItem value="level">
-      <AccordionTrigger className="justify-center gap-4">
+      <AccordionTrigger className="justify-center gap-4 py-2">
         Level
       </AccordionTrigger>
       <AccordionContent>

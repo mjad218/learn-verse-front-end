@@ -23,7 +23,7 @@ const LanguageSelection = () => {
 
   return (
     <AccordionItem value="language">
-      <AccordionTrigger className="justify-center gap-4">
+      <AccordionTrigger className="justify-center gap-4 py-2">
         Primary Language
       </AccordionTrigger>
       <AccordionContent>
