@@ -9,6 +9,7 @@ const Logout = () => {
     fetch("/api/logout", {
       method: "POST",
     });
+    router.refresh();
     router.push("/");
   };
   return (

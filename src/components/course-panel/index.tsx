@@ -6,7 +6,7 @@ import { NewCourseSchema, NewCourseType } from "@/types/course.type";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import SettingsFormButton from "./SettingsFormButton";
+import { Button } from "../ui/button";
 
 const CoursePanel = () => {
   const { handleSubmit, register } = useForm<NewCourseType>({
@@ -66,12 +66,12 @@ const CoursePanel = () => {
             />
           </div>
           <div className="mx-auto">
-            <SettingsFormButton
+            <Button
               type="submit"
               className={"self-center text-black disabled:border-gray-500"}
             >
               Submit
-            </SettingsFormButton>
+            </Button>
           </div>
         </div>
       </form>
