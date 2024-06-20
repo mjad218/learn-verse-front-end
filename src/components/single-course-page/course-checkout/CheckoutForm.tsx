@@ -7,6 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { Button } from "@/components/ui/button";
 import { useAccessToken } from "@/components/current-user/context";
+import { API_URL } from "@/constants/api";
 
 export const CheckoutForm = () => {
   const { token } = useAccessToken();
@@ -18,55 +19,58 @@ export const CheckoutForm = () => {
   );
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    if (elements == null) {
-      return;
-    }
+      if (elements == null) return;
 
-    // Trigger form validation and wallet collection
-    const { error: submitError } = await elements.submit();
-    if (submitError?.message) {
-      // Show error to your customer
-      setErrorMessage(submitError.message);
-      return;
-    }
+      // Trigger form validation and wallet collection
+      const { error: submitError } = await elements.submit();
+      if (submitError?.message) {
+        // Show error to your customer
+        setErrorMessage(submitError.message);
+        return;
+      }
 
-    // Create the PaymentIntent and obtain clientSecret from your server endpoint
-    const res = await fetch(
-      "http://127.0.0.1:8080/api/payment/secure/payment-intent",
-      {
+      // Create the PaymentIntent and obtain clientSecret from your server endpoint
+      const res = await fetch(`${API_URL}/api/payment/secure/payment-intent`, {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      },
-    );
+      });
 
-    const { client_secret: clientSecret } = await res.json();
+      if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
+      const result = await res.json();
+      console.log({
+        result,
+      });
+      const { client_secret: clientSecret } = result;
+      console.log(`client secret: ${clientSecret}`);
 
-    console.log(`client secret: ${clientSecret}`);
+      const { error } = await stripe!.confirmPayment({
+        //`Elements` instance that was used to create the Payment Element
+        elements,
+        clientSecret,
+        confirmParams: {
+          return_url: "http://127.0.0.1:3000/",
+        },
+      });
 
-    const { error } = await stripe!.confirmPayment({
-      //`Elements` instance that was used to create the Payment Element
-      elements,
-      clientSecret,
-      confirmParams: {
-        return_url: "",
-      },
-    });
-
-    if (error) {
-      // This point will only be reached if there is an immediate error when
-      // confirming the payment. Show error to your customer (for example, payment
-      // details incomplete)
-      setErrorMessage(error.message);
-    } else {
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
+      if (error) {
+        // This point will only be reached if there is an immediate error when
+        // confirming the payment. Show error to your customer (for example, payment
+        // details incomplete)
+        setErrorMessage(error.message);
+      } else {
+        // Your customer will be redirected to your `return_url`. For some payment
+        // methods like iDEAL, your customer will be redirected to an intermediate
+        // site first to authorize the payment, then redirected to the `return_url`.
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -75,6 +79,8 @@ export const CheckoutForm = () => {
       onSubmit={handleSubmit}
       className="lg:min-w-3xl h-max lg:flex lg:max-w-4xl lg:flex-col lg:items-center lg:gap-4"
     >
+      Current User Access token
+      {token}
       <PaymentElement />
       <div className="items-center lg:flex lg:flex-col lg:gap-2">
         <Button
