@@ -1,5 +1,5 @@
 "use client";
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
@@ -20,8 +20,7 @@ export const AddReview = (props: IProps) => {
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-1">
           <label htmlFor="text">Text</label>
-          <Input
-            type="text"
+          <Textarea
             id="text"
             value={text}
             onChange={(e) => setText(e?.target?.value)}
