@@ -34,7 +34,7 @@ export const CheckoutForm = () => {
 
     // Create the PaymentIntent and obtain clientSecret from your server endpoint
     const res = await fetch(
-      "127.0.0.1:8080/api/payment/secure/payment-intent",
+      "http://127.0.0.1:8080/api/payment/secure/payment-intent",
       {
         method: "POST",
         credentials: "include",
