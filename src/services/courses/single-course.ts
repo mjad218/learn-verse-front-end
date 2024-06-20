@@ -1,14 +1,12 @@
 import { API_URL } from "@/constants/api";
-import { getToken } from "../users/login";
 import { CourseVideo } from "@/types/video.type";
 
 export const getSingleCourse = async (
   courseId: number | string | undefined,
+  token: string | null,
 ) => {
   if (!courseId) return null;
   try {
-    const token = await getToken();
-
     const request = await fetch(`${API_URL}/course/${courseId}`, {
       method: "GET",
       credentials: "include",

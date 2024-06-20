@@ -5,13 +5,20 @@ import { CourseReviews } from "./course-reviews";
 // import { RelatedCourses } from "./related-courses";
 import { CourseSideBar } from "./side-bar";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 
 type IProps = {
   courseId: number;
 };
 export const SingleCoursePage = async (props: IProps) => {
-  const course = await getSingleCourse(props.courseId);
-  if(!course) notFound()
+  let token: string | null = "";
+  try {
+    const nextCookies = cookies();
+    token = nextCookies.get("token")?.value ?? null;
+    if (!token) throw "not logged in";
+  } catch (error) {}
+  const course = await getSingleCourse(props.courseId, token);
+  if (!course) notFound();
 
   console.log({
     course,
