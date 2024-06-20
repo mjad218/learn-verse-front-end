@@ -1,5 +1,4 @@
 import { API_URL } from "@/constants/api";
-import { Course, CourseSchema } from "@/types/course.type";
 import { getToken } from "../users/login";
 import { CourseVideo } from "@/types/video.type";
 
@@ -23,14 +22,11 @@ export const getSingleCourse = async (
       console.log(`${request.ok} ${request.status} ${request.statusText} `);
       throw `${request.ok} ${request.status} ${request.statusText} `;
     }
-    const data = await request.json();
-    console.log({
-      course: data,
-    });
+    const course = await request.json();
 
-    const parseResult = CourseSchema.safeParse(data);
-    let course: Course | null = null;
-    if (parseResult.success) course = parseResult.data;
+    console.log({
+      course,
+    });
     return course;
   } catch (error) {
     console.log(error);
