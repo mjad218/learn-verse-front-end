@@ -19,7 +19,7 @@ const SearchPage = () => {
         </div>
         <div className="flex basis-9/12 flex-col gap-5">
           <ResultsMessage />
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,300px))] gap-3">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,400px))] gap-3">
             {[1, 2, 3, 4, 5, 6].map((_, index) => (
               <CourseCard key={index} />
             ))}

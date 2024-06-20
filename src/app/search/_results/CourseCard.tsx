@@ -3,33 +3,36 @@ import { FaStar } from "react-icons/fa";
 
 const CourseCard = () => {
   return (
-    <div className="grid h-[250px] w-full grid-rows-5 overflow-hidden rounded-xl border border-slate-200 px-2 py-4">
-      <div style={{ gridRow: "1/4" }} className="overflow-hidden rounded-lg">
+    <div className="grid h-[300px] w-full grid-rows-6 overflow-hidden rounded-xl border border-slate-200 px-1 pt-2 hover:cursor-pointer">
+      <div style={{ gridRow: "1/5" }} className="overflow-hidden rounded-lg">
         <Image
           src={"/assets/TempImages/TempCourse.jpg"}
           alt="course"
           width={`${300}`}
-          height={`${150}`}
+          height={`${300}`}
           style={{ objectFit: "cover" }}
           className="h-full w-full"
         />
       </div>
       <div
-        style={{ gridRow: "4/6" }}
-        className="my-2 grid grid-rows-3 items-center justify-center"
+        style={{ gridRow: "5/7" }}
+        className="my-2 grid min-w-full grid-rows-3"
       >
         <span
-          className="font-dmSerif text-lg font-bold"
+          className="font-Roboto text-lg font-bold"
           style={{ gridRow: "1/2" }}
         >
-          Course Title
+          Introduction to React
         </span>
         <span className="text-base" style={{ gridRow: "2/3" }}>
-          Course Creator
+          Instructor: {"<Course Creator>"}
         </span>
         <div className="mx-8 flex justify-between" style={{ gridRow: "3/4" }}>
-          <span className="text-sm">Price: $</span>
-          <FaStar color="gold" />
+          <span className="test-base">Price: 50EGP</span>
+          <span className="flex items-center gap-1">
+            3.5
+            <FaStar color="gold" />
+          </span>
         </div>
       </div>
     </div>
