@@ -1,3 +1,4 @@
+import { User } from "@/components/current-user/context";
 import { API_URL } from "@/constants/api";
 
 export const getAuthUser = async () => {
@@ -13,4 +14,16 @@ export const getAuthUser = async () => {
 
   const user = await request.json();
   return user;
+};
+export const getUserById = async (id : string | null  | number) => {
+  const request = await fetch(`${API_URL}/user/${id}`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const user = await request.json();
+  return user as User;
 };
