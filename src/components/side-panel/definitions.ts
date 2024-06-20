@@ -32,4 +32,4 @@ export const AccountDetailsSchema = z.object({
     .email("Email is invalid"),
 });
 
-export const settingsButtonStyle = `w-36 rounded-3xl border-2 border-black bg-white hover:bg-white`;
+export const settingsButtonStyle = `w-24 transition-transform delay-75 hover:scale-110 rounded-3xl border-2 border-black bg-white hover:bg-white`;

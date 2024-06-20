@@ -3,11 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
-import {
-  formInputLabelSettings,
-  formInputStyle,
-} from "@/app/auth/styleDefinitions";
-import { Button } from "@/components/ui/button";
+import SettingsFormButton from "../authentication/_components/SettingFormButton";
 import { AccountDetailsSchema } from "@/components/side-panel/definitions";
 import { useState } from "react";
 import { Input } from "../ui/input";
@@ -59,108 +55,99 @@ const AccountPanel = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-2">
       <span className="font-roboto text-2xl font-semibold">Account</span>
-      <div className="mt-4 pb-4">
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex flex-col gap-1 self-start">
-            <Input
-              type="file"
-              onChange={(e) =>
-                setImage(e.target?.files?.length ? e.target?.files[0] : null)
-              }
-            />
-            <div className="flex flex-col text-sm text-gray-700/60">
-              <span>No file selected</span>
-              <span>Maximum image size is 1MB</span>
-            </div>
+      <form
+        className="flex w-full flex-col items-center gap-4"
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitForm();
+        }}
+      >
+        <div className="flex flex-col gap-1 lg:min-w-80">
+          <Input
+            type="file"
+            className="file:cursor-pointer file:rounded-md file:bg-gray-800 file:text-white hover:cursor-pointer"
+            onChange={(e) =>
+              setImage(e.target?.files?.length ? e.target?.files[0] : null)
+            }
+          />
+          <div className="flex flex-col text-sm text-gray-700/60">
+            <span>No file selected</span>
+            <span>Maximum image size is 1MB</span>
           </div>
+        </div>
 
-          <form
-            className="flex w-full flex-col gap-4"
-            onSubmit={(e) => {
-              e.preventDefault();
-              submitForm();
-            }}
-          >
-            <div className="flex w-full flex-col">
-              <Label htmlFor="firstName" className={formInputLabelSettings}>
-                First name
-              </Label>
-              <input
-                type="text"
-                id="firstName"
-                placeholder="First Name"
-                className={`${formInputStyle}`}
-                {...register("firstName")}
-              />
-              {errors.firstName && (
-                <span className="text-xs font-semibold text-red-700">
-                  {errors.firstName.message}
-                </span>
-              )}
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Label htmlFor="lastname" className={formInputLabelSettings}>
-                Last name
-              </Label>
-              <input
-                type="text"
-                id="lastname"
-                placeholder="Last name"
-                className={`${formInputStyle}`}
-                {...register("familyName")}
-              />
-              {errors.familyName && (
-                <span className="text-xs font-semibold text-red-700">
-                  {errors.familyName.message}
-                </span>
-              )}
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Label htmlFor="username" className={`${formInputLabelSettings}`}>
-                Username
-              </Label>
-              <input
-                type="text"
-                id="username"
-                placeholder="Username"
-                className={`${formInputStyle}`}
-                {...register("userName")}
-              />
-              {errors.userName && (
-                <span className="text-xs font-semibold text-red-700">
-                  {errors.userName.message}
-                </span>
-              )}
-            </div>
-            <div className="flex flex-col items-center justify-center gap-2">
-              <Label htmlFor="email" className={formInputLabelSettings}>
-                Email
-              </Label>
-              <input
-                type="text"
-                id="email"
-                placeholder="Email Address"
-                className={`${formInputStyle}`}
-                {...register("email")}
-              />
-              {errors.email && (
-                <span className="text-xs font-semibold text-red-700">
-                  {errors.email.message}
-                </span>
-              )}
-            </div>
-            <Button
+        <div className="flex h-full min-w-72 max-w-md flex-col justify-center gap-6 pb-4 lg:min-w-80">
+          <div className="grid w-full max-w-xs items-center gap-1.5">
+            <Label htmlFor="firstName">First name</Label>
+            <Input
+              type="text"
+              id="firstName"
+              placeholder="First Name"
+              {...register("firstName")}
+            />
+            {errors.firstName && (
+              <p className="text-xs font-semibold text-red-700">
+                {errors.firstName.message}
+              </p>
+            )}
+          </div>
+          <div className="grid w-full max-w-xs items-center gap-1.5">
+            <Label htmlFor="lastname">Last name</Label>
+            <Input
+              type="text"
+              id="lastname"
+              placeholder="Last name"
+              {...register("familyName")}
+            />
+            {errors.familyName && (
+              <p className="text-xs font-semibold text-red-700">
+                {errors.familyName.message}
+              </p>
+            )}
+          </div>
+          <div className="grid w-full max-w-xs items-center gap-1.5">
+            <Label htmlFor="username">Username</Label>
+            <Input
+              type="text"
+              id="username"
+              placeholder="Username"
+              {...register("userName")}
+            />
+            {errors.userName && (
+              <p className="text-xs font-semibold text-red-700">
+                {errors.userName.message}
+              </p>
+            )}
+          </div>
+          <div className="grid w-full max-w-xs items-center gap-1.5">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              type="text"
+              id="email"
+              placeholder="Email Address"
+              {...register("email")}
+            />
+            {errors.email && (
+              <p className="text-xs font-semibold text-red-700">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+          <div className="mx-auto">
+            <SettingsFormButton
               type="submit"
-              className={"w-full self-center bg-accent text-white"}
+              className={
+                "w-full self-center text-black disabled:border-gray-500"
+              }
               disabled={!isDirty}
             >
               Submit
-            </Button>
-          </form>
+            </SettingsFormButton>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

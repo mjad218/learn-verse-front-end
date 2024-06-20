@@ -6,11 +6,9 @@ import { NewCourseSchema, NewCourseType } from "@/types/course.type";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "../ui/button";
 import { useAccessToken } from "../current-user/context";
 import { addSingleCourse } from "@/services/courses/single-course";
 import toast from "react-hot-toast";
-import { FormButton } from "../authentication/_components";
 import SettingsFormButton from "../authentication/_components/SettingFormButton";
 
 const CoursePanel = () => {
