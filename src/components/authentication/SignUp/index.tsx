@@ -27,7 +27,7 @@ const SignUp = () => {
     const { username, email, password } = data;
     try {
       const requestOk = await signUp(username, email, password);
-      if (requestOk) router.push("/login");
+      if (requestOk) router.push("/auth/login");
     } catch (error) {}
     setTimeout(() => setLoading(false), 2000);
   };
