@@ -1,7 +1,6 @@
 import { Row } from "@/components/shared/row";
 import Image from "next/image";
 import SecondaryHero from "@/../public/assets/secondary-hero.png";
-import Link from "next/link";
 const ContentSection = () => {
   return (
     <div className="my-4 bg-accent9/5 py-4 text-black">

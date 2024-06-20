@@ -13,7 +13,7 @@ const Price = () => {
   const [maxValue] = useState(2000);
   const [currentValue, setCurrentValue] = useState(50);
 
-  const [price, setPrice] = useQueryState("price");
+  const [_, setPrice] = useQueryState("price");
   const changePrice = (value: string) => {
     setPrice(value);
   };
