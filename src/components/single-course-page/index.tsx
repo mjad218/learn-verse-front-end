@@ -4,12 +4,14 @@ import { CourseDetails } from "./course-details";
 import { CourseReviews } from "./course-reviews";
 // import { RelatedCourses } from "./related-courses";
 import { CourseSideBar } from "./side-bar";
+import { notFound } from "next/navigation";
 
 type IProps = {
   courseId: number;
 };
 export const SingleCoursePage = async (props: IProps) => {
   const course = await getSingleCourse(props.courseId);
+  if(!course) notFound()
 
   console.log({
     course,
