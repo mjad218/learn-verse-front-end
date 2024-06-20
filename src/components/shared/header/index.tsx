@@ -6,7 +6,7 @@ import NavBar from "../navbar/NavBar";
 export const Header = () => {
   return (
     <div className="h-24">
-      <div className="fixed right-0 top-0 z-50 flex h-24 w-full bg-accent10 shadow-md">
+      <div className="fixed right-0 top-0 z-[100000] flex h-24 w-full bg-accent10 shadow-md">
         <Row>
           <nav className="z-50 flex h-full w-full items-center justify-between gap-2 border-b-[1px] border-b-slate-200 py-3 lg:justify-center">
             <Link href="/">
