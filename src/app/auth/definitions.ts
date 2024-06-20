@@ -22,10 +22,7 @@ export const registerSchema = z
   });
 
 export const loginSchema = z.object({
-  email: z
-    .string()
-    .min(3, { message: "This field cannot be empty" })
-    .email("Email is invalid"),
+  username: z.string().min(3, { message: "This field cannot be empty" }),
   password: z
     .string()
     .min(8, { message: "Password must be longer than 8 characters" }),

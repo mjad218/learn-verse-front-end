@@ -29,10 +29,10 @@ const LoginPage = () => {
   //TODO: Get cookies from server
 
   const submitForm = async (data: FieldValues) => {
-    const { email, password } = data;
+    const { username, password } = data;
     setLoading(true);
     try {
-      const token = await loginByUsernameAndPassword(email, password);
+      const token = await loginByUsernameAndPassword(username, password);
       // ? TO DO
       // get token and save it to localStorage
       if (!token) return;
@@ -52,21 +52,21 @@ const LoginPage = () => {
     >
       <div className="mb-4">
         <label
-          htmlFor="email"
+          htmlFor="Username"
           className="mb-2 block font-dmSerif text-sm font-bold text-gray-700"
         >
-          Email
+          Username
         </label>
         <input
           type="text"
-          id="email"
-          placeholder="Email"
+          id="Username"
+          placeholder="Username"
           className={formInputStyle}
-          {...register("email")}
+          {...register("username")}
         />
-        {errors.email && (
+        {errors.username && (
           <p className="text-xs font-semibold text-red-700">
-            {errors.email.message}
+            {errors?.username?.message}
           </p>
         )}
       </div>
