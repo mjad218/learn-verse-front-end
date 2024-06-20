@@ -8,6 +8,7 @@ export type User = {
   email: string;
   address: string;
   image?: string;
+  id?: number | string | undefined;
 };
 export const UserContext = createContext<UserContextType>({
   user: null,

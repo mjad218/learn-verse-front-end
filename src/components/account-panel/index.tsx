@@ -13,7 +13,7 @@ import { useState } from "react";
 import { Input } from "../ui/input";
 import { toBase64 } from "@/lib/utils";
 import { API_URL } from "@/constants/api";
-import { useAccessToken } from "../current-user/context";
+import { useAccessToken, useCurrentUser } from "../current-user/context";
 
 type AccountDetailsType = z.infer<typeof AccountDetailsSchema>;
 
@@ -29,7 +29,7 @@ const AccountPanel = () => {
 
   const [image, setImage] = useState<File | null | undefined>(null);
   const data = watch();
-
+  const { user } = useCurrentUser();
   const { token } = useAccessToken();
   const submitForm = async () => {
     console.log(data);
@@ -46,6 +46,7 @@ const AccountPanel = () => {
         body: JSON.stringify({
           image: img,
           ...data,
+          id: user?.id,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -56,15 +57,7 @@ const AccountPanel = () => {
       res.json();
     } catch (error) {}
   };
-  //   {
-  //     "id": 3,
-  //     "userName": "gadoz11updated",
-  //     "password": "26508541updated",
-  //     "email": "myMailupdated",
-  //     "address": "myAddressupdated",
-  //     "firstName": "mohamedupdated",
-  //     "familyName": "gadupdated"
-  // }
+
   return (
     <div className="flex flex-col gap-8">
       <span className="font-roboto text-2xl font-semibold">Account</span>
