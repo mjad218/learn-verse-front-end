@@ -1,4 +1,5 @@
 import { API_URL } from "@/constants/api";
+import { NewCourseType } from "@/types/course.type";
 import { CourseVideo } from "@/types/video.type";
 
 export const getSingleCourse = async (
@@ -101,4 +102,24 @@ export const getSingleVideo = async (
     console.log(error);
     return [];
   }
+};
+
+export const addSingleCourse = async (
+  course: NewCourseType,
+  token: string | null,
+) => {
+  await fetch(`${API_URL}/course`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // Bearer or Basic ?
+    },
+    body: JSON.stringify({
+      courseName: course.courseName,
+      description: course.description,
+      price: course.price,
+      image: course.image,
+    }),
+  });
 };

@@ -7,14 +7,22 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "../ui/button";
+import { useAccessToken } from "../current-user/context";
+import { addSingleCourse } from "@/services/courses/single-course";
+import toast from "react-hot-toast";
 
 const CoursePanel = () => {
+  const { token } = useAccessToken();
   const { handleSubmit, register } = useForm<NewCourseType>({
     resolver: zodResolver(NewCourseSchema),
   });
 
   const submitForm = async (data: FieldValues) => {
-    console.log(data);
+    try {
+      await addSingleCourse(data, token);
+    } catch (e) {
+      toast.error("Error adding course");
+    }
   };
 
   return (
