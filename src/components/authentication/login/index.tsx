@@ -35,6 +35,7 @@ const LoginPage = () => {
       const token = await loginByUsernameAndPassword(username, password);
       if (!token) {
         setError("Credentials Mismatch");
+        window.setTimeout(() => setError(""), 5000);
         return;
       }
       const user = await findCurentAuthenticatedUser(token);
