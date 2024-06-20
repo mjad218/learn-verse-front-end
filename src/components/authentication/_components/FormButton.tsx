@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import LoadingSpinnerForm from "./LoadingSpinnerForm";
+
 interface Props {
   text: string;
   isLoading: boolean;

@@ -10,6 +10,8 @@ import { Button } from "../ui/button";
 import { useAccessToken } from "../current-user/context";
 import { addSingleCourse } from "@/services/courses/single-course";
 import toast from "react-hot-toast";
+import { FormButton } from "../authentication/_components";
+import SettingsFormButton from "../authentication/_components/SettingFormButton";
 
 const CoursePanel = () => {
   const { token } = useAccessToken();
@@ -79,12 +81,11 @@ const CoursePanel = () => {
             />
           </div>
           <div className="mx-auto">
-            <Button
-              type="submit"
-              className={"self-center text-black disabled:border-gray-500"}
+            <SettingsFormButton
+              className={`self-center text-black disabled:border-gray-500`}
             >
               Submit
-            </Button>
+            </SettingsFormButton>
           </div>
         </div>
       </form>
