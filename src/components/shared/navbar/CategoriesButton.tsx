@@ -18,7 +18,7 @@ const CategoriesButton = () => {
           <RxCaretDown color="white" className="relative top-0.5" size={18} />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className=" z-[1000001]">
         {navigationItems.map((item) => (
           <Link href={`/categories/${item.slug}`} key={item.slug}>
             <DropdownMenuItem className="hover:bg-accent hover:text-white focus:bg-accent focus:text-white">
