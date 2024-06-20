@@ -32,7 +32,7 @@ const Dropdown = () => {
               Settings
             </DropdownMenuItem>
           </Link>
-          <Link href="/login">
+          <Link href="/auth/login">
             <DropdownMenuItem className={menuItemStyle}>
               Logout
             </DropdownMenuItem>

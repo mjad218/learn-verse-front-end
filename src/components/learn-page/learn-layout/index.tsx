@@ -20,8 +20,8 @@ export const LearnLayout = async (props: IProps) => {
   const videos = await getCourseVideos(props.courseId, token);
   return (
     <Row className="flex flex-col gap-4 py-10 lg:flex-row">
-      <div className="basis-10/12">{props.children}</div>
-      <div className="basis-2/12">
+      <div className="basis-9/12">{props.children}</div>
+      <div className="basis-3/12">
         <MaterialsList courseId={props.courseId} videos={videos} />
       </div>
     </Row>
