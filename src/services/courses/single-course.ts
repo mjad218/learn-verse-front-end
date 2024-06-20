@@ -36,10 +36,10 @@ export const getSingleCourse = async (
 
 export const getCourseVideos = async (
   courseId: number | string | undefined,
+  token: string | null,
 ) => {
   if (!courseId) return [];
   try {
-    const token = await getToken();
     const request = await fetch(`${API_URL}/videos/courses/${courseId}`, {
       method: "GET",
       credentials: "include",
@@ -70,10 +70,12 @@ export const getCourseVideos = async (
   }
 };
 
-export const getSingleVideo = async (videoId: number | string | undefined) => {
+export const getSingleVideo = async (
+  videoId: number | string | undefined,
+  token: string | null,
+) => {
   if (!videoId) return null;
   try {
-    const token = await getToken();
     const request = await fetch(`${API_URL}/videos/courses/${videoId}`, {
       method: "GET",
       credentials: "include",
