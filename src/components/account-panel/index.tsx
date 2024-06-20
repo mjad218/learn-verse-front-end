@@ -129,7 +129,7 @@ const AccountPanel = () => {
             </div>
             <Button
               type="submit"
-              className={"self-center bg-accent text-white"}
+              className={"w-full self-center bg-accent text-white"}
               disabled={!isDirty}
             >
               Submit
