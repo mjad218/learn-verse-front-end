@@ -1,5 +1,5 @@
 "use client";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,9 @@ import { Button } from "@/components/ui/button";
 import { AccountDetailsSchema } from "@/components/side-panel/definitions";
 import { useState } from "react";
 import { Input } from "../ui/input";
+import { toBase64 } from "@/lib/utils";
+import { API_URL } from "@/constants/api";
+import { useAccessToken } from "../current-user/context";
 
 type AccountDetailsType = z.infer<typeof AccountDetailsSchema>;
 
@@ -21,14 +24,37 @@ const AccountPanel = () => {
     watch,
   } = useForm<AccountDetailsType>({
     resolver: zodResolver(AccountDetailsSchema),
-    defaultValues: { username: "", email: "", firstname: "", lastname: "" },
+    defaultValues: { userName: "", email: "", firstName: "", familyName: "" },
   });
 
   const [image, setImage] = useState<File | null | undefined>(null);
   const data = watch();
 
+  const { token } = useAccessToken();
   const submitForm = async () => {
     console.log(data);
+    let img: string | ArrayBuffer | null = "";
+    try {
+      if (image) img = await toBase64(image);
+    } catch (error) {}
+    console.log({
+      img,
+    });
+    try {
+      const res = await fetch(`${API_URL}/user`, {
+        method: "PUT",
+        body: JSON.stringify({
+          image: img,
+          ...data,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      res.json();
+    } catch (error) {}
   };
   //   {
   //     "id": 3,
@@ -65,19 +91,19 @@ const AccountPanel = () => {
             }}
           >
             <div className="flex w-full flex-col">
-              <Label htmlFor="firstname" className={formInputLabelSettings}>
+              <Label htmlFor="firstName" className={formInputLabelSettings}>
                 First name
               </Label>
               <input
                 type="text"
-                id="firstname"
+                id="firstName"
                 placeholder="First Name"
                 className={`${formInputStyle}`}
-                {...register("firstname")}
+                {...register("firstName")}
               />
-              {errors.firstname && (
+              {errors.firstName && (
                 <span className="text-xs font-semibold text-red-700">
-                  {errors.firstname.message}
+                  {errors.firstName.message}
                 </span>
               )}
             </div>
@@ -90,11 +116,11 @@ const AccountPanel = () => {
                 id="lastname"
                 placeholder="Last name"
                 className={`${formInputStyle}`}
-                {...register("lastname")}
+                {...register("familyName")}
               />
-              {errors.lastname && (
+              {errors.familyName && (
                 <span className="text-xs font-semibold text-red-700">
-                  {errors.lastname.message}
+                  {errors.familyName.message}
                 </span>
               )}
             </div>
@@ -107,11 +133,11 @@ const AccountPanel = () => {
                 id="username"
                 placeholder="Username"
                 className={`${formInputStyle}`}
-                {...register("username")}
+                {...register("userName")}
               />
-              {errors.username && (
+              {errors.userName && (
                 <span className="text-xs font-semibold text-red-700">
-                  {errors.username.message}
+                  {errors.userName.message}
                 </span>
               )}
             </div>

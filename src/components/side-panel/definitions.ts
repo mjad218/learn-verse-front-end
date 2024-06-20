@@ -1,21 +1,21 @@
 import { z } from "zod";
 
 export const AccountDetailsSchema = z.object({
-  firstname: z
+  firstName: z
     .string()
     .min(3, { message: "First name cannot be shorter than 3 letters" })
     .regex(
       new RegExp(/^[a-zA-Z]+[-'s]?[a-zA-Z ]+$/),
       "First name should contain only letters",
     ),
-  lastname: z
+  familyName: z
     .string()
     .min(3, { message: "Last name cannot be shorter than 3 letters" })
     .regex(
       new RegExp(/^[a-zA-Z]+[-'s]?[a-zA-Z ]+$/),
       "Last name should contain only letters",
     ),
-  username: z
+  userName: z
     .string()
     .min(5, { message: "This field cannot be empty" })
     .regex(
@@ -32,5 +32,4 @@ export const AccountDetailsSchema = z.object({
     .email("Email is invalid"),
 });
 
-
-export const settingsButtonStyle = `w-36 rounded-3xl border-2 border-black bg-white hover:bg-white`
+export const settingsButtonStyle = `w-36 rounded-3xl border-2 border-black bg-white hover:bg-white`;
