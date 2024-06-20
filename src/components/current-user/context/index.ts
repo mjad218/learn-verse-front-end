@@ -7,6 +7,7 @@ export type User = {
   password: string | null;
   email: string;
   address: string;
+  image?: string;
 };
 export const UserContext = createContext<UserContextType>({
   user: null,
