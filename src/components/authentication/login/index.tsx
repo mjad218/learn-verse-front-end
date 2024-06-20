@@ -10,7 +10,7 @@ import { FormButton } from "@/components/authentication/_components";
 import { formInputStyle } from "../../../app/auth/styleDefinitions";
 import { loginSchema } from "@/app/auth/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 type FormData = z.infer<typeof loginSchema>;
@@ -23,26 +23,25 @@ const LoginPage = () => {
   } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
 
   const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
   const { setUser } = useCurrentUser();
 
   //TODO: Get cookies from server
-
-  const submitForm = async (data: FieldValues) => {
+  const submitForm = async (data: FormData) => {
     const { username, password } = data;
     setLoading(true);
     try {
       const token = await loginByUsernameAndPassword(username, password);
-      // ? TO DO
-      // get token and save it to localStorage
-      if (!token) return;
+      if (!token) {
+        setError("Credentials Mismatch");
+        return;
+      }
       const user = await findCurentAuthenticatedUser(token);
-      // after getting the token
-      // get the user
       setUser(user);
       router.push("/"); // Redirect when success login
     } catch (error) {}
-    setTimeout(() => setLoading(false), 2000);
+    setLoading(false);
   };
 
   return (
@@ -89,6 +88,8 @@ const LoginPage = () => {
             {errors.password.message}
           </p>
         )}
+
+        {error && <p className="text-xs font-semibold text-red-700">{error}</p>}
       </div>
       <FormButton text={"Login"} isLoading={isLoading} />
     </form>
