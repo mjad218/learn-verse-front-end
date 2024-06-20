@@ -17,15 +17,17 @@ type AccountDetailsType = z.infer<typeof AccountDetailsSchema>;
 const AccountPanel = () => {
   const {
     register,
-    handleSubmit,
     formState: { errors, isDirty },
+    watch,
   } = useForm<AccountDetailsType>({
     resolver: zodResolver(AccountDetailsSchema),
     defaultValues: { username: "", email: "", firstname: "", lastname: "" },
   });
 
   const [image, setImage] = useState<File | null | undefined>(null);
-  const submitForm = async (data: FieldValues) => {
+  const data = watch();
+
+  const submitForm = async () => {
     console.log(data);
   };
   //   {
@@ -59,7 +61,7 @@ const AccountPanel = () => {
             className="flex w-full flex-col gap-4"
             onSubmit={(e) => {
               e.preventDefault();
-              handleSubmit(submitForm);
+              submitForm();
             }}
           >
             <div className="flex w-full flex-col">
