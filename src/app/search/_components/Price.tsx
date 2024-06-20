@@ -11,9 +11,8 @@ import { useQueryState } from "nuqs";
 const Price = () => {
   const [minValue] = useState(50);
   const [maxValue] = useState(2000);
-  const [currentValue, setCurrentValue] = useState(50);
-
-  const [_, setPrice] = useQueryState("price");
+  const [price, setPrice] = useQueryState("price");
+  const [currentValue, setCurrentValue] = useState(() => (price ? price : 50));
   const changePrice = (value: string) => {
     setPrice(value);
   };
@@ -24,7 +23,7 @@ const Price = () => {
       </AccordionTrigger>
       <AccordionContent className="mx-auto max-w-[80%]">
         <Slider
-          defaultValue={[50]}
+          defaultValue={[+currentValue]}
           max={maxValue}
           min={minValue}
           onValueChange={(value) => {
