@@ -9,8 +9,9 @@ import {
 import DropdownAvatar from "./DropDownAvatar";
 import Link from "next/link";
 import { useCurrentUser } from "@/components/current-user/context";
+import Logout from "./Logout";
 
-const menuItemStyle =
+export const menuItemStyle =
   "cursor-pointer text-lg font-medium focus:bg-[#2563EB] focus:rounded focus:text-white";
 
 const Dropdown = () => {
@@ -32,11 +33,7 @@ const Dropdown = () => {
               Settings
             </DropdownMenuItem>
           </Link>
-          <Link href="/auth/login">
-            <DropdownMenuItem className={menuItemStyle}>
-              Logout
-            </DropdownMenuItem>
-          </Link>
+          <Logout />
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
