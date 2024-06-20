@@ -44,6 +44,11 @@ export const CheckoutForm = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({
+          amount: 20300,
+          currency: "usd",
+          receiptEmail: "example1@example.com",
+        }),
       });
 
       if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
