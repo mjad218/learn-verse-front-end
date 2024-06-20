@@ -1,19 +1,19 @@
 "use client";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { menuItemStyle } from "./Dropdown";
-import { redirect } from "next/navigation";
-
-const handleClick = () => {
-  fetch("/logout", {
-    method: "POST",
-  });
-  redirect("/");
-};
+import { useRouter } from "next/navigation";
 
 const Logout = () => {
+  const router = useRouter();
+  const handleClick = () => {
+    fetch("/api/logout", {
+      method: "POST",
+    });
+    router.push("/");
+  };
   return (
-    <DropdownMenuItem className={menuItemStyle} onClick={handleClick}>
-      Logout
+    <DropdownMenuItem className={menuItemStyle}>
+      <span onClick={handleClick}>Logout</span>
     </DropdownMenuItem>
   );
 };
