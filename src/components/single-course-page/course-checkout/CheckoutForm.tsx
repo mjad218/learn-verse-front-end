@@ -6,8 +6,10 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { Button } from "@/components/ui/button";
+import { useAccessToken } from "@/components/current-user/context";
 
 export const CheckoutForm = () => {
+  const { token } = useAccessToken();
   const stripe = useStripe();
   const elements = useElements();
 
@@ -24,25 +26,35 @@ export const CheckoutForm = () => {
 
     // Trigger form validation and wallet collection
     const { error: submitError } = await elements.submit();
-    if (submitError!.message) {
+    if (submitError?.message) {
       // Show error to your customer
-      setErrorMessage(submitError!.message);
+      setErrorMessage(submitError.message);
       return;
     }
 
     // Create the PaymentIntent and obtain clientSecret from your server endpoint
-    const res = await fetch("/create-intent", {
-      method: "POST",
-    });
+    const res = await fetch(
+      "127.0.0.1:8080/api/payment/secure/payment-intent",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
 
     const { client_secret: clientSecret } = await res.json();
+
+    console.log(`client secret: ${clientSecret}`);
 
     const { error } = await stripe!.confirmPayment({
       //`Elements` instance that was used to create the Payment Element
       elements,
       clientSecret,
       confirmParams: {
-        return_url: "https://example.com/order/123/complete",
+        return_url: "",
       },
     });
 
