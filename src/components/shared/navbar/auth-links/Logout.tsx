@@ -9,8 +9,8 @@ const Logout = () => {
     fetch("/api/logout", {
       method: "POST",
     });
-    router.refresh();
     router.push("/");
+    router.refresh();
   };
   return (
     <DropdownMenuItem className={menuItemStyle}>
