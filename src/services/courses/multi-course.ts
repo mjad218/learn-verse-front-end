@@ -2,7 +2,7 @@ import { API_URL } from "@/constants/api";
 
 export const getCourses = async (query: string | null) => {
   try {
-    const request = await fetch(`${API_URL}/course?q=${query ? query : ""}`, {
+    const request = await fetch(`${API_URL}/course/search?q=${query}`, {
       method: "GET",
       credentials: "include",
       headers: {
