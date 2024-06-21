@@ -7,7 +7,10 @@ const CourseCard = ({ course }: { course: Course }) => {
     <div className="grid h-[300px] w-full grid-rows-6 overflow-hidden rounded-xl border border-slate-200 px-1 pt-2 hover:cursor-pointer">
       <div style={{ gridRow: "1/5" }} className="overflow-hidden rounded-lg">
         <Image
-          src={`${course.image ? course.image : "/assets/TempImages/TempCourse.jpg"}`}
+          src={
+            `data:image/jpg;base64,${course?.image ?? ""}` ??
+            "/assets/TempImages/TempCourse.jpg"
+          }
           alt="course"
           width={`${300}`}
           height={`${300}`}
