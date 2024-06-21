@@ -17,6 +17,7 @@ const ResultsMessage = dynamic(
 const SearchPage = async () => {
   const token = await getToken();
   const courses: Course[] = await getCourses(token);
+  console.log(courses);
 
   return (
     <Row>
@@ -27,11 +28,12 @@ const SearchPage = async () => {
         <div className="flex basis-9/12 flex-col gap-5">
           <ResultsMessage />
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,400px))] gap-3">
-            {courses.map((course, index) => (
-              <Suspense key={index} fallback={<CourseCardSkeleton />}>
-                <CourseCard course={course} />
-              </Suspense>
-            ))}
+            {courses &&
+              courses.map((course, index) => (
+                <Suspense key={index} fallback={<CourseCardSkeleton />}>
+                  <CourseCard course={course} />
+                </Suspense>
+              ))}
           </div>
         </div>
       </div>
