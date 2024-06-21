@@ -4,7 +4,6 @@ import CourseCard from "./CourseCard";
 import { Suspense } from "react";
 import { Row } from "@/components/shared/row";
 import CourseCardSkeleton from "./CourseCardSkeleton";
-import { API_URL } from "@/constants/api";
 import { getToken } from "@/services/users/login";
 import { Course } from "@/types/course.type";
 import { getCourses } from "@/services/courses/multi-course";
