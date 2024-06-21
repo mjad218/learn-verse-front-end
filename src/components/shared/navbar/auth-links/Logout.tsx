@@ -2,15 +2,18 @@
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { menuItemStyle } from "./Dropdown";
 import { useRouter } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const Logout = () => {
   const router = useRouter();
   const handleClick = () => {
     fetch("/api/logout", {
       method: "POST",
+      cache: "no-cache",
     });
-    router.push("/");
     router.refresh();
+    router.push("/");
+    revalidatePath("/");
   };
   return (
     <DropdownMenuItem className={menuItemStyle}>
