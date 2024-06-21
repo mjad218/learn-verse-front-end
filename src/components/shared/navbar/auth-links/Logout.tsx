@@ -13,7 +13,7 @@ const Logout = () => {
     });
     router.refresh();
     router.push("/");
-    revalidatePath("/");
+    window.location.reload();
   };
   return (
     <DropdownMenuItem className={menuItemStyle}>
