@@ -2,7 +2,6 @@
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { menuItemStyle } from "./Dropdown";
 import { useRouter } from "next/navigation";
-import { revalidatePath } from "next/cache";
 
 const Logout = () => {
   const router = useRouter();
