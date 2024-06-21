@@ -4,14 +4,20 @@ import CourseCard from "./CourseCard";
 import { Suspense } from "react";
 import { Row } from "@/components/shared/row";
 import CourseCardSkeleton from "./CourseCardSkeleton";
+import { API_URL } from "@/constants/api";
+import { getToken } from "@/services/users/login";
+import { Course } from "@/types/course.type";
+import { getCourses } from "@/services/courses/multi-course";
 
 const SearchOptions = dynamic(() => import("../_components/SearchOptions"), {});
 const ResultsMessage = dynamic(
   () => import("../_components/ResultsMessage"),
   {},
 );
+const SearchPage = async () => {
+  const token = await getToken();
+  const courses: Course[] = await getCourses(token);
 
-const SearchPage = () => {
   return (
     <Row>
       <div className="flex flex-col gap-10 py-10 text-center text-xl lg:flex-row">
@@ -21,9 +27,9 @@ const SearchPage = () => {
         <div className="flex basis-9/12 flex-col gap-5">
           <ResultsMessage />
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,400px))] gap-3">
-            {[1, 2, 3, 4, 5, 6].map((_, index) => (
+            {courses.map((course, index) => (
               <Suspense key={index} fallback={<CourseCardSkeleton />}>
-                <CourseCard />
+                <CourseCard course={course} />
               </Suspense>
             ))}
           </div>
