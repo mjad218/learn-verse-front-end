@@ -4,9 +4,9 @@ import CourseCard from "./CourseCard";
 import { Suspense } from "react";
 import { Row } from "@/components/shared/row";
 import CourseCardSkeleton from "./CourseCardSkeleton";
-import { getToken } from "@/services/users/login";
 import { Course } from "@/types/course.type";
 import { getCourses } from "@/services/courses/multi-course";
+import { cookies } from "next/headers";
 
 const SearchOptions = dynamic(() => import("../_components/SearchOptions"), {});
 const ResultsMessage = dynamic(
@@ -14,9 +14,15 @@ const ResultsMessage = dynamic(
   {},
 );
 const SearchPage = async () => {
-  const token = await getToken();
+  let token: string | null = "";
+  try {
+    const nextCookies = cookies();
+    token = nextCookies.get("token")?.value ?? null;
+    if (!token) throw "not logged in";
+  } catch (error) {}
+
+
   const courses: Course[] = await getCourses(token);
-  console.log(courses);
 
   return (
     <Row>
