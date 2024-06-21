@@ -12,7 +12,7 @@ const ResultsMessage = dynamic(
   () => import("../_components/ResultsMessage"),
   {},
 );
-const SearchPage = async () => {
+const SearchPage = async ({ query }: { query: string | null }) => {
   // let token: string | null = "";
   // try {
   //   const nextCookies = cookies();
@@ -20,7 +20,7 @@ const SearchPage = async () => {
   //   if (!token) throw "not logged in";
   // } catch (error) {}
 
-  const courses: Course[] = await getCourses();
+  const courses: Course[] = await getCourses(query);
 
   return (
     <Row>

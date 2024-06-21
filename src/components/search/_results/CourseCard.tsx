@@ -33,7 +33,7 @@ const CourseCard = ({ course }: { course: Course }) => {
         </span>
         <div className="mx-8 flex justify-between" style={{ gridRow: "3/4" }}>
           <span className="test-base">
-            Price: {course.price ? course.price : "50EGP"}
+            Price: {course.price ? `${course.price}EGP` : "50EGP"}
           </span>
           <span className="flex items-center gap-1">
             {course.rating ? course.rating.toFixed(1) : "3.5"}
