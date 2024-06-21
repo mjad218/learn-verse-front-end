@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
@@ -22,6 +22,37 @@ export const CheckoutForm = () => {
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   );
+
+  useEffect(() => {
+    const checkPayment = async () => {
+      const res = await fetch(`${API_URL}/api/payment/secure/check-payment`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${frontEndToken}`,
+        },
+        body: JSON.stringify({
+          amount: 20300,
+          currency: "usd",
+          receiptEmail: "example1@example.com",
+        }),
+      });
+
+      if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
+      const result = await res.json();
+
+      // ? TO DO
+
+      // Redirect or do SOMETHING
+    };
+
+    const interval = window.setInterval(() => {
+      checkPayment();
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [frontEndToken]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
