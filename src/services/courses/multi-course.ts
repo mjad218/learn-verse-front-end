@@ -1,13 +1,12 @@
 import { API_URL } from "@/constants/api";
 
-export const getCourses = async (token: string | null) => {
+export const getCourses = async () => {
   try {
     const request = await fetch(`${API_URL}/course`, {
       method: "GET",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
     });
     if (!request.ok) {

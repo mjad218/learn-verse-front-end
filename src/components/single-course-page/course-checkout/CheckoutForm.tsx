@@ -41,6 +41,7 @@ export const CheckoutForm = () => {
 
       if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
       const result = await res.json();
+      console.log(result);
 
       // ? TO DO
 
