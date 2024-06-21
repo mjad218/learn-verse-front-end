@@ -80,6 +80,8 @@ export const CheckoutForm = () => {
           amount: 20300,
           currency: "usd",
           receiptEmail: "example1@example.com",
+          studentId: 1,
+          courseId: 3,
         }),
       });
 
