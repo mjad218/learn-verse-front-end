@@ -8,6 +8,7 @@ export const getCourses = async (query: string | null) => {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
     });
     if (!request.ok) {
       throw `${request.ok} ${request.status} ${request.statusText} `;
