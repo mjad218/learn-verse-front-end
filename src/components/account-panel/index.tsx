@@ -17,7 +17,7 @@ const AccountPanel = () => {
   const { user } = useCurrentUser();
   const {
     register,
-    formState: { errors, isDirty },
+    formState: { errors },
     watch,
   } = useForm<AccountDetailsType>({
     resolver: zodResolver(AccountDetailsSchema),
