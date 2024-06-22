@@ -17,11 +17,9 @@ import toast from "react-hot-toast";
 type FormData = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
+  const { register, handleSubmit } = useForm<FormData>({
+    resolver: zodResolver(loginSchema),
+  });
 
   const [_, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -36,7 +34,7 @@ const LoginPage = () => {
       const token = await loginByUsernameAndPassword(username, password);
       if (!token) {
         setError("Credentials Mismatch");
-        toast.error(error, { id: "login-error" })
+        toast.error(error, { id: "login-error" });
         window.setTimeout(() => setError(""), 5000);
         return;
       }
