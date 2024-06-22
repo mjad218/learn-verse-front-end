@@ -1,67 +1,66 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
 import { Button } from "@/components/ui/button";
-import { useAccessToken } from "@/components/current-user/context";
+import {
+  useAccessToken,
+  useCurrentUser,
+} from "@/components/current-user/context";
 import { API_URL } from "@/constants/api";
+import { Course } from "@/types/course.type";
+import { redirect } from "next/navigation";
 
-// const token = `eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlcjNAZW1haWwuY29tIiwiZXhwIjoxNzE4OTMyNTY2LCJpYXQiOjE3MTg4ODkzNjYsInNjb3BlIjoicmVhZCJ9.tOPu2BHEKvFNFqiBCxv9YCopjNhlfaoYIABm94ptjP5JZaQlRqBXTX7KvAbCeha4FHXWWmWe2JSdNN5S93AuJyCdV2odwV_T_FN2mVwrk5iD1cyuXZCsImFk64dqST7JswzCPlCBU1SS6_V5_eA_JnnndFsiMvEd11HtQrTIziyBowC1IGB9b8b6uA86DyjtVbyWfpp8K2g2KsFiNonApftfxn01-CWRr7kTLzZjULEGcuDdj6KqnbkOv5Zp0A7dc6WG5bGHKJCRg7Yo3vii35R2afBom6YDv34RTa0Y_S8lQLQeV3WMFLTCEOb3OuRq7pg9MsUH7wzZNNMTLOnuJw`;
-
-export const CheckoutForm = () => {
+export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
+  const { user } = useCurrentUser();
   const { token: frontEndToken } = useAccessToken();
   const stripe = useStripe();
   const elements = useElements();
 
-  console.log({
-    frontEndToken,
-  });
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   );
 
-  // useEffect(() => {
-  //   const checkPayment = async () => {
-  //     try {
-  //       const res = await fetch(`${API_URL}/api/payment/secure/check-payment`, {
-  //         method: "POST",
-  //         credentials: "include",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${frontEndToken}`,
-  //         },
-  //         body: JSON.stringify({
-  //           amount: 20300,
-  //           currency: "usd",
-  //           receiptEmail: "example1@example.com",
-  //         }),
-  //       });
+  useEffect(() => {
+    const checkPayment = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/payment/secure/check-payment`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${frontEndToken}`,
+          },
+          body: JSON.stringify({
+            amount: courseInfo?.price! * 100,
+            currency: "usd",
+            receiptEmail: "example1@example.com",
+          }),
+        });
 
-  //       if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
-  //       const result = await res.json();
-  //       console.log(result);
-  //     } catch (error) {}
-  //     // ? TO DO
+        if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
+        const result = await res.json();
+        console.log(result);
+        redirect("/");
+      } catch (error) {}
+      // Redirect or do SOMETHING
+    };
 
-  //     // Redirect or do SOMETHING
-  //   };
+    const interval = window.setInterval(() => {
+      try {
+        checkPayment();
+      } catch (error) {}
+    }, 5000);
 
-  //   const interval = window.setInterval(() => {
-  //     try {
-  //       checkPayment();
-  //     } catch (error) {}
-  //   }, 5000);
-
-  //   return () => window.clearInterval(interval);
-  // }, [frontEndToken]);
+    return () => window.clearInterval(interval);
+  }, [frontEndToken, courseInfo?.price!]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
       event.preventDefault();
-
       if (elements == null) return;
 
       // Trigger form validation and wallet collection
@@ -81,11 +80,11 @@ export const CheckoutForm = () => {
           Authorization: `Bearer ${frontEndToken}`,
         },
         body: JSON.stringify({
-          amount: 20300,
+          amount: courseInfo?.price! * 100,
           currency: "usd",
           receiptEmail: "example1@example.com",
-          studentId: 1,
-          courseId: 3,
+          studentId: user?.id,
+          courseId: courseInfo?.id,
         }),
       });
 
@@ -126,7 +125,6 @@ export const CheckoutForm = () => {
       onSubmit={handleSubmit}
       className="lg:min-w-3xl h-max lg:flex lg:max-w-4xl lg:flex-col lg:items-center lg:gap-4"
     >
-      Current User Access token
       <PaymentElement />
       <div className="items-center lg:flex lg:flex-col lg:gap-2">
         <Button
