@@ -14,10 +14,9 @@ const Logout = () => {
         cache: "no-cache",
       });
       await res.json();
-      router.refresh();
-      router.push("/");
-      window.location.reload();
     } catch (error) {}
+    router.push("/");
+    router.refresh();
   };
   return (
     <DropdownMenuItem className={menuItemStyle} onClick={handleClick}>
