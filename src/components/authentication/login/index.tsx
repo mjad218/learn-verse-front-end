@@ -65,7 +65,7 @@ const LoginPage = () => {
           className={formInputStyle}
           {...register("username")}
         />
-        {errors.username && toast.error("Invalid credentials")}
+        {errors.username && toast.error(error, { id: "login-error" })}
       </div>
       <div className="mb-4">
         <label
@@ -81,13 +81,9 @@ const LoginPage = () => {
           className={formInputStyle}
           {...register("password")}
         />
-        {errors.password && toast.error("Invalid credentials")}
+        {errors.password && toast.error(error, { id: "login-error" })}
 
-        {error && (
-          <p className="text-xs font-semibold text-red-700">
-            {toast.error(error)}
-          </p>
-        )}
+        {error && toast.error(error, { id: "login-error" })}
       </div>
       <FormButton text={"Login"} />
     </form>

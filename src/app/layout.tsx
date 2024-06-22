@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} ${serifFont.variable}`}>
-        <Toaster position="top-center" />
+        <Toaster position="bottom-right" />
         <CurrentUserProvider>
           <main className="flex min-h-svh flex-col">
             <Header />
