@@ -4,7 +4,6 @@ export const NewCourseSchema = z.object({
   courseName: z.string().nullish(),
   description: z.string().nullish(),
   price: z.number().nullish(),
-  image: z.string().nullish(),
 });
 
 export type NewCourseType = z.infer<typeof NewCourseSchema>;

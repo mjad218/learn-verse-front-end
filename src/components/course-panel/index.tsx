@@ -33,7 +33,7 @@ const CoursePanel = () => {
       img,
     });
     try {
-      const res: Response = await addSingleCourse(data, token);
+      const res: Response = await addSingleCourse(data, img, token);
       const checkResponse = await res.json();
       console.log(checkResponse);
     } catch (e) {}
