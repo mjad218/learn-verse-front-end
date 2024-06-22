@@ -40,6 +40,7 @@ const LoginPage = () => {
       }
       const user = await findCurentAuthenticatedUser(token);
       setUser(user);
+      router.refresh(); // Redirect when success login
       router.push("/"); // Redirect when success login
     } catch (error) {}
     setLoading(false);
