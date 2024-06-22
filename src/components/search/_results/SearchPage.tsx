@@ -27,24 +27,28 @@ type Props = {
   query: QueryParams;
 };
 
-const filterCourses = (courses: Course[], query: QueryParams) => {
-  return courses.filter((course) => {
-    query?.price ? (course.price! <= +query.price ? true : false) : true;
-    query?.rating ? (course.rating! >= +query.rating ? true : false) : true;
-  });
-};
-
 const SearchPage = async ({ query }: Props) => {
-  const searchQuery = query?.q;
+  let displayedCourses: Course[] = [];
+  try {
+    const searchQuery = query?.q;
+    const courses: Course[] = await getCourses(searchQuery);
+    const filteredCourses = (courses ?? [])
+      .filter(
+        (c) =>
+          !query?.price ||
+          (c?.price && Number(c?.price) <= Number(query?.price)),
+      )
+      .filter(
+        (c) =>
+          !query?.rating ||
+          (c?.rating && Number(c?.rating) >= Number(query?.rating)),
+      );
 
-  const courses: Course[] = await getCourses(searchQuery);
-  const filteredCourses = courses ? filterCourses(courses, query) : courses;
-  const sortedCourses = filteredCourses
-    ? sort(courses).by([
-        { desc: (course) => course.rating },
-        { asc: (course) => course.price },
-      ])
-    : null;
+    displayedCourses = sort(filteredCourses).by([
+      { desc: (course) => course?.rating },
+      { asc: (course) => course?.price },
+    ]);
+  } catch (error) {}
 
   return (
     <Row>
@@ -55,12 +59,11 @@ const SearchPage = async ({ query }: Props) => {
         <div className="flex basis-9/12 flex-col gap-5">
           <ResultsMessage />
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,400px))] gap-3">
-            {sortedCourses &&
-              sortedCourses.map((course, index) => (
-                <Suspense key={index} fallback={<CourseCardSkeleton />}>
-                  <CourseCard course={course} />
-                </Suspense>
-              ))}
+            {displayedCourses.map((course, index) => (
+              <Suspense key={index} fallback={<CourseCardSkeleton />}>
+                <CourseCard course={course} />
+              </Suspense>
+            ))}
           </div>
         </div>
       </div>
