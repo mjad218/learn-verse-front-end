@@ -6,21 +6,46 @@ import { Row } from "@/components/shared/row";
 import CourseCardSkeleton from "./CourseCardSkeleton";
 import { Course } from "@/types/course.type";
 import { getCourses } from "@/services/courses/multi-course";
+import { sort } from "fast-sort";
 
 const SearchOptions = dynamic(() => import("../_components/SearchOptions"), {});
 const ResultsMessage = dynamic(
   () => import("../_components/ResultsMessage"),
   {},
 );
-const SearchPage = async ({ query }: { query: string | null }) => {
-  // let token: string | null = "";
-  // try {
-  //   const nextCookies = cookies();
-  //   token = nextCookies.get("token")?.value ?? null;
-  //   if (!token) throw "not logged in";
-  // } catch (error) {}
 
-  const courses: Course[] = await getCourses(query);
+type QueryParams = {
+  q: string;
+  rating: string;
+  price: string;
+  level: string;
+  lang: string;
+  p: string;
+};
+
+type Props = {
+  query: QueryParams;
+};
+
+const filterCourses = (courses: Course[], query: QueryParams): Course[] => {
+  return courses.filter((course) => {
+    query?.price ? (course.price! <= +query.price ? true : false) : true;
+    query?.rating ? (course.rating! >= +query.rating ? true : false) : true;
+  });
+};
+
+const SearchPage = async ({ query }: Props) => {
+  const searchQuery = query?.q;
+
+
+  const courses: Course[] = await getCourses(searchQuery);
+  const filteredCourses = filterCourses(courses, query);
+  const sortedCourses = filteredCourses
+    ? sort(courses).by([
+        { desc: (course) => course.rating },
+        { asc: (course) => course.price },
+      ])
+    : null;
 
   return (
     <Row>
@@ -31,8 +56,8 @@ const SearchPage = async ({ query }: { query: string | null }) => {
         <div className="flex basis-9/12 flex-col gap-5">
           <ResultsMessage />
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,400px))] gap-3">
-            {courses &&
-              courses.map((course, index) => (
+            {sortedCourses &&
+              sortedCourses.map((course, index) => (
                 <Suspense key={index} fallback={<CourseCardSkeleton />}>
                   <CourseCard course={course} />
                 </Suspense>
