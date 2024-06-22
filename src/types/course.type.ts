@@ -19,3 +19,10 @@ export const CourseSchema = z.object({
 });
 
 export type Course = z.infer<typeof CourseSchema>;
+
+export type Category = {
+  id: 17;
+  nameEn: string;
+  nameAr: string;
+  code: string;
+};

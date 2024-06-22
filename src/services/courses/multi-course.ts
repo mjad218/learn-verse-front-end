@@ -48,3 +48,26 @@ export const getCoursesByCategory = async (
     return null;
   }
 };
+
+export const getAllCategories = async (token: string | null) => {
+  try {
+    const request = await fetch(`${API_URL}/category`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-cache",
+    });
+    if (!request.ok) {
+      throw `${request.ok} ${request.status} ${request.statusText} `;
+    }
+    const categories = (await request.json()).payload;
+
+    return categories as Course[];
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
