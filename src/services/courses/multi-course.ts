@@ -13,7 +13,6 @@ export const getCourses = async (query: string | null) => {
       throw `${request.ok} ${request.status} ${request.statusText} `;
     }
     const courses = await request.json();
-    console.log({ courses });
 
     return courses;
   } catch (error) {

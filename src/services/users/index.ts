@@ -15,7 +15,7 @@ export const getAuthUser = async () => {
   const user = await request.json();
   return user;
 };
-export const getUserById = async (id : string | null  | number) => {
+export const getUserById = async (id: string | null | number) => {
   const request = await fetch(`${API_URL}/user/${id}`, {
     method: "GET",
     credentials: "include",
@@ -26,4 +26,26 @@ export const getUserById = async (id : string | null  | number) => {
 
   const user = await request.json();
   return user as User;
+};
+
+export const fetchUserDetails = async (token: string | null) => {
+  try {
+    const request = await fetch(`${API_URL}/user`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!request.ok) {
+      throw `${request.ok} ${request.status} ${request.statusText} `;
+    }
+    const userDetails = await request.json();
+
+    return userDetails;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 };

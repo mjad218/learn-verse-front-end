@@ -10,17 +10,28 @@ import { Input } from "../ui/input";
 import { toBase64 } from "@/lib/utils";
 import { API_URL } from "@/constants/api";
 import { useAccessToken, useCurrentUser } from "../current-user/context";
+import { userDetailsType } from "@/types/user.type";
 
 type AccountDetailsType = z.infer<typeof AccountDetailsSchema>;
 
-const AccountPanel = () => {
+type Props = {
+  userDetails: userDetailsType;
+};
+
+const AccountPanel = ({ userDetails }: Props) => {
+  const { userName, email, firstName, familyName } = userDetails;
   const {
     register,
     formState: { errors, isDirty },
     watch,
   } = useForm<AccountDetailsType>({
     resolver: zodResolver(AccountDetailsSchema),
-    defaultValues: { userName: "", email: "", firstName: "", familyName: "" },
+    defaultValues: {
+      userName: `${userName ?? ""}`,
+      email: `${email ?? ""}`,
+      firstName: `${firstName ?? ""}`,
+      familyName: `${familyName ?? ""}`,
+    },
   });
 
   const [image, setImage] = useState<File | null | undefined>(null);
