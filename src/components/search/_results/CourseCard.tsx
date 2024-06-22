@@ -1,5 +1,6 @@
 import { Course } from "@/types/course.type";
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 const CourseCard = ({ course }: { course: Course }) => {
@@ -22,12 +23,13 @@ const CourseCard = ({ course }: { course: Course }) => {
         style={{ gridRow: "5/7" }}
         className="my-2 grid min-w-full grid-rows-3"
       >
-        <span
-          className="font-Roboto text-lg font-bold"
+        <Link
+          className="font-Roboto text-lg font-bold text-[#333]"
           style={{ gridRow: "1/2" }}
+          href={`/${course?.id}`}
         >
           {course?.courseName ?? "Introduction to React"}
-        </span>
+        </Link>
         <span className="text-base" style={{ gridRow: "2/3" }}>
           Instructor: {"<Course Creator>"}
         </span>
