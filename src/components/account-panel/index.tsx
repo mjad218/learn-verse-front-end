@@ -145,7 +145,6 @@ const AccountPanel = () => {
               className={
                 "w-full self-center text-black disabled:border-gray-500"
               }
-              disabled={!isDirty}
             >
               Submit
             </SettingsFormButton>
