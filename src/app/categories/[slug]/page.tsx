@@ -1,13 +1,14 @@
 import { CategoryServerPage } from "@/components/category";
+import { Row } from "@/components/shared/row";
 
 type IProps = {
   params: { slug: string };
 };
 const CategoryPage = (props: IProps) => {
   return (
-    <div>
+    <Row>
       <CategoryServerPage slug={props?.params?.slug} />
-    </div>
+    </Row>
   );
 };
 
