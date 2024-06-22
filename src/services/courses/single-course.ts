@@ -6,6 +6,7 @@ export const getSingleCourse = async (
   courseId: number | string | undefined,
   token: string | null,
 ) => {
+  token;
   if (!courseId) return null;
   try {
     const request = await fetch(`${API_URL}/course/${courseId}`, {
@@ -13,7 +14,6 @@ export const getSingleCourse = async (
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
     });
     console.log(`Getting Single course, Course Id ${courseId}`);
