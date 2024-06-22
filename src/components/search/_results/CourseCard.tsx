@@ -1,6 +1,7 @@
 import { Course } from "@/types/course.type";
 import Image from "next/image";
 import Link from "next/link";
+import { ReactNode } from "react";
 import { FaStar } from "react-icons/fa";
 
 const CourseCard = ({ course }: { course: Course }) => {
@@ -48,3 +49,34 @@ const CourseCard = ({ course }: { course: Course }) => {
 };
 
 export default CourseCard;
+
+type Props = {
+  course: Course;
+  children?: ReactNode;
+};
+export const HorizontalCourseCard = (props: Props) => {
+  return (
+    <div className="flex w-full gap-2 overflow-hidden rounded-xl border border-slate-200 px-1 pt-2 hover:cursor-pointer">
+      <Image
+        src={
+          `data:image/jpg;base64,${props?.course?.image ?? ""}` ??
+          "/assets/TempImages/TempCourse.jpg"
+        }
+        alt="course"
+        width={96}
+        height={96}
+        className="aspect-square h-24 w-24 shrink-0 object-cover"
+      />
+      <div className="my-2 flex grow flex-col">
+        <Link
+          className="font-Roboto text-lg font-bold text-[#333]"
+          style={{ gridRow: "1/2" }}
+          href={`/${props?.course?.id}`}
+        >
+          {props?.course?.courseName ?? "Introduction to React"}
+        </Link>
+        {props.children}
+      </div>
+    </div>
+  );
+};
