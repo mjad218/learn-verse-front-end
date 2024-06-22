@@ -7,14 +7,17 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
 import { useQueryState } from "nuqs";
+import { useRouter } from "next/navigation";
 
 const Price = () => {
+  const router = useRouter();
   const [minValue] = useState(50);
   const [maxValue] = useState(2000);
   const [price, setPrice] = useQueryState("price");
   const [currentValue, setCurrentValue] = useState(() => (price ? price : 50));
   const changePrice = (value: string) => {
     setPrice(value);
+    router.refresh();
   };
   return (
     <AccordionItem value="price">
