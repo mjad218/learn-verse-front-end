@@ -2,10 +2,14 @@ import { z } from "zod";
 
 export const ReviewSchema = z.object({
   id: z.number().nullish(),
+  reviewId: z.number().nullish(),
   content: z.string().nullish(),
-  n_stars: z.number().nullish(),
-  student: z
+  courseId: z.number().nullish(),
+  studentId: z.number().nullish(),
+  stars: z.number().nullish(),
+  user: z
     .object({
+      id: z.number().nullish(),
       firstName: z.string().nullish(),
     })
     .nullish(),

@@ -1,5 +1,12 @@
 "use client";
+import {
+  useAccessToken,
+  useCurrentUser,
+} from "@/components/current-user/context";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { API_URL } from "@/constants/api";
+import { Review } from "@/types/review.type";
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
@@ -12,6 +19,29 @@ export const AddReview = (props: IProps) => {
   const [text, setText] = useState("");
   props.courseId;
   const [rating, setRating] = useState(0); // Initial value
+  const { user } = useCurrentUser();
+  const { token } = useAccessToken();
+  const onSubmit = async () => {
+    try {
+      const res = await fetch(`${API_URL}/reviews`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Bearer or Basic ?
+        },
+        body: JSON.stringify({
+          content: text,
+          courseId: props.courseId,
+          studentId: user?.id,
+          stars: rating,
+        }),
+      });
+      if (!res.ok) throw "not ok response";
+      const result: Review = await res.json();
+      result;
+    } catch (error) {}
+  };
 
   return (
     <div>
@@ -35,6 +65,8 @@ export const AddReview = (props: IProps) => {
             onChange={setRating}
           />
         </div>
+
+        <Button onClick={onSubmit}>Add Review</Button>
       </div>
     </div>
   );

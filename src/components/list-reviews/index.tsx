@@ -9,7 +9,7 @@ export const ListReviews = (props: IProps) => {
   return (
     <div className="flex flex-col gap-5">
       {(props.reviews ?? []).map((r) => (
-        <SingleReview key={r?.id} review={r} />
+        <SingleReview key={r?.reviewId} review={r} />
       ))}
     </div>
   );
