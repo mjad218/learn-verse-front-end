@@ -121,7 +121,7 @@ const SignUp = () => {
           </p>
         )}
       </div>
-      <FormButton text={"Register"} isLoading={loading} />
+      <FormButton text={"Register"} />
     </form>
   );
 };
