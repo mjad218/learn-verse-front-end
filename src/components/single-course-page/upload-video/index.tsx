@@ -1,6 +1,5 @@
 import { getSingleCourse } from "@/services/courses/single-course";
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
 import { UploadVideoForm } from "./upload-form";
 import { CourseTitle } from "../course-details/course-title";
 import { CourseDescription } from "../course-details/course-description";
@@ -17,7 +16,7 @@ export const UploadVideoPage = async (props: IProps) => {
     if (!token) throw "not logged in";
   } catch (error) {}
   const course = await getSingleCourse(props.courseId, token);
-  if (!course) notFound();
+  // if (!course) notFound();
 
   console.log({
     course,
