@@ -106,6 +106,7 @@ export const getSingleVideo = async (
 
 export const addSingleCourse = async (
   course: NewCourseType,
+  image: string | ArrayBuffer | null,
   token: string | null,
 ): Promise<Response> => {
   return await fetch(`${API_URL}/course`, {
@@ -119,7 +120,7 @@ export const addSingleCourse = async (
       courseName: course.courseName,
       description: course.description,
       price: course.price,
-      image: course.image,
+      image: image,
     }),
   });
 };
