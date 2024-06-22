@@ -107,8 +107,8 @@ export const getSingleVideo = async (
 export const addSingleCourse = async (
   course: NewCourseType,
   token: string | null,
-) => {
-  await fetch(`${API_URL}/course`, {
+): Promise<Response> => {
+  return await fetch(`${API_URL}/course`, {
     method: "POST",
     credentials: "include",
     headers: {

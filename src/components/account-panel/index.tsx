@@ -17,7 +17,7 @@ const AccountPanel = () => {
   const { user } = useCurrentUser();
   const {
     register,
-    formState: { errors, isDirty },
+    formState: { errors },
     watch,
   } = useForm<AccountDetailsType>({
     resolver: zodResolver(AccountDetailsSchema),
@@ -49,7 +49,7 @@ const AccountPanel = () => {
           ...data,
           id: user?.id,
         }),
-        headers: {
+        headers: { 
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
@@ -60,29 +60,30 @@ const AccountPanel = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <>
       <span className="font-roboto text-2xl font-semibold">Account</span>
       <form
-        className="flex w-full flex-col items-center gap-4"
         onSubmit={(e) => {
           e.preventDefault();
           submitForm();
         }}
       >
-        <div className="flex flex-col gap-1 lg:min-w-80">
-          <Input
-            type="file"
-            className="file:cursor-pointer file:rounded-md file:bg-gray-800 file:text-white hover:cursor-pointer"
-            onChange={(e) =>
-              setImage(e.target?.files?.length ? e.target?.files[0] : null)
-            }
-          />
-          <div className="flex flex-col text-sm text-gray-700/60">
-            <span className="font-roboto">Maximum image size is 64x64</span>
+        <div className="mx-auto flex h-full max-w-md flex-col gap-6 py-4">
+          <div className="grid w-full max-w-xs items-center gap-1.5">
+            <Label htmlFor="profile-pic">Profile Photo</Label>
+            <Input
+              id="profile-pic"
+              type="file"
+              className="file:cursor-pointer file:rounded-md file:bg-gray-800 file:text-white hover:cursor-pointer"
+              onChange={(e) =>
+                setImage(e.target?.files?.length ? e.target?.files[0] : null)
+              }
+            />
+            <div className="flex flex-col text-sm text-gray-700/60">
+              <span className="font-roboto">Maximum image size is 64x64</span>
+            </div>
           </div>
-        </div>
 
-        <div className="flex h-full min-w-72 max-w-md flex-col justify-center gap-6 pb-4 lg:min-w-80">
           <div className="grid w-full max-w-xs items-center gap-1.5">
             <Label htmlFor="firstName">First name</Label>
             <Input
@@ -151,7 +152,7 @@ const AccountPanel = () => {
           </div>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
-import { useForm, FieldValues } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { NewCourseSchema, NewCourseType } from "@/types/course.type";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -10,19 +10,33 @@ import { useAccessToken } from "../current-user/context";
 import { addSingleCourse } from "@/services/courses/single-course";
 import toast from "react-hot-toast";
 import SettingsFormButton from "../authentication/_components/SettingFormButton";
+import { toBase64 } from "@/lib/utils";
 
 const CoursePanel = () => {
   const { token } = useAccessToken();
-  const { handleSubmit, register } = useForm<NewCourseType>({
+  const { watch, register } = useForm<NewCourseType>({
     resolver: zodResolver(NewCourseSchema),
   });
 
-  const submitForm = async (data: FieldValues) => {
+  const [image, setImage] = useState<File | null | undefined>(null);
+  const data = watch();
+
+  const submitForm = async () => {
+    console.log(data);
+    let img: string | ArrayBuffer | null = "";
     try {
-      await addSingleCourse(data, token);
+      if (image) img = await toBase64(image);
     } catch (e) {
       toast.error("Error adding course");
     }
+    console.log({
+      img,
+    });
+    try {
+      const res: Response = await addSingleCourse(data, token);
+      const checkResponse = await res.json();
+      console.log(checkResponse);
+    } catch (e) {}
   };
 
   return (
@@ -31,7 +45,7 @@ const CoursePanel = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit(submitForm);
+          submitForm();
         }}
       >
         <div className="mx-auto flex h-full max-w-md flex-col gap-6 py-4">
@@ -62,8 +76,10 @@ const CoursePanel = () => {
             <Input
               id="picture"
               type="file"
+              onChange={(e) =>
+                setImage(e.target?.files?.length ? e.target?.files[0] : null)
+              }
               className="file:cursor-pointer file:rounded-md file:bg-gray-800 file:text-white hover:cursor-pointer"
-              {...register("image")}
             />
             <p className="text-xs text-gray-700/60">
               Make sure to include a high-quality Image.
@@ -79,9 +95,7 @@ const CoursePanel = () => {
             />
           </div>
           <div className="mx-auto">
-            <SettingsFormButton
-              className={`self-center text-black disabled:border-gray-500`}
-            >
+            <SettingsFormButton className="w-full self-center text-black disabled:border-gray-500">
               Submit
             </SettingsFormButton>
           </div>
