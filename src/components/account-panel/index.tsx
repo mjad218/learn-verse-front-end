@@ -60,8 +60,8 @@ const AccountPanel = ({ userDetails }: Props) => {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      res.json();
+      const checkResponse = await res.json();
+      console.log(checkResponse);
     } catch (error) {}
   };
 
@@ -84,8 +84,7 @@ const AccountPanel = ({ userDetails }: Props) => {
             }
           />
           <div className="flex flex-col text-sm text-gray-700/60">
-            <span>No file selected</span>
-            <span>Maximum image size is 1MB</span>
+            <span className="font-roboto">Maximum image size is 64x64</span>
           </div>
         </div>
 
