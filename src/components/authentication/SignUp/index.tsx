@@ -7,14 +7,11 @@ import { z } from "zod";
 import { registerSchema } from "@/app/auth/definitions";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 
 type FormData = z.infer<typeof registerSchema>;
 
 const SignUp = () => {
   const router = useRouter();
-
-  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -29,7 +26,6 @@ const SignUp = () => {
       const requestOk = await signUp(username, email, password);
       if (requestOk) router.push("/auth/login");
     } catch (error) {}
-    setTimeout(() => setLoading(false), 2000);
   };
 
   return (
@@ -121,7 +117,7 @@ const SignUp = () => {
           </p>
         )}
       </div>
-      <FormButton text={"Register"} isLoading={loading} />
+      <FormButton text={"Register"} />
     </form>
   );
 };

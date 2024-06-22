@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   PaymentElement,
   useStripe,
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useAccessToken } from "@/components/current-user/context";
 import { API_URL } from "@/constants/api";
 
-const token = `eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlcjNAZW1haWwuY29tIiwiZXhwIjoxNzE4OTMyNTY2LCJpYXQiOjE3MTg4ODkzNjYsInNjb3BlIjoicmVhZCJ9.tOPu2BHEKvFNFqiBCxv9YCopjNhlfaoYIABm94ptjP5JZaQlRqBXTX7KvAbCeha4FHXWWmWe2JSdNN5S93AuJyCdV2odwV_T_FN2mVwrk5iD1cyuXZCsImFk64dqST7JswzCPlCBU1SS6_V5_eA_JnnndFsiMvEd11HtQrTIziyBowC1IGB9b8b6uA86DyjtVbyWfpp8K2g2KsFiNonApftfxn01-CWRr7kTLzZjULEGcuDdj6KqnbkOv5Zp0A7dc6WG5bGHKJCRg7Yo3vii35R2afBom6YDv34RTa0Y_S8lQLQeV3WMFLTCEOb3OuRq7pg9MsUH7wzZNNMTLOnuJw`;
+// const token = `eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlcjNAZW1haWwuY29tIiwiZXhwIjoxNzE4OTMyNTY2LCJpYXQiOjE3MTg4ODkzNjYsInNjb3BlIjoicmVhZCJ9.tOPu2BHEKvFNFqiBCxv9YCopjNhlfaoYIABm94ptjP5JZaQlRqBXTX7KvAbCeha4FHXWWmWe2JSdNN5S93AuJyCdV2odwV_T_FN2mVwrk5iD1cyuXZCsImFk64dqST7JswzCPlCBU1SS6_V5_eA_JnnndFsiMvEd11HtQrTIziyBowC1IGB9b8b6uA86DyjtVbyWfpp8K2g2KsFiNonApftfxn01-CWRr7kTLzZjULEGcuDdj6KqnbkOv5Zp0A7dc6WG5bGHKJCRg7Yo3vii35R2afBom6YDv34RTa0Y_S8lQLQeV3WMFLTCEOb3OuRq7pg9MsUH7wzZNNMTLOnuJw`;
 
 export const CheckoutForm = () => {
   const { token: frontEndToken } = useAccessToken();
