@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
@@ -12,6 +12,7 @@ import {
 } from "@/components/current-user/context";
 import { API_URL } from "@/constants/api";
 import { Course } from "@/types/course.type";
+import { redirect } from "next/navigation";
 
 export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
   const { user } = useCurrentUser();
@@ -23,40 +24,39 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
     undefined,
   );
 
-  // useEffect(() => {
-  //   const checkPayment = async () => {
-  //     try {
-  //       const res = await fetch(`${API_URL}/api/payment/secure/check-payment`, {
-  //         method: "POST",
-  //         credentials: "include",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${frontEndToken}`,
-  //         },
-  //         body: JSON.stringify({
-  //           amount: 20300,
-  //           currency: "usd",
-  //           receiptEmail: "example1@example.com",
-  //         }),
-  //       });
+  useEffect(() => {
+    const checkPayment = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/payment/secure/check-payment`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${frontEndToken}`,
+          },
+          body: JSON.stringify({
+            amount: courseInfo?.price! * 100,
+            currency: "usd",
+            receiptEmail: "example1@example.com",
+          }),
+        });
 
-  //       if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
-  //       const result = await res.json();
-  //       console.log(result);
-  //     } catch (error) {}
-  //     // ? TO DO
+        if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
+        const result = await res.json();
+        console.log(result);
+        redirect("/");
+      } catch (error) {}
+      // Redirect or do SOMETHING
+    };
 
-  //     // Redirect or do SOMETHING
-  //   };
+    const interval = window.setInterval(() => {
+      try {
+        checkPayment();
+      } catch (error) {}
+    }, 5000);
 
-  //   const interval = window.setInterval(() => {
-  //     try {
-  //       checkPayment();
-  //     } catch (error) {}
-  //   }, 5000);
-
-  //   return () => window.clearInterval(interval);
-  // }, [frontEndToken]);
+    return () => window.clearInterval(interval);
+  }, [frontEndToken, courseInfo?.price!]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
