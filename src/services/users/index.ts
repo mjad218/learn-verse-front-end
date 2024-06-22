@@ -41,7 +41,8 @@ export const fetchUserDetails = async (token: string | null) => {
     if (!request.ok) {
       throw `${request.ok} ${request.status} ${request.statusText} `;
     }
-    const userDetails = await request.json();
+    const { payload } = await request.json();
+    const userDetails = payload;
 
     return userDetails;
   } catch (error) {
