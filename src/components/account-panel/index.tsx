@@ -10,12 +10,12 @@ import { Input } from "../ui/input";
 import { toBase64 } from "@/lib/utils";
 import { API_URL } from "@/constants/api";
 import { useAccessToken, useCurrentUser } from "../current-user/context";
-import { userDetailsType } from "@/types/user.type";
+import { UserDetailsType } from "@/types/user.type";
 
 type AccountDetailsType = z.infer<typeof AccountDetailsSchema>;
 
 type Props = {
-  userDetails: userDetailsType;
+  userDetails: UserDetailsType;
 };
 
 const AccountPanel = ({ userDetails }: Props) => {

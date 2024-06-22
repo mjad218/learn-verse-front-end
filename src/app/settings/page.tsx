@@ -1,9 +1,7 @@
 import AccountPanel from "@/components/account-panel";
 import { fetchUserDetails } from "@/services/users";
-import { userDetailsType } from "@/types/user.type";
+import { UserDetailsType } from "@/types/user.type";
 import { cookies } from "next/headers";
-
-
 
 const SettingsPage = async () => {
   let token: string | null = "";
@@ -13,10 +11,10 @@ const SettingsPage = async () => {
     if (!token) throw "not logged in";
   } catch (error) {}
 
-  const userDetails: userDetailsType = await fetchUserDetails(token);
+  const userDetails: UserDetailsType = await fetchUserDetails(token);
   return (
     <div>
-      <AccountPanel userDetails={userDetails}/>
+      <AccountPanel userDetails={userDetails} />
     </div>
   );
 };
