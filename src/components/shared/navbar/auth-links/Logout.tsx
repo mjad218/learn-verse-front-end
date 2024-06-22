@@ -2,21 +2,26 @@
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { menuItemStyle } from "./Dropdown";
 import { useRouter } from "next/navigation";
+import { MouseEventHandler } from "react";
 
 const Logout = () => {
   const router = useRouter();
-  const handleClick = () => {
-    fetch("/api/logout", {
-      method: "POST",
-      cache: "no-cache",
-    });
-    router.refresh();
-    router.push("/");
-    window.location.reload();
+  const handleClick: MouseEventHandler<HTMLDivElement> = async (e) => {
+    try {
+      e.stopPropagation();
+      const res = await fetch("/api/logout", {
+        method: "POST",
+        cache: "no-cache",
+      });
+      await res.json();
+      router.refresh();
+      router.push("/");
+      window.location.reload();
+    } catch (error) {}
   };
   return (
-    <DropdownMenuItem className={menuItemStyle}>
-      <span onClick={handleClick}>Logout</span>
+    <DropdownMenuItem className={menuItemStyle} onClick={handleClick}>
+      <span>Logout</span>
     </DropdownMenuItem>
   );
 };
