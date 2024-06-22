@@ -23,40 +23,40 @@ export const CheckoutForm = () => {
     undefined,
   );
 
-  useEffect(() => {
-    const checkPayment = async () => {
-      try {
-        const res = await fetch(`${API_URL}/api/payment/secure/check-payment`, {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${frontEndToken}`,
-          },
-          body: JSON.stringify({
-            amount: 20300,
-            currency: "usd",
-            receiptEmail: "example1@example.com",
-          }),
-        });
+  // useEffect(() => {
+  //   const checkPayment = async () => {
+  //     try {
+  //       const res = await fetch(`${API_URL}/api/payment/secure/check-payment`, {
+  //         method: "POST",
+  //         credentials: "include",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${frontEndToken}`,
+  //         },
+  //         body: JSON.stringify({
+  //           amount: 20300,
+  //           currency: "usd",
+  //           receiptEmail: "example1@example.com",
+  //         }),
+  //       });
 
-        if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
-        const result = await res.json();
-        console.log(result);
-      } catch (error) {}
-      // ? TO DO
+  //       if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
+  //       const result = await res.json();
+  //       console.log(result);
+  //     } catch (error) {}
+  //     // ? TO DO
 
-      // Redirect or do SOMETHING
-    };
+  //     // Redirect or do SOMETHING
+  //   };
 
-    const interval = window.setInterval(() => {
-      try {
-        checkPayment();
-      } catch (error) {}
-    }, 5000);
+  //   const interval = window.setInterval(() => {
+  //     try {
+  //       checkPayment();
+  //     } catch (error) {}
+  //   }, 5000);
 
-    return () => window.clearInterval(interval);
-  }, [frontEndToken]);
+  //   return () => window.clearInterval(interval);
+  // }, [frontEndToken]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
