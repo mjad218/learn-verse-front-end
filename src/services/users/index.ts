@@ -42,6 +42,7 @@ export const fetchUserDetails = async (token: string | null) => {
       throw `${request.ok} ${request.status} ${request.statusText} `;
     }
     const { payload } = await request.json();
+    console.log(payload);
     const userDetails = payload;
 
     return userDetails;
