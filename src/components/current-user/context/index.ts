@@ -3,6 +3,8 @@ import { createContext, useContext } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 export type User = {
+  firstName: string;
+  familyName: string;
   userName: string;
   password: string | null;
   email: string;

@@ -10,15 +10,11 @@ import { Input } from "../ui/input";
 import { toBase64 } from "@/lib/utils";
 import { API_URL } from "@/constants/api";
 import { useAccessToken, useCurrentUser } from "../current-user/context";
-import { UserDetailsType } from "@/types/user.type";
 
 type AccountDetailsType = z.infer<typeof AccountDetailsSchema>;
 
-type Props = {
-  userDetails: UserDetailsType;
-};
-
-const AccountPanel = ({ userDetails }: Props) => {
+const AccountPanel = () => {
+  const { user } = useCurrentUser();
   const {
     register,
     formState: { errors, isDirty },
@@ -26,16 +22,15 @@ const AccountPanel = ({ userDetails }: Props) => {
   } = useForm<AccountDetailsType>({
     resolver: zodResolver(AccountDetailsSchema),
     defaultValues: {
-      userName: `${userDetails.userName ?? ""}`,
-      email: `${userDetails.email ?? ""}`,
-      firstName: `${userDetails.firstName ?? ""}`,
-      familyName: `${userDetails.familyName ?? ""}`,
+      userName: `${user?.userName ?? ""}`,
+      email: `${user?.email ?? ""}`,
+      firstName: `${user?.firstName ?? ""}`,
+      familyName: `${user?.familyName ?? ""}`,
     },
   });
 
   const [image, setImage] = useState<File | null | undefined>(null);
   const data = watch();
-  const { user } = useCurrentUser();
   const { token } = useAccessToken();
   const submitForm = async () => {
     console.log(data);
