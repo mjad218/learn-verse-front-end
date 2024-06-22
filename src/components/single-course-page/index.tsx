@@ -27,7 +27,7 @@ export const SingleCoursePage = async (props: IProps) => {
     <div className="pb-16 pt-8">
       <Row className="flex flex-col gap-5 lg:flex-row">
         <CourseDetails className="basis-9/12" course={course} />
-        <CourseSideBar className="basis-3/12" />
+        <CourseSideBar className="basis-3/12" course={course} />
       </Row>
       {/* <Row>
         <RelatedCourses />
