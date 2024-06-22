@@ -127,7 +127,6 @@ export const CheckoutForm = () => {
       className="lg:min-w-3xl h-max lg:flex lg:max-w-4xl lg:flex-col lg:items-center lg:gap-4"
     >
       Current User Access token
-      {token}
       <PaymentElement />
       <div className="items-center lg:flex lg:flex-col lg:gap-2">
         <Button
