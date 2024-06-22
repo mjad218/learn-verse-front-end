@@ -12,6 +12,7 @@ import { loginSchema } from "@/app/auth/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import toast from "react-hot-toast";
 
 type FormData = z.infer<typeof loginSchema>;
 
@@ -22,7 +23,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
 
-  const [isLoading, setLoading] = useState(false);
+  const [_, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
   const { setUser } = useCurrentUser();
@@ -64,11 +65,7 @@ const LoginPage = () => {
           className={formInputStyle}
           {...register("username")}
         />
-        {errors.username && (
-          <p className="text-xs font-semibold text-red-700">
-            {errors?.username?.message}
-          </p>
-        )}
+        {errors.username && toast.error(error, { id: "login-error" })}
       </div>
       <div className="mb-4">
         <label
@@ -84,15 +81,11 @@ const LoginPage = () => {
           className={formInputStyle}
           {...register("password")}
         />
-        {errors.password && (
-          <p className="text-xs font-semibold text-red-700">
-            {errors.password.message}
-          </p>
-        )}
+        {errors.password && toast.error(error, { id: "login-error" })}
 
-        {error && <p className="text-xs font-semibold text-red-700">{error}</p>}
+        {error && toast.error(error, { id: "login-error" })}
       </div>
-      <FormButton text={"Login"} isLoading={isLoading} />
+      <FormButton text={"Login"} />
     </form>
   );
 };
