@@ -22,7 +22,6 @@ export const UploadVideoForm = (props: IProps) => {
         body: formData,
         credentials: "include",
         headers: {
-          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       });
