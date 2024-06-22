@@ -1,4 +1,3 @@
-import { navigationItems } from "@/constants";
 import Link from "next/link";
 import {
   footerCompanyLinks,
@@ -14,12 +13,16 @@ import {
   BsInstagram,
 } from "react-icons/bs";
 import { Row } from "../row";
+import { Category } from "@/types/course.type";
 
-const Footer = () => {
+type IProps = {
+  categories: Category[];
+};
+const Footer = async (props: IProps) => {
   const icons = [BsFacebook, BsYoutube, BsLinkedin, BsTwitter, BsInstagram];
 
   return (
-    <footer className="text-md mt-auto flex w-full flex-col justify-center bg-[#0C090A] pb-6 pt-4 text-sm relative z-10">
+    <footer className="text-md relative z-10 mt-auto flex w-full flex-col justify-center bg-[#0C090A] pb-6 pt-4 text-sm">
       <Row>
         <div className="flex flex-col justify-between gap-10 pb-4 text-white lg:flex-row">
           <div className="list-none">
@@ -36,9 +39,9 @@ const Footer = () => {
             {/* Categories Section */}
             <p className="text-lg font-bold">Top Categories</p>
             <ul className="m-0 p-0">
-              {navigationItems.map((item) => (
-                <li key={item.name} className="my-2">
-                  <Link href={`/categories/${item.slug}`}>{item.name}</Link>
+              {(props.categories ?? []).map((item) => (
+                <li className="my-2" key={item?.id}>
+                  <Link href={`/categories/${item?.id}`}>{item.nameEn}</Link>
                 </li>
               ))}
             </ul>
