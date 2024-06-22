@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { NewCourseSchema, NewCourseType } from "@/types/course.type";
+import { Category, NewCourseSchema, NewCourseType } from "@/types/course.type";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,18 +11,41 @@ import { addSingleCourse } from "@/services/courses/single-course";
 import toast from "react-hot-toast";
 import SettingsFormButton from "../authentication/_components/SettingFormButton";
 import { toBase64 } from "@/lib/utils";
+import Select, { MultiValue } from "react-select";
 
-const CoursePanel = () => {
+const CoursePanel = ({ categories }: { categories: Category[] }) => {
   const { token } = useAccessToken();
   const { watch, register } = useForm<NewCourseType>({
     resolver: zodResolver(NewCourseSchema),
   });
 
+  const [chosenCategories, setChosenCategories] =
+    useState<MultiValue<{ label: string; value: string }>>();
+
+  const optionsArray = categories.map((category) => ({
+    label: category.nameEn,
+    value: category.code,
+  }));
+
+  // const optionsArray = [
+  //   {
+  //     label: "blabla",
+  //     value: "blabla",
+  //   },
+  //   {
+  //     label: "asdfasdf",
+  //     value: "asdfasdf",
+  //   },
+  // ];
+
   const [image, setImage] = useState<File | null | undefined>(null);
   const data = watch();
 
   const submitForm = async () => {
-    console.log(data);
+    const categoriesValues = chosenCategories?.map(
+      (category) => category.value,
+    );
+
     let img: string | ArrayBuffer | null = "";
     try {
       if (image) img = await toBase64(image);
@@ -33,7 +56,12 @@ const CoursePanel = () => {
       img,
     });
     try {
-      const res: Response = await addSingleCourse(data, img, token);
+      const res: Response = await addSingleCourse(
+        data,
+        img,
+        categoriesValues,
+        token,
+      );
       const checkResponse = await res.json();
       console.log(checkResponse);
     } catch (e) {}
@@ -92,6 +120,15 @@ const CoursePanel = () => {
               type="number"
               placeholder="Enter your course price"
               {...register("price")}
+            />
+          </div>
+          <div className="grid w-full max-w-xs items-center gap-1.5">
+            <Label htmlFor="course-categories">Course Categories</Label>
+            <Select
+              isClearable={true}
+              isMulti={true}
+              options={optionsArray}
+              onChange={(e) => setChosenCategories(e)}
             />
           </div>
           <div className="mx-auto">
