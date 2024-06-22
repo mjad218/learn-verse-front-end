@@ -3,6 +3,7 @@ import { useAccessToken } from "@/components/current-user/context";
 import { Button } from "@/components/ui/button";
 import { API_URL } from "@/constants/api";
 import { Course } from "@/types/course.type";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 type IProps = {
@@ -12,6 +13,7 @@ export const UploadVideoForm = (props: IProps) => {
   const [video, setVideo] = useState<File | null | undefined>(null);
   const [message, setMessage] = useState<string>("");
   const { token } = useAccessToken();
+  const router = useRouter();
   const handleUpload = async () => {
     if (!video || !props?.course?.id) return;
     try {
@@ -31,6 +33,7 @@ export const UploadVideoForm = (props: IProps) => {
 
       const f = await res.json();
       setMessage("Video Uploaded");
+      router.push(`/learn/${props?.course?.id}`);
       return f;
     } catch (error) {
       setMessage("Error Occurred ");
