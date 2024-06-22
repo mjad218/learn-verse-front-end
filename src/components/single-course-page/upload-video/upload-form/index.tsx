@@ -1,4 +1,5 @@
 "use client";
+import { useAccessToken } from "@/components/current-user/context";
 import { Button } from "@/components/ui/button";
 import { API_URL } from "@/constants/api";
 import { Course } from "@/types/course.type";
@@ -10,7 +11,7 @@ type IProps = {
 export const UploadVideoForm = (props: IProps) => {
   const [video, setVideo] = useState<File | null | undefined>(null);
   const [message, setMessage] = useState<string>("");
-
+  const { token } = useAccessToken();
   const handleUpload = async () => {
     if (!video || !props?.course?.id) return;
     try {
@@ -19,6 +20,11 @@ export const UploadVideoForm = (props: IProps) => {
       let res = await fetch(`${API_URL}/videos/courses/${props.course.id}`, {
         method: "POST",
         body: formData,
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (!res.ok) {
         throw { message: res.statusText, status: res.status };
