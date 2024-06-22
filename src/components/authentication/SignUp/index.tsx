@@ -23,7 +23,7 @@ const SignUp = () => {
   const submitForm = async (data: FieldValues) => {
     const { username, email, password } = data;
     try {
-      const requestOk = await signUp(username, email, password);
+      const requestOk = await signUp(username, password, email);
       if (requestOk) router.push("/auth/login");
     } catch (error) {}
   };

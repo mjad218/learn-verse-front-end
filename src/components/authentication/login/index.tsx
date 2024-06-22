@@ -17,11 +17,9 @@ import toast from "react-hot-toast";
 type FormData = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(loginSchema) });
+  const { register, handleSubmit } = useForm<FormData>({
+    resolver: zodResolver(loginSchema),
+  });
 
   const [_, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -36,6 +34,7 @@ const LoginPage = () => {
       const token = await loginByUsernameAndPassword(username, password);
       if (!token) {
         setError("Credentials Mismatch");
+        toast.error(error, { id: "login-error" });
         window.setTimeout(() => setError(""), 5000);
         return;
       }
@@ -65,7 +64,6 @@ const LoginPage = () => {
           className={formInputStyle}
           {...register("username")}
         />
-        {errors.username && toast.error(error, { id: "login-error" })}
       </div>
       <div className="mb-4">
         <label
@@ -81,9 +79,6 @@ const LoginPage = () => {
           className={formInputStyle}
           {...register("password")}
         />
-        {errors.password && toast.error(error, { id: "login-error" })}
-
-        {error && toast.error(error, { id: "login-error" })}
       </div>
       <FormButton text={"Login"} />
     </form>
