@@ -1,5 +1,5 @@
 import { API_URL } from "@/constants/api";
-import { Course } from "@/types/course.type";
+import { Category, Course } from "@/types/course.type";
 
 export const getCourses = async (query: string | null) => {
   try {
@@ -65,9 +65,9 @@ export const getAllCategories = async (token: string | null) => {
     }
     const categories = (await request.json()).payload;
 
-    return categories as Course[];
+    return categories as Category[];
   } catch (error) {
     console.log(error);
-    return null;
+    return [];
   }
 };
