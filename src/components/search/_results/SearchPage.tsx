@@ -27,7 +27,7 @@ type Props = {
   query: QueryParams;
 };
 
-const filterCourses = (courses: Course[], query: QueryParams): Course[] => {
+const filterCourses = (courses: Course[], query: QueryParams) => {
   return courses.filter((course) => {
     query?.price ? (course.price! <= +query.price ? true : false) : true;
     query?.rating ? (course.rating! >= +query.rating ? true : false) : true;
@@ -37,9 +37,8 @@ const filterCourses = (courses: Course[], query: QueryParams): Course[] => {
 const SearchPage = async ({ query }: Props) => {
   const searchQuery = query?.q;
 
-
   const courses: Course[] = await getCourses(searchQuery);
-  const filteredCourses = filterCourses(courses, query);
+  const filteredCourses = courses ? filterCourses(courses, query) : courses;
   const sortedCourses = filteredCourses
     ? sort(courses).by([
         { desc: (course) => course.rating },
