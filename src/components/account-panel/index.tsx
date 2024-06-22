@@ -19,7 +19,6 @@ type Props = {
 };
 
 const AccountPanel = ({ userDetails }: Props) => {
-  const { userName, email, firstName, familyName } = userDetails;
   const {
     register,
     formState: { errors, isDirty },
@@ -27,10 +26,10 @@ const AccountPanel = ({ userDetails }: Props) => {
   } = useForm<AccountDetailsType>({
     resolver: zodResolver(AccountDetailsSchema),
     defaultValues: {
-      userName: `${userName ?? ""}`,
-      email: `${email ?? ""}`,
-      firstName: `${firstName ?? ""}`,
-      familyName: `${familyName ?? ""}`,
+      userName: `${userDetails.userName ?? ""}`,
+      email: `${userDetails.email ?? ""}`,
+      firstName: `${userDetails.firstName ?? ""}`,
+      familyName: `${userDetails.familyName ?? ""}`,
     },
   });
 
