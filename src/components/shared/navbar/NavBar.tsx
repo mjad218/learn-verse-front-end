@@ -9,8 +9,12 @@ import { IoCloseSharp } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import { useCurrentUser } from "@/components/current-user/context";
 import NavUser from "./auth-links/NavUser";
+import { Category } from "@/types/course.type";
 
-const NavBar = () => {
+type IProps = {
+  categories: Category[];
+};
+const NavBar = (props: IProps) => {
   const { user } = useCurrentUser();
   const [isMobile, setIsMobile] = useState(false);
   return (
@@ -46,7 +50,7 @@ const NavBar = () => {
             <IoCloseSharp className="block h-auto w-10 text-accent" />
           </Button>
         )}
-        <CategoriesButton />
+        <CategoriesButton categories={props.categories} />
         <SiteSearch />
         {user ? <NavUser /> : <NavButtons />}
       </div>
