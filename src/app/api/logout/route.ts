@@ -1,4 +1,3 @@
-import { API_URL } from "@/constants/api";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 

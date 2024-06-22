@@ -9,6 +9,7 @@ const stripePromise = loadStripe(
 );
 
 import { Course } from "@/types/course.type";
+import Image from "next/image";
 
 const CheckoutFormContainer = ({
   courseInfo,
@@ -20,17 +21,24 @@ const CheckoutFormContainer = ({
     amount: 1099,
     currency: "usd",
   };
-  //fetch course info & display it
   return (
     <div className="lg:flex lg:gap-4">
-      {/* temporary section */}
-      <div className="flex flex-col">
-        <span>{courseInfo?.courseName || "Course name"}</span>
-        <span>{courseInfo?.image || "Course image"}</span>
-        <span>{courseInfo?.price || "Course price"}</span>
+      <div className="flex flex-col items-center lg:max-w-xs">
+        <span className="font-roboto text-2xl font-bold">
+          {courseInfo?.courseName || "Course name"}
+        </span>
+        <Image
+          src={`data:image/jpg;base64,${courseInfo?.image ?? ""}`}
+          alt="course-image"
+          width={400}
+          height={400}
+        />
+        <span className="font-roboto text-xl font-bold">
+          {courseInfo?.price || "Course price"}
+        </span>
       </div>
       <Elements stripe={stripePromise} options={options}>
-        <CheckoutForm />
+        <CheckoutForm courseInfo={courseInfo} />
       </Elements>
     </div>
   );
