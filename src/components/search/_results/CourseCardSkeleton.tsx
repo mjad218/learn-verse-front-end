@@ -10,19 +10,12 @@ const CourseCardSkeleton = () => {
         style={{ gridRow: "5/7" }}
         className="my-2 grid min-w-full grid-rows-3"
       >
-        <span
-          className="font-Roboto text-lg font-bold"
-          style={{ gridRow: "1/2" }}
-        >
-          Introduction to React
-        </span>
-        <span className="text-base" style={{ gridRow: "2/3" }}>
-          Instructor: {"<Course Creator>"}
-        </span>
-        <div className="mx-8 flex justify-between" style={{ gridRow: "3/4" }}>
-          <span className="test-base">Price: 50EGP</span>
-          <span className="flex items-center gap-1">3.5</span>
-        </div>
+        <Skeleton className="text-lg font-bold" style={{ grid: "1/2" }} />
+
+        <Skeleton
+          className="mx-8 flex justify-between"
+          style={{ gridRow: "3/4" }}
+        />
       </div>
     </div>
   );

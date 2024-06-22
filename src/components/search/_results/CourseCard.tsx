@@ -26,17 +26,17 @@ const CourseCard = ({ course }: { course: Course }) => {
           className="font-Roboto text-lg font-bold"
           style={{ gridRow: "1/2" }}
         >
-          {course.courseName ? course.courseName : "Introduction to React"}
+          {course?.courseName ?? "Introduction to React"}
         </span>
         <span className="text-base" style={{ gridRow: "2/3" }}>
           Instructor: {"<Course Creator>"}
         </span>
         <div className="mx-8 flex justify-between" style={{ gridRow: "3/4" }}>
           <span className="test-base">
-            Price: {course.price ? `${course.price}EGP` : "50EGP"}
+            Price: {course?.price ? `${course.price}EGP` : "50EGP"}
           </span>
           <span className="flex items-center gap-1">
-            {course.rating ? course.rating.toFixed(1) : "3.5"}
+            {course?.rating ? course.rating.toFixed(1) : "3.5"}
             <FaStar color="gold" />
           </span>
         </div>
