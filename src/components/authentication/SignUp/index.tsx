@@ -27,6 +27,7 @@ const SignUp = () => {
       const requestOk = await signUp(username, password, email);
       toast.success("Signed up successfully", {
         id: "signup-success",
+        duration: 3000,
       });
 
       if (requestOk) router.push("/auth/login");

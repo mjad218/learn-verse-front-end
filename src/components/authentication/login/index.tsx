@@ -34,11 +34,14 @@ const LoginPage = () => {
       const token = await loginByUsernameAndPassword(username, password);
       if (!token) {
         setError("Credentials Mismatch");
-        toast.error(error, { id: "login-error" });
+        toast.error(error, { id: "login-error", duration: 3000 });
         window.setTimeout(() => setError(""), 5000);
         return;
       }
-      toast.success("Logged in successfully", { id: "login-success" });
+      toast.success("Logged in successfully", {
+        id: "login-success",
+        duration: 3000,
+      });
       const user = await findCurentAuthenticatedUser(token);
       setUser(user);
       router.refresh();

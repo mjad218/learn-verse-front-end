@@ -51,7 +51,7 @@ const CoursePanel = ({ categories }: { categories: Category[] }) => {
     try {
       if (image) img = await toBase64(image);
     } catch (e) {
-      toast.error("Error adding course");
+      toast.error("Error adding course", { duration: 3000 });
     }
     console.log({
       img,
@@ -65,7 +65,7 @@ const CoursePanel = ({ categories }: { categories: Category[] }) => {
       );
       const checkResponse = await res.json();
       console.log(checkResponse);
-      toast.success("Course added Successfully");
+      toast.success("Course added Successfully", { duration: 3000 });
       redirect("/");
     } catch (e) {}
   };
