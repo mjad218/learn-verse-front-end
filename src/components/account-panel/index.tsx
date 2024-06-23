@@ -10,6 +10,15 @@ import { Input } from "../ui/input";
 import { toBase64 } from "@/lib/utils";
 import { API_URL } from "@/constants/api";
 import { useAccessToken, useCurrentUser } from "../current-user/context";
+import toast from "react-hot-toast";
+
+const replacer = (key: string, value: any) => {
+  key;
+  if (value === "" || value === null || value === undefined) {
+    return undefined;
+  }
+  return value;
+};
 
 type AccountDetailsType = z.infer<typeof AccountDetailsSchema>;
 
@@ -38,25 +47,31 @@ const AccountPanel = () => {
     try {
       if (image) img = await toBase64(image);
     } catch (error) {}
-    console.log({
-      img,
-    });
     try {
       const res = await fetch(`${API_URL}/user`, {
         method: "PUT",
-        body: JSON.stringify({
-          image: img,
-          ...data,
-          id: user?.id,
-        }),
-        headers: { 
+        body: JSON.stringify(
+          {
+            image: img,
+            ...data,
+            id: user?.id,
+          },
+          replacer,
+        ),
+        headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
       const checkResponse = await res.json();
       console.log(checkResponse);
-    } catch (error) {}
+      toast.success("details changed successfully", {
+        id: "details-success",
+        duration: 3000,
+      });
+    } catch (error) {
+      toast.error("error changing details", { id: "details-error" });
+    }
   };
 
   return (

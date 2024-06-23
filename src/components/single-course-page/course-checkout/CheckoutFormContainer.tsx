@@ -30,11 +30,12 @@ const CheckoutFormContainer = ({
         <Image
           src={`data:image/jpg;base64,${courseInfo?.image ?? ""}`}
           alt="course-image"
+          className="rounded-sm object-cover"
           width={400}
           height={400}
         />
         <span className="font-roboto text-xl font-bold">
-          {courseInfo?.price || "Course price"}
+          Course price: {courseInfo?.price || "Course price"}$
         </span>
       </div>
       <Elements stripe={stripePromise} options={options}>
