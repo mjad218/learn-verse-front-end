@@ -38,10 +38,11 @@ const LoginPage = () => {
         window.setTimeout(() => setError(""), 5000);
         return;
       }
+      toast.success("Logged in successfully", { id: "login-success" });
       const user = await findCurentAuthenticatedUser(token);
       setUser(user);
-      router.refresh(); // Redirect when success login
-      router.push("/"); // Redirect when success login
+      router.refresh();
+      router.push("/");
     } catch (error) {}
     setLoading(false);
   };

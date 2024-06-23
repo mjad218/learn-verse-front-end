@@ -7,6 +7,7 @@ import { z } from "zod";
 import { registerSchema } from "@/app/auth/definitions";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 
 type FormData = z.infer<typeof registerSchema>;
 
@@ -24,6 +25,10 @@ const SignUp = () => {
     const { username, email, password } = data;
     try {
       const requestOk = await signUp(username, password, email);
+      toast.success("Sign up successful, Redirecting..", {
+        id: "signup-success",
+      });
+
       if (requestOk) router.push("/auth/login");
     } catch (error) {}
   };
