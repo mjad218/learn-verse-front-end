@@ -1,5 +1,6 @@
 import LearnPanel from "@/components/learning-panel";
 import { getMyCourses } from "@/services/courses/multi-course";
+import { Course } from "@/types/course.type";
 import { cookies } from "next/headers";
 
 const LearnPage = async () => {
@@ -12,7 +13,7 @@ const LearnPage = async () => {
     console.log(error);
   }
 
-  const courses = await getMyCourses(token);
+  const courses:Course[] = await getMyCourses(token);
   return (
     <div>
       <LearnPanel courses={courses} />
