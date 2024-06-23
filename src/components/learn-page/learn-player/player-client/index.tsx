@@ -25,7 +25,7 @@ export const VideoPlayer = (props: IProps) => {
   const url = `${API_URL}/videos/download/${props.videoId}`;
   return (
     <div>
-      <Player src={url} blurDataURL={randomBlurDataImg}  />
+      <Player src={url} blurDataURL={randomBlurDataImg} accentColor="#023E8A"  />
     </div>
   );
 };
