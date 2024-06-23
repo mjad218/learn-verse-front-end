@@ -20,6 +20,8 @@ const CategoriesButton = (props: IProps) => {
       nameEn: toTitleCase(category.nameEn),
     })) || [];
 
+  console.log({ title_caseCategories });
+
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger className="focus:outline-none">
