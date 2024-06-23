@@ -10,9 +10,11 @@ type IProps = {
 export const MaterialsList = (props: IProps) => {
   if (!props.videos?.length)
     return (
-      <div className="flex items-center justify-center gap-3">
+      <div className="flex items-center justify-center gap-3 flex-col">
         <TbHourglassEmpty className="w-32 text-accent3" />
         <p>No Videos</p>
+        <Link href={`/${props.courseId}/upload-video`}>Upload videos</Link>
+
       </div>
     );
   return (
@@ -24,9 +26,10 @@ export const MaterialsList = (props: IProps) => {
             className="rounded-xl border border-solid border-[#eee] bg-[#ddd] px-3 py-3"
           >
             <Link href={`/learn/${props.courseId}/${v.id}`}>{v?.title}</Link>
-            <Link href={`/${props.courseId}/upload-video`}>Upload videos</Link>
           </li>
         ))}
+        <Link href={`/${props.courseId}/upload-video`} className="rounded-xl border border-solid border-[#eee] bg-[#ddd] px-3 py-3">Upload videos</Link>
+
       </ul>
     </div>
   );
