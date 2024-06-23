@@ -8,10 +8,18 @@ import {
 import { Category } from "@/types/course.type";
 import Link from "next/link";
 import { RxCaretDown } from "react-icons/rx";
+import { toTitleCase } from "@/lib/utils";
+
 type IProps = {
   categories: Category[];
 };
 const CategoriesButton = (props: IProps) => {
+  const title_caseCategories: Category[] =
+    props.categories.map((category) => ({
+      ...category,
+      nameEn: toTitleCase(category.nameEn),
+    })) || [];
+
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger className="focus:outline-none">
@@ -21,7 +29,7 @@ const CategoriesButton = (props: IProps) => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="z-[1000001]">
-        {(props.categories ?? []).map((item) => (
+        {(title_caseCategories ?? []).map((item) => (
           <Link href={`/categories/${item?.id}`} key={item?.id}>
             <DropdownMenuItem className="hover:bg-accent hover:text-white focus:bg-accent focus:text-white">
               <div className="mx-auto">{item.nameEn}</div>
