@@ -88,9 +88,9 @@ export const getMyCourses = async (token: string | null) => {
     if (!request.ok) {
       throw `${request.ok} ${request.status} ${request.statusText} `;
     }
-    const categories = (await request.json()).payload;
+    const courses = await request.json();
 
-    return categories as Category[];
+    return courses as Course[];
   } catch (error) {
     console.log(error);
     return [];

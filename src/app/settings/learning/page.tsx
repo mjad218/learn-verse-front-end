@@ -8,8 +8,10 @@ const LearnPage = async () => {
     const nextCookies = cookies();
     token = nextCookies.get("token")?.value ?? null;
     if (!token) throw "not logged in";
-  } catch (error) {}
-  
+  } catch (error) {
+    console.log(error);
+  }
+
   const courses = await getMyCourses(token);
   return (
     <div>
