@@ -49,15 +49,15 @@ export const getCoursesByCategory = async (
   }
 };
 
+
 export const getAllCategories = async (token: string | null) => {
-  token;
   try {
     const request = await fetch(`${API_URL}/category`, {
       method: "GET",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       cache: "no-cache",
     });

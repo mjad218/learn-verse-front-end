@@ -14,7 +14,7 @@ export const getSingleCourse = async (
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Bearer or Basic ?
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(`Getting Single course, Course Id ${courseId}`);
