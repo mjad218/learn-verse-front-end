@@ -40,7 +40,7 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
           }),
         });
 
-        // if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
+        if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
         const result = await res.json();
         console.log(result);
         redirect(`/${courseInfo?.id}/learn`);
