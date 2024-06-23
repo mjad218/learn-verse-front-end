@@ -36,7 +36,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} ${serifFont.variable}`}>
-        <Toaster position="bottom-right" />
+        <Toaster
+          toastOptions={{
+            className: "text-2xl font-semibold",
+          }}
+          position="bottom-right"
+        />
         <CurrentUserProvider>
           <main className="flex min-h-svh flex-col">
             <Header categories={categories} />
