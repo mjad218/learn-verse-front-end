@@ -6,16 +6,18 @@ import {
 } from "@/components/ui/accordion";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
-import { useQueryState } from "nuqs";
+import { parseAsInteger, useQueryState } from "nuqs";
 import { useRouter } from "next/navigation";
 
 const Price = () => {
   const router = useRouter();
   const [minValue] = useState(50);
   const [maxValue] = useState(2000);
-  const [price, setPrice] = useQueryState("price");
-  const [currentValue, setCurrentValue] = useState(() => (price ? price : 50));
-  const changePrice = (value: string) => {
+  const [price, setPrice] = useQueryState(
+    "price",
+    parseAsInteger.withDefault(50),
+  );
+  const changePrice = (value: number) => {
     setPrice(value);
     router.refresh();
   };
@@ -26,19 +28,18 @@ const Price = () => {
       </AccordionTrigger>
       <AccordionContent className="mx-auto max-w-[80%]">
         <Slider
-          defaultValue={[+currentValue]}
+          defaultValue={[price]}
           max={maxValue}
           min={minValue}
           onValueChange={(value) => {
-            setCurrentValue(() => value[0]!);
-            changePrice(value[0]!.toString());
+            changePrice(value[0]!);
           }}
           step={10}
           className="py-2"
         />
         <div className="flex justify-between">
           <span className="font-bold">{minValue} EGP</span>
-          <span>{currentValue} EGP</span>
+          <span>{price} EGP</span>
           <span className="font-bold">{maxValue} EGP</span>
         </div>
       </AccordionContent>
