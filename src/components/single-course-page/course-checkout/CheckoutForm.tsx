@@ -45,7 +45,6 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
         console.log(result);
         redirect("/");
       } catch (error) {}
-      // Redirect or do SOMETHING
     };
 
     const interval = window.setInterval(() => {

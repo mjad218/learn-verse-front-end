@@ -11,12 +11,14 @@ type IProps = {
   courseId: number;
 };
 export const SingleCoursePage = async (props: IProps) => {
+
   let token: string | null = "";
   try {
     const nextCookies = cookies();
     token = nextCookies.get("token")?.value ?? null;
     if (!token) throw "not logged in";
   } catch (error) {}
+  
   const course = await getSingleCourse(props.courseId, token);
   if (!course) notFound();
 
