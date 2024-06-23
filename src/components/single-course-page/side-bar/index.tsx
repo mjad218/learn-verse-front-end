@@ -16,7 +16,7 @@ export const CourseSideBar = (props: IProps) => {
       {isOwner && (
         <Link
           className="w-full rounded-xl bg-accent3 px-2 py-3 text-base font-bold text-white"
-          href={`/${props.course?.id}/learning`}
+          href={`learn/${props.course?.id}`}
         >
           Manage videos
         </Link>
