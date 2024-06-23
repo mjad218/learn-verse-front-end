@@ -25,7 +25,7 @@ const SignUp = () => {
     const { username, email, password } = data;
     try {
       const requestOk = await signUp(username, password, email);
-      toast.success("Sign up successful, Redirecting..", {
+      toast.success("Signed up successfully", {
         id: "signup-success",
       });
 
