@@ -47,7 +47,9 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
           id: "payment-success",
           duration: 3000,
         });
-      } catch (error) {}
+      } catch (error) {
+        console.error(error)
+      }
     };
 
     const interval = window.setInterval(checkPayment, 5000);
