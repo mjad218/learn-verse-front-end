@@ -35,7 +35,7 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
             Authorization: `Bearer ${frontEndToken}`,
           },
           body: JSON.stringify({
-            studentId: user?.id,
+            studentId: Number(user?.id),
             courseId: courseInfo?.id,
           }),
         });
@@ -43,7 +43,7 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
         if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
         const result = await res.json();
         console.log(result);
-        redirect("/");
+        redirect(`/${courseInfo?.id}/learn`);
       } catch (error) {}
     };
 
