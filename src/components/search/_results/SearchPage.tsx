@@ -6,6 +6,7 @@ import { Row } from "@/components/shared/row";
 import CourseCardSkeleton from "./CourseCardSkeleton";
 import { Course } from "@/types/course.type";
 import { getCourses } from "@/services/courses/multi-course";
+import { sort } from "fast-sort";
 
 const SearchOptions = dynamic(() => import("../_components/SearchOptions"), {});
 const ResultsMessage = dynamic(
@@ -27,8 +28,27 @@ type Props = {
 };
 
 const SearchPage = async ({ query }: Props) => {
-  const searchQuery = query?.q;
-  const courses: Course[] = await getCourses(searchQuery);
+  let displayedCourses: Course[] = [];
+  try {
+    const searchQuery = query?.q;
+    const courses: Course[] = await getCourses(searchQuery);
+    const filteredCourses = (courses ?? [])
+      .filter(
+        (c) =>
+          !query?.price ||
+          (c?.price && Number(c?.price) <= Number(query?.price)),
+      )
+      .filter(
+        (c) =>
+          !query?.rating ||
+          (c?.rating && Number(c?.rating) >= Number(query?.rating)),
+      );
+
+    displayedCourses = sort(filteredCourses).by([
+      { desc: (course) => course?.rating },
+      { asc: (course) => course?.price },
+    ]);
+  } catch (error) {}
 
   return (
     <Row>
@@ -39,7 +59,7 @@ const SearchPage = async ({ query }: Props) => {
         <div className="flex basis-9/12 flex-col gap-5">
           <ResultsMessage />
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,400px))] gap-3">
-            {courses.map((course, index) => (
+            {displayedCourses.map((course, index) => (
               <Suspense key={index} fallback={<CourseCardSkeleton />}>
                 <CourseCard course={course} />
               </Suspense>
