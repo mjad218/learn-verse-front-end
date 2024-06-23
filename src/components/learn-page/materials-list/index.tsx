@@ -24,6 +24,7 @@ export const MaterialsList = (props: IProps) => {
             className="rounded-xl border border-solid border-[#eee] bg-[#ddd] px-3 py-3"
           >
             <Link href={`/learn/${props.courseId}/${v.id}`}>{v?.title}</Link>
+            <Link href={`/${props.courseId}/upload-video`}>Upload videos</Link>
           </li>
         ))}
       </ul>

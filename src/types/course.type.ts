@@ -16,6 +16,7 @@ export const CourseSchema = z.object({
   rating: z.number().nullish(),
   nStudents: z.number().nullish(),
   image: z.string().nullish(),
+  ownerId: z.number(),
 });
 
 export type Course = z.infer<typeof CourseSchema>;
