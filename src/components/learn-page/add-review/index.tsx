@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { API_URL } from "@/constants/api";
 import { Review } from "@/types/review.type";
 import { Rating } from "@smastrom/react-rating";
-
 import "@smastrom/react-rating/style.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
