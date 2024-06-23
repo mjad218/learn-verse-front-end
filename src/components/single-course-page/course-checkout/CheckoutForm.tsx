@@ -35,9 +35,8 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
             Authorization: `Bearer ${frontEndToken}`,
           },
           body: JSON.stringify({
-            amount: courseInfo?.price! * 100,
-            currency: "usd",
-            receiptEmail: "example1@example.com",
+            studentId: user?.id,
+            courseId: courseInfo?.id,
           }),
         });
 

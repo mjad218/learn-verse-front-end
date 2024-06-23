@@ -28,7 +28,7 @@ const CategoriesButton = (props: IProps) => {
           <RxCaretDown color="white" className="relative top-0.5" size={18} />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-w-1 scrollbar-thumb-accent4 scrollbar-track-slate-400 z-[1000001] max-h-48 overflow-x-hidden overflow-y-scroll">
+      <DropdownMenuContent className="scrollbar-thumb-rounded-full scrollbar-corner-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-w-1 scrollbar-thumb-accent4 scrollbar-track-slate-400 z-[1000001] max-h-48 overflow-x-hidden overflow-y-scroll">
         {(title_caseCategories ?? []).map((item) => (
           <Link href={`/categories/${item?.id}`} key={item?.id}>
             <DropdownMenuItem className="hover:bg-accent hover:text-white focus:bg-accent focus:text-white">
