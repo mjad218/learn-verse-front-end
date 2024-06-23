@@ -42,7 +42,7 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
         });
 
         if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
-        router.push(`/${courseInfo?.id}/learn`);
+        router.push(`/learn/${courseInfo?.id}`);
         toast.success("Payment successful", {
           id: "payment-success",
           duration: 3000,
