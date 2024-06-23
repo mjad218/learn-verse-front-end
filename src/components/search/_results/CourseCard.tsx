@@ -31,10 +31,7 @@ const CourseCard = ({ course }: { course: Course }) => {
         >
           {course?.courseName ?? "Introduction to React"}
         </Link>
-        <span className="text-base" style={{ gridRow: "2/3" }}>
-          Instructor: {"<Course Creator>"}
-        </span>
-        <div className="mx-8 flex justify-between" style={{ gridRow: "3/4" }}>
+        <div className="mx-8 flex justify-between" style={{ gridRow: "2/4" }}>
           <span className="test-base">
             Price: {course?.price ? `${course.price}EGP` : "50EGP"}
           </span>
