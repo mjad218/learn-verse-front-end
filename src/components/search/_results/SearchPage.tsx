@@ -28,27 +28,13 @@ type Props = {
 };
 
 const SearchPage = async ({ query }: Props) => {
-  let displayedCourses: Course[] = [];
-  try {
-    const searchQuery = query?.q;
-    const courses: Course[] = await getCourses(searchQuery);
-    const filteredCourses = (courses ?? [])
-      .filter(
-        (c) =>
-          !query?.price ||
-          (c?.price && Number(c?.price) <= Number(query?.price)),
-      )
-      .filter(
-        (c) =>
-          !query?.rating ||
-          (c?.rating && Number(c?.rating) >= Number(query?.rating)),
-      );
+  const searchQuery = query?.q;
+  const courses: Course[] = await getCourses(searchQuery);
 
-    displayedCourses = sort(filteredCourses).by([
-      { desc: (course) => course?.rating },
-      { asc: (course) => course?.price },
-    ]);
-  } catch (error) {}
+  const displayedCourses: Course[] = sort(courses).by([
+    { desc: (course) => course?.rating },
+    { asc: (course) => course?.price },
+  ]);
 
   return (
     <Row>
