@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import SettingsFormButton from "../authentication/_components/SettingFormButton";
 import { toBase64 } from "@/lib/utils";
 import Select, { MultiValue } from "react-select";
+import { redirect } from "next/navigation";
 
 const CoursePanel = ({ categories }: { categories: Category[] }) => {
   const { token } = useAccessToken();
@@ -64,6 +65,8 @@ const CoursePanel = ({ categories }: { categories: Category[] }) => {
       );
       const checkResponse = await res.json();
       console.log(checkResponse);
+      toast.success("Course added Successfully");
+      redirect("/");
     } catch (e) {}
   };
 
