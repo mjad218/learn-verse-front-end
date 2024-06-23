@@ -7,6 +7,7 @@ import CourseCardSkeleton from "./CourseCardSkeleton";
 import { Course } from "@/types/course.type";
 import { getCourses } from "@/services/courses/multi-course";
 import { sort } from "fast-sort";
+import { cookies } from "next/headers";
 
 const SearchOptions = dynamic(() => import("../_components/SearchOptions"), {});
 const ResultsMessage = dynamic(
@@ -28,10 +29,17 @@ type Props = {
 };
 
 const SearchPage = async ({ query }: Props) => {
+  let token: string | null = "";
+  try {
+    const nextCookies = cookies();
+    token = nextCookies.get("token")?.value ?? null;
+    if (!token) throw "not logged in";
+  } catch (error) {}
+
   let displayedCourses: Course[] = [];
   try {
     const searchQuery = query?.q;
-    const courses: Course[] = await getCourses(searchQuery);
+    const courses: Course[] = await getCourses(searchQuery, token);
     const filteredCourses = (courses ?? [])
       .filter(
         (c) =>

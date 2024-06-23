@@ -2,13 +2,17 @@ import { API_URL } from "@/constants/api";
 import { Category, Course } from "@/types/course.type";
 import { fetchUserDetails } from "../users";
 
-export const getCourses = async (query: string | null) => {
+export const getCourses = async (
+  query: string | null,
+  token: string | null,
+) => {
   try {
     const request = await fetch(`${API_URL}/course/search?q=${query}`, {
       method: "GET",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Bearer or Basic ?
       },
       cache: "no-cache",
     });
@@ -75,7 +79,7 @@ export const getAllCategories = async (token: string | null) => {
 
 export const getMyCourses = async (token: string | null) => {
   const user = await fetchUserDetails(token);
-  if(!user?.id) return []
+  if (!user?.id) return [];
   try {
     const request = await fetch(`${API_URL}/user/${user?.id}/courses`, {
       method: "GET",
