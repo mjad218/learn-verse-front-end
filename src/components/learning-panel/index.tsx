@@ -9,7 +9,7 @@ const LearnPanel = ({ courses }: Props) => {
     <>
       <span className="font-roboto text-2xl font-semibold">My Learnings</span>
       <div className="mx-auto flex h-full max-w-md flex-col gap-2 space-x-2 py-2">
-        {courses.map((course) => (
+        {(courses ?? []).map((course) => (
           <div
             className="grid max-w-sm grid-cols-2 p-2"
             key={`course-${course.id}`}
