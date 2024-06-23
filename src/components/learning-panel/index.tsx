@@ -1,9 +1,9 @@
 import { Course } from "@/types/course.type";
+import Image from "next/image";
+
 type Props = {
   courses: Course[];
 };
-import Image from "next/image";
-
 const LearnPanel = ({ courses }: Props) => {
   return (
     <>
@@ -12,7 +12,7 @@ const LearnPanel = ({ courses }: Props) => {
         {(courses ?? []).map((course) => (
           <div
             className="grid max-w-sm grid-cols-2 p-2"
-            key={`course-${course.id}`}
+            key={`course-${course?.id}`}
           >
             <Image
               src={`data:image/jpg;base64,${course?.image ?? ""}`}
@@ -23,10 +23,10 @@ const LearnPanel = ({ courses }: Props) => {
               }}
             />
             <div className="flex flex-col items-center">
-              <span className="text-2xl">{course.courseName}</span>
+              <span className="text-2xl">{course?.courseName}</span>
               <div className="text-bold flex justify-between text-sm">
-                <span>Rating: {course.rating}</span>
-                <span>Price: {course.price}</span>
+                <span>Rating: {course?.rating}</span>
+                <span>Price: {course?.price}</span>
               </div>
             </div>
           </div>

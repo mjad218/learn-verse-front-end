@@ -75,8 +75,9 @@ export const getAllCategories = async (token: string | null) => {
 
 export const getMyCourses = async (token: string | null) => {
   const user = await fetchUserDetails(token);
+  if(!user?.id) return []
   try {
-    const request = await fetch(`${API_URL}/user/${user?.id!}/courses`, {
+    const request = await fetch(`${API_URL}/user/${user?.id}/courses`, {
       method: "GET",
       credentials: "include",
       headers: {
