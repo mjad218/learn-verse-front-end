@@ -1,4 +1,3 @@
-"use client";
 import { Course } from "@/types/course.type";
 type Props = {
   courses: Course[];

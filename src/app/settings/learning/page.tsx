@@ -9,6 +9,7 @@ const LearnPage = async () => {
     token = nextCookies.get("token")?.value ?? null;
     if (!token) throw "not logged in";
   } catch (error) {}
+  
   const courses = await getMyCourses(token);
   return (
     <div>
