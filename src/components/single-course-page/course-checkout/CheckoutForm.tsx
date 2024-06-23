@@ -42,9 +42,7 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
         });
 
         if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
-        const result = await res.json();
         router.push(`/${courseInfo?.id}/learn`);
-        console.log(result);
         toast.success("Payment successful", {
           id: "payment-success",
           duration: 3000,
@@ -52,14 +50,9 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
       } catch (error) {}
     };
 
-    const interval = window.setInterval(() => {
-      try {
-        checkPayment();
-      } catch (error) {}
-    }, 5000);
-
+    const interval = window.setInterval(checkPayment, 5000);
     return () => window.clearInterval(interval);
-  }, [frontEndToken, courseInfo?.price!]);
+  }, [frontEndToken, courseInfo?.price , router, courseInfo?.id,user?.id]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
