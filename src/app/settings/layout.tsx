@@ -5,7 +5,7 @@ import { Row } from "@/components/shared/row";
 const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   const options = [
     { name: "Account", key: "account", slug: "/settings" },
-    // { name: "Purchased Courses", key: "purchased" },
+    { name: "My Learning", key: "learning", slug: "/settings/learning" },
     { name: "Add Course", key: "manage", slug: "/settings/add-course" },
   ];
 

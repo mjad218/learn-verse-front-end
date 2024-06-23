@@ -1,5 +1,6 @@
 import { API_URL } from "@/constants/api";
 import { Category, Course } from "@/types/course.type";
+import { fetchUserDetails } from "../users";
 
 export const getCourses = async (query: string | null) => {
   try {
@@ -49,10 +50,33 @@ export const getCoursesByCategory = async (
   }
 };
 
-
 export const getAllCategories = async (token: string | null) => {
   try {
     const request = await fetch(`${API_URL}/category`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-cache",
+    });
+    if (!request.ok) {
+      throw `${request.ok} ${request.status} ${request.statusText} `;
+    }
+    const categories = (await request.json()).payload;
+
+    return categories as Category[];
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export const getMyCourses = async (token: string | null) => {
+  const user = await fetchUserDetails(token);
+  try {
+    const request = await fetch(`${API_URL}/user/${user?.id!}/courses`, {
       method: "GET",
       credentials: "include",
       headers: {
