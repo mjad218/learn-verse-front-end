@@ -88,8 +88,8 @@ export const getMyCourses = async (token: string | null) => {
     if (!request.ok) {
       throw `${request.ok} ${request.status} ${request.statusText} `;
     }
+    
     const courses = await request.json();
-
     return courses as Course[];
   } catch (error) {
     console.log(error);

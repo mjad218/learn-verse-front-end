@@ -13,6 +13,8 @@ import {
 import { API_URL } from "@/constants/api";
 import { Course } from "@/types/course.type";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
+import { revalidatePath } from "next/cache";
 
 export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
   const { user } = useCurrentUser();
@@ -43,6 +45,11 @@ export const CheckoutForm = ({ courseInfo }: { courseInfo: Course | null }) => {
         if (!res.ok) throw "Not ok Response" + res.status + res.statusText;
         const result = await res.json();
         console.log(result);
+        toast.success("Payment successful", {
+          id: "payment-success",
+          duration: 3000,
+        });
+        revalidatePath(`/${courseInfo?.id}`);
         redirect(`/${courseInfo?.id}/learn`);
       } catch (error) {}
     };
