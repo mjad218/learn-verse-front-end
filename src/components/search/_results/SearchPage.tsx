@@ -48,6 +48,8 @@ const SearchPage = async ({ query }: Props) => {
       { desc: (course) => course?.rating },
       { asc: (course) => course?.price },
     ]);
+    const page = Number(query.p);
+    displayedCourses = displayedCourses.slice(page - 1 * 6, page * 6);
   } catch (error) {}
 
   return (
