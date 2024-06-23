@@ -36,7 +36,7 @@ const CourseCard = ({ course }: { course: Course }) => {
             Price: {course?.price ? `${course.price}EGP` : "50EGP"}
           </span>
           <span className="flex items-center gap-1">
-            {course?.rating ? course.rating : "3.5"}
+            {course?.rating ? `${course.rating}` : "3.5"}
             <FaStar color="gold" />
           </span>
         </div>
