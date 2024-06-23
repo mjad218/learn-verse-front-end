@@ -14,12 +14,21 @@ import {
 } from "react-icons/bs";
 import { Row } from "../row";
 import { Category } from "@/types/course.type";
+import { toTitleCase } from "@/lib/utils";
 
 type IProps = {
   categories: Category[];
 };
 const Footer = async (props: IProps) => {
   const icons = [BsFacebook, BsYoutube, BsLinkedin, BsTwitter, BsInstagram];
+
+  let title_caseCategories: Category[] =
+    props.categories.map((category) => ({
+      ...category,
+      nameEn: toTitleCase(category.nameEn),
+    })) || [];
+
+  title_caseCategories = title_caseCategories.slice(0, 6);
 
   return (
     <footer className="text-md relative z-10 mt-auto flex w-full flex-col justify-center bg-[#0C090A] pb-6 pt-4 text-sm">
@@ -39,7 +48,7 @@ const Footer = async (props: IProps) => {
             {/* Categories Section */}
             <p className="text-lg font-bold">Top Categories</p>
             <ul className="m-0 p-0">
-              {(props.categories ?? []).map((item) => (
+              {(title_caseCategories ?? []).map((item) => (
                 <li className="my-2" key={item?.id}>
                   <Link href={`/categories/${item?.id}`}>{item.nameEn}</Link>
                 </li>
